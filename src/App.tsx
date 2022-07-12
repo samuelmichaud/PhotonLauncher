@@ -3,15 +3,12 @@
  * Disabling ESLint rules for these dependencies since we know it is only for development purposes
  */
 
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ReactDOM from 'react-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled, { createGlobalStyle } from 'styled-components';
-import {
-  useFocusable,
-  init
-} from './libsIndex';
+import { useFocusable, init } from '@noriginmedia/norigin-spatial-navigation';
 import 'joypad.js';
 import { Menu } from './Components/Menu';
 import { Content } from './Components/Content';

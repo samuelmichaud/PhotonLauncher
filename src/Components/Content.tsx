@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import {
     useFocusable,
     FocusContext
-} from '../libsIndex';
+} from '@noriginmedia/norigin-spatial-navigation';
 import { ContentRow } from './ContentRow';
 import { rows } from './Data';
 

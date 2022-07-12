@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {
     useFocusable,
     FocusContext,
-} from '../libsIndex';
+}  from '@noriginmedia/norigin-spatial-navigation';
 
 interface MenuItemBoxProps {
     focused: boolean;

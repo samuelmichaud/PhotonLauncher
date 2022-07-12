@@ -8,7 +8,7 @@ import {
     FocusDetails,
     FocusableComponentLayout,
     KeyPressDetails
-} from '../libsIndex';
+} from '@noriginmedia/norigin-spatial-navigation';
 
 const AssetWrapper = styled.div`
 margin-right: 22px;

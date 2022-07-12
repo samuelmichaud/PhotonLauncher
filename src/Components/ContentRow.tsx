@@ -8,7 +8,7 @@ import {
     FocusDetails,
     FocusableComponentLayout,
     KeyPressDetails
-} from '../libsIndex';
+} from '@noriginmedia/norigin-spatial-navigation';
 import { Asset } from './Asset';
 import { assets } from './Data';
 
