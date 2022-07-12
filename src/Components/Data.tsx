@@ -1,40 +1,56 @@
 export const assets = [
     {
         title: 'Shadow app',
-        color: '#714ADD',
+        color: '#D9D9D9',
         path: 'C:\\Users\\Sam\\AppData\\Local\\Programs\\shadow\\Shadow.exe'
     },
     {
         title: 'Asset 2',
-        color: '#AB8DFF'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 3',
-        color: '#512EB0'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 4',
-        color: '#714ADD'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 5',
-        color: '#AB8DFF'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 6',
-        color: '#512EB0'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 7',
-        color: '#714ADD'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 8',
-        color: '#AB8DFF'
+        color: '#D9D9D9'
     },
     {
         title: 'Asset 9',
-        color: '#512EB0'
+        color: '#D9D9D9'
+    },
+    {
+        title: 'Asset 6',
+        color: '#D9D9D9'
+    },
+    {
+        title: 'Asset 7',
+        color: '#D9D9D9'
+    },
+    {
+        title: 'Asset 8',
+        color: '#D9D9D9'
+    },
+    {
+        title: 'Asset 9',
+        color: '#D9D9D9'
     }
 ];
 

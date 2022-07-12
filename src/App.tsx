@@ -19,7 +19,7 @@ init({
 });
 
 const AppContainer = styled.div`
-  background-color: #221c35;
+  background: linear-gradient(#4224BF, #34B0EF);
   width: 100vw;
   height: 100vh;
   display: flex;

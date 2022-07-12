@@ -7,7 +7,7 @@ import {
     useFocusable,
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
-import { ContentRow } from './ContentRow';
+import { ContentGrid } from './ContentGrid';
 import { rows } from './Data';
 
 const ContentWrapper = styled.div`
@@ -87,7 +87,7 @@ function ContentRender() {
                 <ScrollingRows ref={ref}>
                     <div>
                         {rows.map(({ title }) => (
-                            <ContentRow
+                            <ContentGrid
                                 key={title}
                                 title={title}
                                 onAssetPress={onAssetPress}

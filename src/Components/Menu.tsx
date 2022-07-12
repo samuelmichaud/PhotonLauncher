@@ -12,14 +12,15 @@ interface MenuItemBoxProps {
 }
 
 const MenuItemBox = styled.div<MenuItemBoxProps>`
-    width: 171px;
-    height: 51px;
-    background-color: #b056ed;
+    width: 50px;
+    height: 50px;
+    background-color: #101322;
     border-color: white;
     border-style: solid;
     border-width: ${({ focused }) => (focused ? '6px' : 0)};
     box-sizing: border-box;
     border-radius: 7px;
+    margin-left: 20px;
   `;
 
 function MenuItem() {
@@ -36,11 +37,12 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
     flex: 1;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: flex-end;
+    justify-content: end;
     max-height: 80px;
+    padding: 0 60px;
     background-color: ${({ hasFocusedChild }) =>
-        hasFocusedChild ? '#4e4181' : '#362C56'};
+        hasFocusedChild ? 'transparent' : 'transparent'};
   `;
 
 interface MenuProps {
@@ -81,8 +83,6 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
     return (
         <FocusContext.Provider value={focusKey}>
             <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                <MenuItem />
-                <MenuItem />
                 <MenuItem />
                 <MenuItem />
                 <MenuItem />

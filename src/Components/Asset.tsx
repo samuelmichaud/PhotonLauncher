@@ -25,7 +25,7 @@ const AssetBox = styled.div<AssetBoxProps>`
 width: 208px;
 height: 312px;
 background-color: ${({ color }) => color};
-border-color: white;
+border-color: #101322;
 border-style: solid;
 border-width: ${({ focused }) => (focused ? '6px' : 0)};
 box-sizing: border-box;
