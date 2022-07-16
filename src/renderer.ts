@@ -31,6 +31,7 @@ import './App'
 
 export interface ShadowLauncherApi {
     launchExternalApp: (path: String) => Promise<void>,
+    scanForGames: () => Promise<void>
 }
   
 declare global {
@@ -39,4 +40,4 @@ declare global {
     }
 }
 
-console.log('👋 This message is being logged by "renderer.js", included via webpack');
+window.ShadowLauncherApi.scanForGames();
