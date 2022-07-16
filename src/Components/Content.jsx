@@ -55,6 +55,7 @@ function ContentRender() {
     const { ref, focusKey } = useFocusable();
 
     const [selectedAsset, setSelectedAsset] = useState(null);
+    const [assets, setAssets] = useState([]);
 
     const onAssetPress = useCallback((asset) => {
         window.ShadowLauncherApi.launchExternalApp(asset.path);
@@ -70,6 +71,10 @@ function ContentRender() {
         },
         [ref]
     );
+    
+    window.ShadowLauncherApi.scanForGames().then(games => {
+        setAssets(games);
+    });
 
     return (
         <FocusContext.Provider value={focusKey}>
@@ -90,6 +95,7 @@ function ContentRender() {
                             <ContentGrid
                                 key={title}
                                 title={title}
+                                assets={assets}
                                 onAssetPress={onAssetPress}
                                 onFocus={onRowFocus}
                             />

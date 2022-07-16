@@ -4,13 +4,14 @@
 import { contextBridge, shell } from 'electron'
 const path = require('path');
 const child_process = require('child_process');
+const fs = require('fs');
 
 contextBridge.exposeInMainWorld('ShadowLauncherApi', {
-    launchExternalApp: (path: string) => {
+    launchExternalApp: (path) => {
         shell.openPath(path);
     },
     scanForGames: () => {
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             
             const glcDir = path.resolve(__dirname, './../../../', './GLC/');
             const glcPath = path.resolve(glcDir, './glc.exe');
@@ -18,13 +19,20 @@ contextBridge.exposeInMainWorld('ShadowLauncherApi', {
                 encoding: 'utf8',
                 shell: true
             });
-            child.on('close', (code: any) => {
+            child.on('close', (code) => {
                 switch (code) {
                     case 0:
                         console.log('Gamescan is done. Exit code: ' + code);
+
+                        let rawdata = fs.readFileSync(path.resolve(glcDir, './glc-games.json'));
+                        let parseData = JSON.parse(rawdata);
+                        if (typeof parseData.games != undefined) {
+                            resolve(parseData.games);
+                        }
                         break;
+                    default: 
+                        reject({'error_code': code});
                 }
-        
             });
         });
     }

@@ -10,7 +10,6 @@ import {
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
 import { Asset } from './Asset';
-import { assets } from './Data';
 
 const ContentRowWrapper = styled.div`
 margin-bottom: 37px;
@@ -40,6 +39,7 @@ flex-direction: row;
 
 interface ContentRowProps {
     title: string;
+    assets: Array<any>;
     onAssetPress: (props: object, details: KeyPressDetails) => void;
     onFocus: (
         layout: FocusableComponentLayout,
@@ -50,6 +50,7 @@ interface ContentRowProps {
 
 function ContentRowRender({
     title: rowTitle,
+    assets: assets,
     onAssetPress,
     onFocus
 }: ContentRowProps) {
@@ -75,12 +76,11 @@ function ContentRowRender({
                 <ContentRowTitle>{rowTitle}</ContentRowTitle>
                 <ContentRowScrollingWrapper ref={scrollingRef}>
                     <ContentRowScrollingContent>
-                        {assets.map(({ title, color, path }) => (
+                        {assets.map(({ title, id, launch }) => (
                             <Asset
-                                key={title}
+                                id={title}
                                 title={title}
-                                color={color}
-                                path={path}
+                                path={launch}
                                 onEnterPress={onAssetPress}
                                 onFocus={onAssetFocus}
                             />

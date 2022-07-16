@@ -18,13 +18,12 @@ flex-direction: column;
 
 interface AssetBoxProps {
 focused: boolean;
-color: string;
 }
 
 const AssetBox = styled.div<AssetBoxProps>`
 width: 208px;
 height: 312px;
-background-color: ${({ color }) => color};
+background-color: #D9D9D9;
 border-color: #101322;
 border-style: solid;
 border-width: ${({ focused }) => (focused ? '6px' : 0)};
@@ -41,31 +40,31 @@ font-weight: 400;
 `;
 
 interface AssetProps {
-title: string;
-color: string;
-path: string;
-onEnterPress: (props: object, details: KeyPressDetails) => void;
-onFocus: (
-  layout: FocusableComponentLayout,
-  props: object,
-  details: FocusDetails
-) => void;
+  title: string;
+  id: string;
+  path: string;
+  onEnterPress: (props: object, details: KeyPressDetails) => void;
+  onFocus: (
+    layout: FocusableComponentLayout,
+    props: object,
+    details: FocusDetails
+  ) => void;
 }
 
-function AssetRender({ title, color, path, onEnterPress, onFocus }: AssetProps) {
+function AssetRender({ title, id, path, onEnterPress, onFocus }: AssetProps) {
 const { ref, focused, focusSelf } = useFocusable({
   onEnterPress,
   onFocus,
   extraProps: {
     title,
-    color,
+    id,
     path
   }
 });
 
 return (
   <AssetWrapper ref={ref} onClick={() => {focusSelf()}}>
-    <AssetBox color={color} focused={focused} />
+    <AssetBox focused={focused} />
     <AssetTitle>{title}</AssetTitle>
   </AssetWrapper>
 );

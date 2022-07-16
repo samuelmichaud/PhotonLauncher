@@ -2,13 +2,44 @@
 # yarn lockfile v1
 
 
+"@ampproject/remapping@^2.1.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"
+  dependencies:
+    "@jridgewell/gen-mapping" "^0.1.0"
+    "@jridgewell/trace-mapping" "^0.3.9"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6":
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.18.6.tgz"
   dependencies:
     "@babel/highlight" "^7.18.6"
 
-"@babel/generator@^7.18.7":
+"@babel/compat-data@^7.18.6":
+  version "7.18.8"
+  resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.18.8.tgz#2483f565faca607b8535590e84e7de323f27764d"
+
+"@babel/core@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.18.6.tgz#54a107a3c298aee3fe5e1947a6464b9b6faca03d"
+  dependencies:
+    "@ampproject/remapping" "^2.1.0"
+    "@babel/code-frame" "^7.18.6"
+    "@babel/generator" "^7.18.6"
+    "@babel/helper-compilation-targets" "^7.18.6"
+    "@babel/helper-module-transforms" "^7.18.6"
+    "@babel/helpers" "^7.18.6"
+    "@babel/parser" "^7.18.6"
+    "@babel/template" "^7.18.6"
+    "@babel/traverse" "^7.18.6"
+    "@babel/types" "^7.18.6"
+    convert-source-map "^1.7.0"
+    debug "^4.1.0"
+    gensync "^1.0.0-beta.2"
+    json5 "^2.2.1"
+    semver "^6.3.0"
+
+"@babel/generator@^7.18.6", "@babel/generator@^7.18.7":
   version "7.18.7"
   resolved "https://registry.npmjs.org/@babel/generator/-/generator-7.18.7.tgz"
   dependencies:
@@ -16,11 +47,20 @@
     "@jridgewell/gen-mapping" "^0.3.2"
     jsesc "^2.5.1"
 
-"@babel/helper-annotate-as-pure@^7.16.0":
+"@babel/helper-annotate-as-pure@^7.16.0", "@babel/helper-annotate-as-pure@^7.18.6":
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/helper-annotate-as-pure/-/helper-annotate-as-pure-7.18.6.tgz"
   dependencies:
     "@babel/types" "^7.18.6"
+
+"@babel/helper-compilation-targets@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/helper-compilation-targets/-/helper-compilation-targets-7.18.6.tgz#18d35bfb9f83b1293c22c55b3d576c1315b6ed96"
+  dependencies:
+    "@babel/compat-data" "^7.18.6"
+    "@babel/helper-validator-option" "^7.18.6"
+    browserslist "^4.20.2"
+    semver "^6.3.0"
 
 "@babel/helper-environment-visitor@^7.18.6":
   version "7.18.6"
@@ -39,9 +79,32 @@
   dependencies:
     "@babel/types" "^7.18.6"
 
-"@babel/helper-module-imports@^7.0.0", "@babel/helper-module-imports@^7.16.0":
+"@babel/helper-module-imports@^7.0.0", "@babel/helper-module-imports@^7.16.0", "@babel/helper-module-imports@^7.18.6":
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-7.18.6.tgz"
+  dependencies:
+    "@babel/types" "^7.18.6"
+
+"@babel/helper-module-transforms@^7.18.6":
+  version "7.18.8"
+  resolved "https://registry.yarnpkg.com/@babel/helper-module-transforms/-/helper-module-transforms-7.18.8.tgz#4f8408afead0188cfa48672f9d0e5787b61778c8"
+  dependencies:
+    "@babel/helper-environment-visitor" "^7.18.6"
+    "@babel/helper-module-imports" "^7.18.6"
+    "@babel/helper-simple-access" "^7.18.6"
+    "@babel/helper-split-export-declaration" "^7.18.6"
+    "@babel/helper-validator-identifier" "^7.18.6"
+    "@babel/template" "^7.18.6"
+    "@babel/traverse" "^7.18.8"
+    "@babel/types" "^7.18.8"
+
+"@babel/helper-plugin-utils@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.18.6.tgz#9448974dd4fb1d80fefe72e8a0af37809cd30d6d"
+
+"@babel/helper-simple-access@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.18.6.tgz#d6d8f51f4ac2978068df934b569f08f29788c7ea"
   dependencies:
     "@babel/types" "^7.18.6"
 
@@ -55,6 +118,18 @@
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.18.6.tgz"
 
+"@babel/helper-validator-option@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/helper-validator-option/-/helper-validator-option-7.18.6.tgz#bf0d2b5a509b1f336099e4ff36e1a63aa5db4db8"
+
+"@babel/helpers@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.18.6.tgz#4c966140eaa1fcaa3d5a8c09d7db61077d4debfd"
+  dependencies:
+    "@babel/template" "^7.18.6"
+    "@babel/traverse" "^7.18.6"
+    "@babel/types" "^7.18.6"
+
 "@babel/highlight@^7.18.6":
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/highlight/-/highlight-7.18.6.tgz"
@@ -66,6 +141,52 @@
 "@babel/parser@^7.18.6", "@babel/parser@^7.18.8":
   version "7.18.8"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.18.8.tgz"
+
+"@babel/plugin-syntax-jsx@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-jsx/-/plugin-syntax-jsx-7.18.6.tgz#a8feef63b010150abd97f1649ec296e849943ca0"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.18.6"
+
+"@babel/plugin-transform-react-display-name@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-display-name/-/plugin-transform-react-display-name-7.18.6.tgz#8b1125f919ef36ebdfff061d664e266c666b9415"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.18.6"
+
+"@babel/plugin-transform-react-jsx-development@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.18.6.tgz#dbe5c972811e49c7405b630e4d0d2e1380c0ddc5"
+  dependencies:
+    "@babel/plugin-transform-react-jsx" "^7.18.6"
+
+"@babel/plugin-transform-react-jsx@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.18.6.tgz#2721e96d31df96e3b7ad48ff446995d26bc028ff"
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.18.6"
+    "@babel/helper-module-imports" "^7.18.6"
+    "@babel/helper-plugin-utils" "^7.18.6"
+    "@babel/plugin-syntax-jsx" "^7.18.6"
+    "@babel/types" "^7.18.6"
+
+"@babel/plugin-transform-react-pure-annotations@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-pure-annotations/-/plugin-transform-react-pure-annotations-7.18.6.tgz#561af267f19f3e5d59291f9950fd7b9663d0d844"
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.18.6"
+    "@babel/helper-plugin-utils" "^7.18.6"
+
+"@babel/preset-react@^7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.18.6.tgz#979f76d6277048dc19094c217b507f3ad517dd2d"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.18.6"
+    "@babel/helper-validator-option" "^7.18.6"
+    "@babel/plugin-transform-react-display-name" "^7.18.6"
+    "@babel/plugin-transform-react-jsx" "^7.18.6"
+    "@babel/plugin-transform-react-jsx-development" "^7.18.6"
+    "@babel/plugin-transform-react-pure-annotations" "^7.18.6"
 
 "@babel/runtime-corejs3@^7.10.2":
   version "7.18.6"
@@ -88,7 +209,7 @@
     "@babel/parser" "^7.18.6"
     "@babel/types" "^7.18.6"
 
-"@babel/traverse@^7.4.5":
+"@babel/traverse@^7.18.6", "@babel/traverse@^7.18.8", "@babel/traverse@^7.4.5":
   version "7.18.8"
   resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.18.8.tgz"
   dependencies:
@@ -444,6 +565,13 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
 
+"@jridgewell/gen-mapping@^0.1.0":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
+  dependencies:
+    "@jridgewell/set-array" "^1.0.0"
+    "@jridgewell/sourcemap-codec" "^1.4.10"
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.2"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.2.tgz"
@@ -456,7 +584,7 @@
   version "3.1.0"
   resolved "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.0.tgz"
 
-"@jridgewell/set-array@^1.0.1":
+"@jridgewell/set-array@^1.0.0", "@jridgewell/set-array@^1.0.1":
   version "1.1.2"
   resolved "https://registry.npmjs.org/@jridgewell/set-array/-/set-array-1.1.2.tgz"
 
@@ -668,7 +796,7 @@
   version "3.0.0"
   resolved "https://registry.npmjs.org/@types/json-buffer/-/json-buffer-3.0.0.tgz"
 
-"@types/json-schema@*", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
+"@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.11"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz"
 
@@ -1241,6 +1369,15 @@ axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
 
+babel-loader@^8.2.5:
+  version "8.2.5"
+  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.2.5.tgz#d45f585e654d5a5d90f5350a779d7647c5ed512e"
+  dependencies:
+    find-cache-dir "^3.3.1"
+    loader-utils "^2.0.0"
+    make-dir "^3.1.0"
+    schema-utils "^2.6.5"
+
 "babel-plugin-styled-components@>= 1.12.0":
   version "2.0.7"
   resolved "https://registry.npmjs.org/babel-plugin-styled-components/-/babel-plugin-styled-components-2.0.7.tgz"
@@ -1254,6 +1391,10 @@ axobject-query@^2.2.0:
 babel-plugin-syntax-jsx@^6.18.0:
   version "6.18.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz"
+
+babel@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel/-/babel-6.23.0.tgz#d0d1e7d803e974765beea3232d4e153c0efb90f4"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1353,6 +1494,15 @@ browserslist@^4.14.5:
     caniuse-lite "^1.0.30001359"
     electron-to-chromium "^1.4.172"
     node-releases "^2.0.5"
+    update-browserslist-db "^1.0.4"
+
+browserslist@^4.20.2:
+  version "4.21.2"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.21.2.tgz#59a400757465535954946a400b841ed37e2b4ecf"
+  dependencies:
+    caniuse-lite "^1.0.30001366"
+    electron-to-chromium "^1.4.188"
+    node-releases "^2.0.6"
     update-browserslist-db "^1.0.4"
 
 buffer-alloc-unsafe@^1.1.0:
@@ -1477,6 +1627,10 @@ camelize@^1.0.0:
 caniuse-lite@^1.0.30001359:
   version "1.0.30001363"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001363.tgz"
+
+caniuse-lite@^1.0.30001366:
+  version "1.0.30001367"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001367.tgz#2b97fe472e8fa29c78c5970615d7cd2ee414108a"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -1653,6 +1807,10 @@ commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
 
+commondir@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
+
 compare-version@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/compare-version/-/compare-version-0.1.2.tgz"
@@ -1723,6 +1881,12 @@ content-disposition@0.5.4:
 content-type@~1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/content-type/-/content-type-1.0.4.tgz"
+
+convert-source-map@^1.7.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.8.0.tgz#f3373c32d21b4d780dd8004514684fb791ca4369"
+  dependencies:
+    safe-buffer "~5.1.1"
 
 cookie-signature@1.0.6:
   version "1.0.6"
@@ -2160,6 +2324,10 @@ electron-squirrel-startup@^1.0.0:
 electron-to-chromium@^1.4.172:
   version "1.4.185"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.185.tgz"
+
+electron-to-chromium@^1.4.188:
+  version "1.4.192"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.192.tgz#fac050058b3e0713b401a1088cc579e14c2ab165"
 
 electron-winstaller@^5.0.0:
   version "5.0.0"
@@ -2720,6 +2888,14 @@ finalhandler@1.2.0:
     statuses "2.0.1"
     unpipe "~1.0.0"
 
+find-cache-dir@^3.3.1:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-3.3.2.tgz#b30c5b6eff0730731aea9bbd9dbecbd80256d64b"
+  dependencies:
+    commondir "^1.0.1"
+    make-dir "^3.0.2"
+    pkg-dir "^4.1.0"
+
 find-up@^2.0.0, find-up@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/find-up/-/find-up-2.1.0.tgz"
@@ -2902,6 +3078,10 @@ gauge@^4.0.3:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
     wide-align "^1.1.5"
+
+gensync@^1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
 
 get-caller-file@^2.0.1, get-caller-file@^2.0.5:
   version "2.0.5"
@@ -3680,7 +3860,7 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-json5@^2.1.2:
+json5@^2.1.2, json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.1.tgz"
 
@@ -3876,6 +4056,12 @@ lzma-native@^8.0.5:
     node-addon-api "^3.1.0"
     node-gyp-build "^4.2.1"
     readable-stream "^3.6.0"
+
+make-dir@^3.0.2, make-dir@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
+  dependencies:
+    semver "^6.0.0"
 
 make-fetch-happen@^10.0.3:
   version "10.1.8"
@@ -4167,7 +4353,7 @@ node-loader@^2.0.0:
   dependencies:
     loader-utils "^2.0.0"
 
-node-releases@^2.0.5:
+node-releases@^2.0.5, node-releases@^2.0.6:
   version "2.0.6"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.6.tgz"
 
@@ -4567,7 +4753,7 @@ pify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/pify/-/pify-3.0.0.tgz"
 
-pkg-dir@^4.2.0:
+pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/pkg-dir/-/pkg-dir-4.2.0.tgz"
   dependencies:
@@ -5059,6 +5245,14 @@ scheduler@^0.20.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
+schema-utils@^2.6.5:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.7.1.tgz#1ca4f32d1b24c590c203b8e7a50bf0ea4cd394d7"
+  dependencies:
+    "@types/json-schema" "^7.0.5"
+    ajv "^6.12.4"
+    ajv-keywords "^3.5.2"
+
 schema-utils@^3.0.0, schema-utils@^3.1.0, schema-utils@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-3.1.1.tgz"
@@ -5094,7 +5288,7 @@ semver-compare@^1.0.0:
   version "5.7.1"
   resolved "https://registry.npmjs.org/semver/-/semver-5.7.1.tgz"
 
-semver@^6.2.0, semver@^6.3.0:
+semver@^6.0.0, semver@^6.2.0, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz"
 

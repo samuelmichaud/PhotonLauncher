@@ -39,5 +39,3 @@ declare global {
         ShadowLauncherApi: ShadowLauncherApi,
     }
 }
-
-window.ShadowLauncherApi.scanForGames();

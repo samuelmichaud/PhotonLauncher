@@ -10,7 +10,6 @@ import {
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
 import { Asset } from './Asset';
-import { assets } from './Data';
 
 const ContentGridWrapper = styled.div`
 margin-bottom: 37px;
@@ -38,6 +37,7 @@ flex-wrap: wrap;
 
 interface ContentGridProps {
     title: string;
+    assets: Array<any>;
     onAssetPress: (props: object, details: KeyPressDetails) => void;
     onFocus: (
         layout: FocusableComponentLayout,
@@ -48,6 +48,7 @@ interface ContentGridProps {
 
 function ContentGridRender({
     title: rowTitle,
+    assets: assets,
     onAssetPress,
     onFocus
 }: ContentGridProps) {
@@ -73,12 +74,11 @@ function ContentGridRender({
                 <ContentGridTitle>{rowTitle}</ContentGridTitle>
                 <ContentGridScrollingWrapper ref={scrollingRef}>
                     <ContentGridScrollingContent>
-                        {assets.map(({ title, color, path }) => (
+                        {assets.map(({ id, title, launch }) => (
                             <Asset
-                                key={title}
+                                id={id}
                                 title={title}
-                                color={color}
-                                path={path}
+                                path={launch}
                                 onEnterPress={onAssetPress}
                                 onFocus={onAssetFocus}
                             />
