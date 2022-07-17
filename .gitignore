@@ -87,3 +87,7 @@ typings/
 
 # Electron-Forge
 out/
+
+# GLC output
+glc-cfg.json
+glc-games.json
