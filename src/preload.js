@@ -1,12 +1,12 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
-import { contextBridge, shell } from 'electron'
+import { contextBridge, shell, ipcRenderer } from 'electron'
 const path = require('path');
 const child_process = require('child_process');
 const fs = require('fs');
 
-contextBridge.exposeInMainWorld('ShadowLauncherApi', {
+contextBridge.exposeInMainWorld('ShadowApi', {
     launchExternalApp: (path) => {
         shell.openPath(path);
     },
@@ -35,5 +35,8 @@ contextBridge.exposeInMainWorld('ShadowLauncherApi', {
                 }
             });
         });
+    },
+    quitApp: () => {
+        ipcRenderer.send('exit-app');
     }
 })

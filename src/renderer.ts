@@ -29,13 +29,14 @@
 import './index.css';
 import './App'
 
-export interface ShadowLauncherApi {
+export interface ShadowApi {
     launchExternalApp: (path: String) => Promise<void>,
-    scanForGames: () => Promise<void>
+    scanForGames: () => Promise<void>,
+    quitApp: () => void
 }
   
 declare global {
     interface Window {
-        ShadowLauncherApi: ShadowLauncherApi,
+        ShadowApi: ShadowApi,
     }
 }

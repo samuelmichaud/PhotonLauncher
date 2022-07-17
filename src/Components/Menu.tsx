@@ -5,10 +5,13 @@ import styled from 'styled-components';
 import {
     useFocusable,
     FocusContext,
+    KeyPressDetails
 }  from '@noriginmedia/norigin-spatial-navigation';
 
 interface MenuItemBoxProps {
     focused?: boolean;
+    action?: () => void;
+    onEnterPress?: (props: object, details: KeyPressDetails) => void;
     label: string; 
 }
 
@@ -26,11 +29,13 @@ const MenuItemBox = styled.div<MenuItemBoxProps>`
     margin-left: 20px;
   `;
 
-function MenuItem({label}: MenuItemBoxProps) {
-    const { ref, focused, focusSelf } = useFocusable();
+function MenuItem({label, action, onEnterPress}: MenuItemBoxProps) {
+    const { ref, focused, focusSelf } = useFocusable({
+        onEnterPress: () => { focusSelf(); action(); }
+    });
 
     return (
-        <MenuItemBox ref={ref} focused={focused} onClick={() => { focusSelf() }} label={label}>
+        <MenuItemBox ref={ref} focused={focused} onClick={() => action()} label={label}>
             <span>{label}</span>
         </MenuItemBox>
         );
@@ -90,9 +95,9 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
     return (
         <FocusContext.Provider value={focusKey}>
             <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                <MenuItem label={'Steam BigPicture'}/>
-                <MenuItem label={'Settings'}/>
-                <MenuItem label={''}/>
+                <MenuItem label={'Steam BigPicture'} action={() => window.ShadowApi.launchExternalApp('steam://open/bigpicture')} />
+                <MenuItem label={'Refresh games'} action={() => window.ShadowApi.scanForGames()}/>
+                <MenuItem label={'X'} action={() => window.ShadowApi.quitApp()}/>
             </MenuWrapper>
         </FocusContext.Provider>
     );

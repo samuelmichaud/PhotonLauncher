@@ -58,7 +58,7 @@ function ContentRender() {
     const [assets, setAssets] = useState([]);
 
     const onAssetPress = useCallback((asset) => {
-        window.ShadowLauncherApi.launchExternalApp(asset.path);
+        window.ShadowApi.launchExternalApp(asset.path);
         setSelectedAsset(asset);
     }, []);
 
@@ -72,7 +72,7 @@ function ContentRender() {
         [ref]
     );
     
-    window.ShadowLauncherApi.scanForGames().then(games => {
+    window.ShadowApi.scanForGames().then(games => {
         setAssets(games);
     });
 
