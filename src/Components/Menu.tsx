@@ -8,25 +8,32 @@ import {
 }  from '@noriginmedia/norigin-spatial-navigation';
 
 interface MenuItemBoxProps {
-    focused: boolean;
+    focused?: boolean;
+    label: string; 
 }
 
 const MenuItemBox = styled.div<MenuItemBoxProps>`
-    width: 50px;
+    min-width: 50px;
     height: 50px;
+    color: white;
     background-color: #101322;
-    border-color: white;
+    border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
+    padding: 5px 10px;
     border-style: solid;
-    border-width: ${({ focused }) => (focused ? '6px' : 0)};
+    border-width: 6px;
     box-sizing: border-box;
     border-radius: 7px;
     margin-left: 20px;
   `;
 
-function MenuItem() {
+function MenuItem({label}: MenuItemBoxProps) {
     const { ref, focused, focusSelf } = useFocusable();
 
-    return <MenuItemBox ref={ref} focused={focused} onClick={() => { focusSelf() }} />;
+    return (
+        <MenuItemBox ref={ref} focused={focused} onClick={() => { focusSelf() }} label={label}>
+            <span>{label}</span>
+        </MenuItemBox>
+        );
 }
 
 interface MenuWrapperProps {
@@ -83,9 +90,9 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
     return (
         <FocusContext.Provider value={focusKey}>
             <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
+                <MenuItem label={'Steam BigPicture'}/>
+                <MenuItem label={'Settings'}/>
+                <MenuItem label={''}/>
             </MenuWrapper>
         </FocusContext.Provider>
     );

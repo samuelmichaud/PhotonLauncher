@@ -14,6 +14,8 @@ const AssetWrapper = styled.div`
 margin-right: 22px;
 display: flex;
 flex-direction: column;
+position: relative;
+margin-bottom: 20px;
 `;
 
 interface AssetBoxProps {
@@ -23,8 +25,8 @@ focused: boolean;
 const AssetBox = styled.div<AssetBoxProps>`
 width: 208px;
 height: 312px;
-background-color: #D9D9D9;
-border-color: #101322;
+background-color: #101322;
+border-color: white;
 border-style: solid;
 border-width: ${({ focused }) => (focused ? '6px' : 0)};
 box-sizing: border-box;
@@ -33,10 +35,13 @@ border-radius: 7px;
 
 const AssetTitle = styled.div`
 color: white;
-margin-top: 10px;
 font-family: 'Segoe UI';
 font-size: 24px;
 font-weight: 400;
+position: absolute;
+max-width: 100%;
+padding: 15px;
+bottom: 0;
 `;
 
 interface AssetProps {
@@ -63,7 +68,7 @@ const { ref, focused, focusSelf } = useFocusable({
 });
 
 return (
-  <AssetWrapper ref={ref} onClick={() => {focusSelf()}}>
+  <AssetWrapper ref={ref} onClick={() => {focusSelf()}} key={id}>
     <AssetBox focused={focused} />
     <AssetTitle>{title}</AssetTitle>
   </AssetWrapper>
