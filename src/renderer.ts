@@ -32,6 +32,7 @@ import './App'
 export interface ShadowApi {
     launchExternalApp: (path: String) => Promise<void>,
     scanForGames: () => Promise<void>,
+    fetchApps: () => Array<any>,
     quitApp: () => void
 }
   

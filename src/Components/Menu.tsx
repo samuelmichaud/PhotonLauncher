@@ -96,7 +96,6 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
         <FocusContext.Provider value={focusKey}>
             <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
                 <MenuItem label={'Steam BigPicture'} action={() => window.ShadowApi.launchExternalApp('steam://open/bigpicture')} />
-                <MenuItem label={'Refresh games'} action={() => window.ShadowApi.scanForGames()}/>
                 <MenuItem label={'X'} action={() => window.ShadowApi.quitApp()}/>
             </MenuWrapper>
         </FocusContext.Provider>

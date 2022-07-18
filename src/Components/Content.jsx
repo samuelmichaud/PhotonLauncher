@@ -1,5 +1,5 @@
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -71,10 +71,14 @@ function ContentRender() {
         },
         [ref]
     );
-    
-    window.ShadowApi.scanForGames().then(games => {
-        setAssets(games);
-    });
+
+    // Fetch games, but only the first time to avoid infinite loop (because changings assets will trigger a render)
+    useEffect(() => {
+        window.ShadowApi.fetchApps((data) => {
+            setAssets(data);
+        });
+    }, assets);
+        
 
     return (
         <FocusContext.Provider value={focusKey}>

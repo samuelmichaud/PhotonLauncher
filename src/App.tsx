@@ -18,6 +18,9 @@ init({
   visualDebug: false
 });
 
+// at launch, we want the system to refresh installed games. However, this is asynchronous
+window.ShadowApi.scanForGames();
+
 const AppContainer = styled.div`
   background: linear-gradient(#4224BF, #34B0EF);
   width: 100vw;
