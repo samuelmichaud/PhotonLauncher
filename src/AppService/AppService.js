@@ -1,28 +1,24 @@
 
 import { ipcMain } from 'electron';
-import { mainWindow } from '../index'
+import { mainWindow } from '../index';
+import { loadFromJSONFile } from './Utils'
 
 const path = require('path');
 const child_process = require('child_process');
-const fs = require('fs');
 
 // Store the glc.exe directory for future reuse. Because the .exe generate files on its own folder
 const glcDir = path.resolve(__dirname, './../');
+const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
 
-// The glc.exe create a file named glc-games with the list of all games. We need to read it.
-const loadGamesFromJSON = () => {
-    let parsedData = [];
-    try {
-        let rawdata = fs.readFileSync(path.resolve(glcDir, './glc-games.json'));
-        parsedData = JSON.parse(rawdata);
-        parsedData = (typeof parsedData.games != undefined)? parsedData.games : [];
-    } catch(e){}
-  
-    return parsedData;
+function loadMetadaFromJSONfile (path) {
+    let parsedData = loadFromJSONFile(path);
+    return (typeof parsedData.games != undefined)? parsedData.games : [];
 }
 
 ipcMain.on("fetchAppsFromSource", (event, args) => {
-    mainWindow.webContents.send('fetchApps', loadGamesFromJSON());
+    console.log('fetchAppsFromSource');
+    // The glc.exe create a file named glc-games with the list of all games. We need to read it.
+    mainWindow.webContents.send('fetchApps', loadMetadaFromJSONfile(glcPathJSONdatabase));
 });
 
 ipcMain.on("scanForGames", (event, args) => {
@@ -36,7 +32,7 @@ ipcMain.on("scanForGames", (event, args) => {
         switch (code) {
             case 0:
                 console.log('Gamescan is done. Exit code: ' + code);
-                mainWindow.webContents.send('fetchApps', loadGamesFromJSON());
+                mainWindow.webContents.send('fetchApps', loadMetadaFromJSONfile(glcPathJSONdatabase));
                 break;
             default: 
                 reject({'error_code': code});

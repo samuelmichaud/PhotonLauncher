@@ -48,7 +48,7 @@ interface ContentGridProps {
 
 function ContentGridRender({
     title: rowTitle,
-    assets: assets,
+    assets,
     onAssetPress,
     onFocus
 }: ContentGridProps) {
@@ -67,7 +67,7 @@ function ContentGridRender({
         },
         [scrollingRef]
     );
-
+    
     return (
         <FocusContext.Provider value={focusKey}>
             <ContentGridWrapper ref={ref}>

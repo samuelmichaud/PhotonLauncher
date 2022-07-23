@@ -8,11 +8,13 @@ contextBridge.exposeInMainWorld('ShadowApi', {
         shell.openPath(path);
     },
     scanForGames: () => {
-        ipcRenderer.send('scanForGames');
+        ipcRenderer.send('scanForGames'); // will send a fetchApps at the end of the job
     },
     fetchApps: (func) => {
-        ipcRenderer.send('fetchAppsFromSource');
-        ipcRenderer.on('fetchApps', (event, ...args) => func(...args));
+        ipcRenderer.once('fetchApps', (event, ...args) => func(...args));
+    },
+    downloadAndOptimizeMetadata: () => {
+        ipcRenderer.send('downloadAndOptimizeMetadata');
     },
     quitApp: () => {
         ipcRenderer.send('exit-app');

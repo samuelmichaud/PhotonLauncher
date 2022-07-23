@@ -66,3 +66,4 @@ ipcMain.on("exit-app", (event, args) => {
 export { mainWindow };
 
 import './AppService/AppService'
+import './AppService/DataBaseManagement'
