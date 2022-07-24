@@ -24,6 +24,8 @@ margin-bottom: 20px;
 background-image: url('https://cdn.thegamesdb.net/images/thumb/boxart/front/${ ({tgdbID}) => tgdbID}-1.jpg');
 background-size: contain;
 background-color: #101322;
+background-position: center;
+background-repeat: no-repeat;
 border-radius: 7px;
 `;
 
