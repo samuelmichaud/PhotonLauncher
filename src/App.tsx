@@ -22,7 +22,7 @@ init({
 window.ShadowApi.scanForGames();
 
 const AppContainer = styled.div`
-  background: linear-gradient(#4224BF, #34B0EF);
+  background: linear-gradient(to bottom left, #4224BF, #34B0EF);
   width: 100vw;
   height: 100vh;
   display: flex;

@@ -115,7 +115,8 @@
     "electron-main-window": "^1.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "joypad.js": "^2.3.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "slugify": "^1.6.5"
   },
   "peerDependencies": {
     "react": ">=16.8.0"

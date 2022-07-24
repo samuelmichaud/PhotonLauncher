@@ -74,11 +74,12 @@ function ContentGridRender({
                 <ContentGridTitle>{rowTitle}</ContentGridTitle>
                 <ContentGridScrollingWrapper ref={scrollingRef}>
                     <ContentGridScrollingContent>
-                        {assets.map(({ id, title, launch }) => (
+                        {assets.map(({ id, title, launch, tgdbID }) => (
                             <Asset
                                 id={id}
                                 title={title}
                                 path={launch}
+                                tgdbID={tgdbID}
                                 onEnterPress={onAssetPress}
                                 onFocus={onAssetFocus}
                             />

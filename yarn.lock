@@ -5453,6 +5453,10 @@ slash@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
 
+slugify@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.5.tgz#c8f5c072bf2135b80703589b39a3d41451fbe8c8"
+
 smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/smart-buffer/-/smart-buffer-4.2.0.tgz"
