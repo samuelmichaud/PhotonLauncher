@@ -82,6 +82,7 @@ function ContentGridRender({
                                 tgdbID={tgdbID}
                                 onEnterPress={onAssetPress}
                                 onFocus={onAssetFocus}
+                                key={rowTitle + id}
                             />
                         ))}
                     </ContentGridScrollingContent>
