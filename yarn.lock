@@ -490,7 +490,7 @@
     xterm-addon-fit "^0.5.0"
     xterm-addon-search "^0.8.0"
 
-"@electron/get@^1.14.1", "@electron/get@^1.6.0", "@electron/get@^1.9.0":
+"@electron/get@^1.13.0", "@electron/get@^1.6.0", "@electron/get@^1.9.0":
   version "1.14.1"
   resolved "https://registry.npmjs.org/@electron/get/-/get-1.14.1.tgz"
   dependencies:
@@ -2268,6 +2268,10 @@ electron-installer-redhat@^3.2.0:
     word-wrap "^1.2.3"
     yargs "^16.0.2"
 
+electron-log@^4.4.8:
+  version "4.4.8"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.4.8.tgz#fcb9f714dbcaefb6ac7984c4683912c74730248a"
+
 electron-main-window@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/electron-main-window/-/electron-main-window-1.0.4.tgz#25842b2440d9a019d5e2ea023a499379ea0a64dd"
@@ -2357,11 +2361,11 @@ electron-winstaller@^5.0.0:
     lodash.template "^4.2.2"
     temp "^0.9.0"
 
-electron@19.0.8:
-  version "19.0.8"
-  resolved "https://registry.npmjs.org/electron/-/electron-19.0.8.tgz"
+electron@18.3.5:
+  version "18.3.5"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-18.3.5.tgz#a589c2bfa3fe807914a055f54f665999329b739b"
   dependencies:
-    "@electron/get" "^1.14.1"
+    "@electron/get" "^1.13.0"
     "@types/node" "^16.11.26"
     extract-zip "^1.0.3"
 

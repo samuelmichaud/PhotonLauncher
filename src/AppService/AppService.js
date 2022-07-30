@@ -1,11 +1,12 @@
 
-import { ipcMain, ipcRenderer } from 'electron';
+import { ipcMain } from 'electron';
 import { mainWindow } from '../index';
 import { loadFromJSONFile } from './Utils'
 
 const path = require('path');
 var slugify = require('slugify');
 const child_process = require('child_process');
+const log = require('electron-log');
 
 // Store the glc.exe directory for future reuse. Because the .exe generate files on its own folder
 const glcDir = path.resolve(__dirname, './../');
@@ -53,23 +54,41 @@ function fetchAppsFromSource() {
 
 // Launch glc.exe to scan the system for games
 function scanForGames () {
-    const glcPath = path.resolve(glcDir, './glc.exe');
-    console.log(glcPath);
+    let glcPath = path.resolve(glcDir, './glc.exe');
+    // we might have space in the path and we need to handle it because otherwise, the path is broken
+    const rootName = path.parse(glcPath).root; // "C:/"
+    glcPath = `${rootName}"${glcPath.replace(rootName, '')}"`
+    log.info(glcPath);
     var child = child_process.spawn(glcPath, ['/c /q'], {
         encoding: 'utf8',
         shell: true
     });
+    child.stderr.on('data', (data) => {
+        log.info(data.toString().trim());
+      });
     child.on('close', (code) => {
         switch (code) {
             case 0:
-                console.log('Gamescan is done. Exit code: ' + code);
+                log.info('Gamescan is done. Exit code: ' + code);
                 fetchAppsFromSource();
                 break;
             default: 
-                reject({'error_code': code});
+                log.error('error_code: ' + code);
         }
     });
 }
+
+/*export const storeDatabase = () => {
+
+}
+
+export const toggleFavourite = (AppId) => {
+
+}
+
+export const toggleHide = (AppId) => {
+
+}*/
 
 ipcMain.on("fetchAppsFromSource", (event, args) => {
     fetchAppsFromSource();

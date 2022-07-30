@@ -30,9 +30,9 @@ import './index.css';
 import './App'
 
 export interface ShadowApi {
-    launchExternalApp: (path: String) => Promise<void>,
-    scanForGames: () => Promise<void>,
-    fetchApps: () => Array<any>,
+    launchExternalApp: (path: string) => void,
+    scanForGames: () => void,
+    fetchApps: (func: any) => void,
     quitApp: () => void,
     downloadAndOptimizeMetadata: () => void
 }
