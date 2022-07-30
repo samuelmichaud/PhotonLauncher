@@ -1,6 +1,6 @@
 
 import { ipcMain } from 'electron';
-import { union, uniq } from 'underscore';
+import { union, uniq, find } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile } from './Utils'
 
@@ -78,6 +78,7 @@ function scanForGames () {
                 // Add new games to database
                 let newLibrary = loadMetadaFromJSONfile();
                 library = uniq(union(library, newLibrary), false, (item, key) => item.id);
+                addCustomApps(library);
                 storeDatabase(library, () => {
                     log.info('Library stored, starting fetchAppsFromSource');
                     fetchAppsFromSource();
@@ -87,6 +88,24 @@ function scanForGames () {
                 log.error('error_code: ' + code);
         }
     });
+}
+
+function addCustomApps(library) {
+    // ADD STEAM BIG PICTURE MODE
+    // if we can find at least one game with the Steam platform, it must say that Steam big picture mode is available
+    if(find(library, (item) => item.platform == 'Steam')) {
+        library.push({
+            "id": "steambigpicture",
+            "title": "Steam Big Picture",
+            "launch": "steam://open/bigpicture",
+            "icon": "",
+            "uninstaller": "",
+            "platform": "Steam",
+            "favourite": false,
+            "hidden": false,
+        });
+    }
+    return library;
 }
 
 export const loadLibraryDB = () => {
