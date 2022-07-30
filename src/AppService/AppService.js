@@ -1,7 +1,8 @@
 
 import { ipcMain } from 'electron';
+import { union, uniq } from 'underscore';
 import { mainWindow } from '../index';
-import { loadFromJSONFile } from './Utils'
+import { loadFromJSONFile, storeToJSONFile } from './Utils'
 
 const path = require('path');
 var slugify = require('slugify');
@@ -12,6 +13,7 @@ const log = require('electron-log');
 const glcDir = path.resolve(__dirname, './../');
 const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
 const gamesPathJSONdatabase = path.resolve(glcDir, './games-database.json');
+const libraryPathJSONdatabase = path.resolve(glcDir, './library.json');
 
 function loadMetadaFromJSONfile () {
     const slugifyConf = {
@@ -23,7 +25,7 @@ function loadMetadaFromJSONfile () {
         trim: true         // trim leading and trailing replacement chars, defaults to `true`
       };
     let installedApp = loadFromJSONFile(glcPathJSONdatabase);
-    let gameDatabase = loadFromJSONFile(gamesPathJSONdatabase);
+    let gameDatabase = loadFromJSONFile(gamesPathJSONdatabase); // The glc.exe create a file named glc-games with the list of all games. We need to read it
     
     installedApp = (typeof installedApp.games == undefined)? [] : installedApp.games;
     gameDatabase = (typeof gameDatabase !== 'object')? [] : gameDatabase;
@@ -47,13 +49,16 @@ function loadMetadaFromJSONfile () {
 }
 
 function fetchAppsFromSource() {
-    console.log('fetchAppsFromSource');
-    // The glc.exe create a file named glc-games with the list of all games. We need to read it.
-    mainWindow.webContents.send('fetchApps', loadMetadaFromJSONfile());
+    log.info('fetchAppsFromSource');
+    // Read the library from file and send it to renderer
+    mainWindow.webContents.send('fetchApps', loadLibraryDB());
 }
 
 // Launch glc.exe to scan the system for games
 function scanForGames () {
+
+    let library = loadLibraryDB(); // Read from file
+
     let glcPath = path.resolve(glcDir, './glc.exe');
     // we might have space in the path and we need to handle it because otherwise, the path is broken
     const rootName = path.parse(glcPath).root; // "C:/"
@@ -70,7 +75,13 @@ function scanForGames () {
         switch (code) {
             case 0:
                 log.info('Gamescan is done. Exit code: ' + code);
-                fetchAppsFromSource();
+                // Add new games to database
+                let newLibrary = loadMetadaFromJSONfile();
+                library = uniq(union(library, newLibrary), false, (item, key) => item.id);
+                storeDatabase(library, () => {
+                    log.info('Library stored, starting fetchAppsFromSource');
+                    fetchAppsFromSource();
+                });
                 break;
             default: 
                 log.error('error_code: ' + code);
@@ -78,8 +89,12 @@ function scanForGames () {
     });
 }
 
-/*export const storeDatabase = () => {
+export const loadLibraryDB = () => {
+    return loadFromJSONFile(libraryPathJSONdatabase);
+}
 
+export const storeDatabase = (data, callback) => {
+    storeToJSONFile(libraryPathJSONdatabase, data, callback);
 }
 
 export const toggleFavourite = (AppId) => {
@@ -88,7 +103,7 @@ export const toggleFavourite = (AppId) => {
 
 export const toggleHide = (AppId) => {
 
-}*/
+}
 
 ipcMain.on("fetchAppsFromSource", (event, args) => {
     fetchAppsFromSource();

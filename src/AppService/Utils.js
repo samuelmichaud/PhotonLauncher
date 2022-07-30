@@ -13,3 +13,16 @@ export const loadFromJSONFile = (path) => {
   
     return parsedData;
 }
+
+export const storeToJSONFile = (path, data, callback) => {
+    data = JSON.stringify(data);
+    fs.writeFile(path, data, (err) => {
+        if(err) {
+            return console.log(err);
+        }
+        if (typeof callback === 'function') {
+            callback();    
+        }
+        console.log("Write file to disk: " + path);
+    }); 
+}
