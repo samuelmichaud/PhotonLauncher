@@ -80,6 +80,7 @@ function scanForGames () {
                 let newLibrary = loadMetadaFromJSONfile();
                 library = uniq(union(library, newLibrary), false, (item, key) => item.id);
                 addCustomApps(library);
+                // TODO remove games no more found (uninstalled games)
                 storeDatabase(library, () => {
                     log.info('Library stored, starting fetchAppsFromSource');
                     fetchAppsFromSource();
