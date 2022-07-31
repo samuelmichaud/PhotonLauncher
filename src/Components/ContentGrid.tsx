@@ -10,6 +10,7 @@ import {
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
 import { Asset } from './Asset';
+import { GRID_GAP } from '..//Constants';
 
 const ContentGridWrapper = styled.div`
 margin-bottom: 37px;
@@ -21,18 +22,17 @@ margin-bottom: 22px;
 font-size: 27px;
 font-weight: 700;
 font-family: 'Segoe UI';
-padding-left: 60px;
 `;
 
 const ContentGridScrollingWrapper = styled.div`
 flex-shrink: 1;
 flex-grow: 1;
-padding-left: 60px;
 `;
 
 const ContentGridScrollingContent = styled.div`
 display: flex;
 flex-wrap: wrap;
+gap: ${GRID_GAP}px;
 `;
 
 interface ContentGridProps {

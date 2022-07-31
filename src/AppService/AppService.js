@@ -80,7 +80,7 @@ function scanForGames () {
                 let newLibrary = loadMetadaFromJSONfile();
                 library = uniq(union(library, newLibrary), false, (item, key) => item.id);
                 addCustomApps(library);
-                // TODO remove games no more found (uninstalled games)
+                // TODO remove games no more found (uninstalled games). See : https://stackoverflow.com/questions/13147278/using-underscores-difference-method-on-arrays-of-objects
                 storeDatabase(library, () => {
                     log.info('Library stored, starting fetchAppsFromSource');
                     fetchAppsFromSource();

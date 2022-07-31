@@ -9,6 +9,7 @@ import {
     FocusableComponentLayout,
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
+import { FRAME_PADDING, GRID_COLUMN, GRID_GAP } from '../Constants';
 
 
 interface AssetWrapperProps {
@@ -17,14 +18,12 @@ interface AssetWrapperProps {
 }
 
 const AssetWrapper = styled.div<AssetWrapperProps>`
-margin-right: 22px;
 display: flex;
 flex-direction: column;
 position: relative;
-margin-bottom: 20px;
 //background-image: url('https://cdn.thegamesdb.net/images/thumb/boxart/front/${ ({tgdbID}) => tgdbID}-1.jpg');
 background-image: url('${ ({background_image}) => background_image}');
-background-size: contain;
+background-size: cover;
 background-color: #101322;
 background-position: center;
 background-repeat: no-repeat;
@@ -36,8 +35,8 @@ interface AssetBoxProps {
 }
 
 const AssetBox = styled.div<AssetBoxProps>`
-width: 234px;
-height: 312px;
+width: calc((100vw - 2 * ${FRAME_PADDING}px - (${GRID_COLUMN}-1) * ${GRID_GAP}px )/${GRID_COLUMN});
+height: calc(((100vw - 2 * ${FRAME_PADDING}px - (${GRID_COLUMN}-1) * ${GRID_GAP}px )/${GRID_COLUMN})*9/16);
 border-color: white;
 border-style: solid;
 border-width: ${({ focused }) => (focused ? '6px' : 0)};

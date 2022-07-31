@@ -9,12 +9,14 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import { ContentGrid } from './ContentGrid';
 import { rows } from './Data';
+import { FRAME_PADDING } from '../Constants';
 
 const ContentWrapper = styled.div`
 flex: 1;
 overflow: hidden;
 display: flex;
 flex-direction: column;
+padding: 0 ${FRAME_PADDING}px;
 `;
 
 const SelectedItemWrapper = styled.div`
@@ -22,7 +24,6 @@ position: relative;
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 0 60px;
 margin-top: 20px;
 `;
 
