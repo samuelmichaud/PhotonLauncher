@@ -94,7 +94,7 @@ function scanForGames () {
 function addCustomApps(library) {
     // ADD STEAM BIG PICTURE MODE
     // if we can find at least one game with the Steam platform, it must say that Steam big picture mode is available
-    if(find(library, (item) => item.platform == 'Steam')) {
+    if(find(library, (item) => item.platform == 'Steam') && typeof find(library, (item) => item.id == 'steambigpicture') == 'undefined') {
         library.push({
             "id": "steambigpicture",
             "title": "Steam Big Picture",
