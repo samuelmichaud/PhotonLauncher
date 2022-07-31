@@ -48,7 +48,7 @@ const createWindow = (): void => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
-        'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' data:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data:; img-src \'self\' \'unsafe-eval\' \'unsafe-inline\' https://cdn.thegamesdb.net']
+        'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' data:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data:; img-src \'self\' \'unsafe-eval\' \'unsafe-inline\' https://cdn.thegamesdb.net https://media.rawg.io']
       }
     })
   })

@@ -3,6 +3,7 @@ import { ipcMain } from 'electron';
 import { union, uniq, find } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile } from './Utils'
+import { isProductionEnv } from '../Utils';
 
 const path = require('path');
 var slugify = require('slugify');
@@ -13,7 +14,7 @@ const log = require('electron-log');
 const glcDir = path.resolve(__dirname, './../');
 const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
 const gamesPathJSONdatabase = path.resolve(glcDir, './games-database.json');
-const libraryPathJSONdatabase = path.resolve(glcDir, './library.json');
+const libraryPathJSONdatabase = path.resolve(glcDir, (isProductionEnv()? './library.json' : './dev-library.json'));
 
 function loadMetadaFromJSONfile () {
     const slugifyConf = {
@@ -114,14 +115,6 @@ export const loadLibraryDB = () => {
 
 export const storeDatabase = (data, callback) => {
     storeToJSONFile(libraryPathJSONdatabase, data, callback);
-}
-
-export const toggleFavourite = (AppId) => {
-
-}
-
-export const toggleHide = (AppId) => {
-
 }
 
 ipcMain.on("fetchAppsFromSource", (event, args) => {

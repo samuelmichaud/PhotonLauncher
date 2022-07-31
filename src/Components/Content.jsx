@@ -62,16 +62,6 @@ function ContentRender() {
         setSelectedAsset(asset);
     }, []);
 
-    const onRowFocus = useCallback(
-        ({ y }) => {
-            ref.current.scrollTo({
-                top: y,
-                behavior: 'smooth'
-            });
-        },
-        [ref]
-    );
-
     // Fetch games, but only the first time to avoid infinite loop (because changings assets will trigger a render)
     useEffect(() => {
         window.ShadowApi.fetchApps((data) => {
@@ -100,8 +90,8 @@ function ContentRender() {
                                 key={title}
                                 title={title}
                                 assets={assets}
+                                scrollingRef={ref}
                                 onAssetPress={onAssetPress}
-                                onFocus={onRowFocus}
                             />
                         ))}
                     </div>

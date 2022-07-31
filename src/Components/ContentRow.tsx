@@ -76,12 +76,13 @@ function ContentRowRender({
                 <ContentRowTitle>{rowTitle}</ContentRowTitle>
                 <ContentRowScrollingWrapper ref={scrollingRef}>
                     <ContentRowScrollingContent>
-                        {assets.map(({ title, id, launch, tgdbID }) => (
+                        {assets.map(({ title, id, launch, tgdbID, background_image }) => (
                             <Asset
                                 id={title}
                                 title={title}
                                 path={launch}
                                 tgdbID={tgdbID}
+                                background_image={background_image}
                                 onEnterPress={onAssetPress}
                                 onFocus={onAssetFocus}
                             />

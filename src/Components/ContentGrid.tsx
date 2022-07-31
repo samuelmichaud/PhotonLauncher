@@ -38,6 +38,7 @@ flex-wrap: wrap;
 interface ContentGridProps {
     title: string;
     assets: Array<any>;
+    scrollingRef: any;
     onAssetPress: (props: object, details: KeyPressDetails) => void;
     onFocus: (
         layout: FocusableComponentLayout,
@@ -49,6 +50,7 @@ interface ContentGridProps {
 function ContentGridRender({
     title: rowTitle,
     assets,
+    scrollingRef,
     onAssetPress,
     onFocus
 }: ContentGridProps) {
@@ -56,13 +58,11 @@ function ContentGridRender({
         onFocus
     });
 
-    const scrollingRef = useRef(null);
-
     const onAssetFocus = useCallback(
-        ({ x, y }) => {
+        ({ x, y, height, width, top, left }) => {
             scrollingRef.current.scrollTo({
-                bottom: y,
-                behavior: 'smooth'
+                top: top - height,
+                behavior: "smooth"
             });
         },
         [scrollingRef]
@@ -72,14 +72,15 @@ function ContentGridRender({
         <FocusContext.Provider value={focusKey}>
             <ContentGridWrapper ref={ref}>
                 <ContentGridTitle>{rowTitle}</ContentGridTitle>
-                <ContentGridScrollingWrapper ref={scrollingRef}>
+                <ContentGridScrollingWrapper>
                     <ContentGridScrollingContent>
-                        {assets.map(({ id, title, launch, tgdbID }) => (
+                        {assets.map(({ id, title, launch, tgdbID, background_image }) => (
                             <Asset
                                 id={id}
                                 title={title}
                                 path={launch}
                                 tgdbID={tgdbID}
+                                background_image={background_image}
                                 onEnterPress={onAssetPress}
                                 onFocus={onAssetFocus}
                                 key={rowTitle + id}

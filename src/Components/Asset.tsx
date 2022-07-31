@@ -13,6 +13,7 @@ import {
 
 interface AssetWrapperProps {
   tgdbID: string;
+  background_image: string;
 }
 
 const AssetWrapper = styled.div<AssetWrapperProps>`
@@ -21,7 +22,8 @@ display: flex;
 flex-direction: column;
 position: relative;
 margin-bottom: 20px;
-background-image: url('https://cdn.thegamesdb.net/images/thumb/boxart/front/${ ({tgdbID}) => tgdbID}-1.jpg');
+//background-image: url('https://cdn.thegamesdb.net/images/thumb/boxart/front/${ ({tgdbID}) => tgdbID}-1.jpg');
+background-image: url('${ ({background_image}) => background_image}');
 background-size: contain;
 background-color: #101322;
 background-position: center;
@@ -60,6 +62,7 @@ interface AssetProps {
   id: string;
   path: string;
   tgdbID: string;
+  background_image: string;
   onEnterPress: (props: object, details: KeyPressDetails) => void;
   onFocus: (
     layout: FocusableComponentLayout,
@@ -68,7 +71,7 @@ interface AssetProps {
   ) => void;
 }
 
-function AssetRender({ title, id, path, tgdbID, onEnterPress, onFocus }: AssetProps) {
+function AssetRender({ title, id, path, tgdbID, background_image, onEnterPress, onFocus }: AssetProps) {
   const { ref, focused, focusSelf } = useFocusable({
     onEnterPress,
     onFocus,
@@ -76,12 +79,13 @@ function AssetRender({ title, id, path, tgdbID, onEnterPress, onFocus }: AssetPr
       title,
       id,
       path,
-      tgdbID
+      tgdbID,
+      background_image
     }
   });
 
   return (
-    <AssetWrapper ref={ref} onClick={() => {focusSelf()}} key={id} tgdbID={tgdbID}>
+    <AssetWrapper ref={ref} onClick={() => {focusSelf()}} key={id} tgdbID={tgdbID} background_image={background_image}>
       <AssetBox focused={focused} />
       <AssetTitle>{title}</AssetTitle>
     </AssetWrapper>
