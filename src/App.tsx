@@ -8,14 +8,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled, { createGlobalStyle } from 'styled-components';
-import { useFocusable, init } from '@noriginmedia/norigin-spatial-navigation';
+import { init } from '@noriginmedia/norigin-spatial-navigation';
 import 'joypad.js';
 import { Menu } from './Components/Menu';
 import { Content } from './Components/Content';
+import { triggerKey } from './Components/RendererUtil';
 
 init({
   debug: false,
-  visualDebug: false
+  visualDebug: false,
+  throttle: 150,
+  throttleKeypresses: true
 });
 
 // at launch, we want the system to refresh installed games. However, this is asynchronous
@@ -37,18 +40,26 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
 
-  const {
-    navigateByDirection // -- to manually navigate by direction
-  } = useFocusable();
-
   /* Use gamepad for TV navigation */
+  window.joypad.set({axisMovementThreshold: 0.3});
+
   // @ts-ignore
   window.joypad.on('button_press', e => {
     const { buttonName } = e.detail;
-    if (buttonName == 'button_12') navigateByDirection('up', {});
-    if (buttonName == 'button_13') navigateByDirection('down', {});
-    if (buttonName == 'button_14') navigateByDirection('left', {});
-    if (buttonName == 'button_15') navigateByDirection('right', {});
+    if (buttonName == 'button_12') triggerKey('ArrowUp');
+    if (buttonName == 'button_13') triggerKey('ArrowDown');
+    if (buttonName == 'button_14') triggerKey('ArrowLeft');
+    if (buttonName == 'button_15') triggerKey('ArrowRight');
+    if (buttonName == 'button_0')  triggerKey('Enter');
+  });
+
+  // @ts-ignore
+  window.joypad.on('axis_move', e => {
+    const { directionOfMovement } = e.detail;
+      if (directionOfMovement == 'top') triggerKey('ArrowUp');
+      if (directionOfMovement == 'bottom') triggerKey('ArrowDown');
+      if (directionOfMovement == 'left') triggerKey('ArrowLeft');
+      if (directionOfMovement == 'right') triggerKey('ArrowRight');
   });
 
   return (

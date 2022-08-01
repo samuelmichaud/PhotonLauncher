@@ -2,8 +2,7 @@
 import { ipcMain } from 'electron';
 import { union, uniq, find } from 'underscore';
 import { mainWindow } from '../index';
-import { loadFromJSONFile, storeToJSONFile } from './Utils'
-import { isProductionEnv } from '../Utils';
+import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
 import axios from 'axios';
 import { RAWG_APIKEY } from '../Constants';
 

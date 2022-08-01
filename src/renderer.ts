@@ -41,5 +41,6 @@ export interface ShadowApi {
 declare global {
     interface Window {
         ShadowApi: ShadowApi,
+        joypad: any
     }
 }

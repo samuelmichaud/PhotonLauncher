@@ -1,7 +1,7 @@
 
 import { ipcMain } from 'electron';
 import axios from 'axios';
-import { loadFromJSONFile } from './Utils'
+import { loadFromJSONFile } from '../Utils'
 
 const path = require('path');
 const fs = require('fs');
