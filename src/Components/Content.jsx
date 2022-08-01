@@ -8,7 +8,6 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { ContentGrid } from './ContentGrid';
-import { rows } from './Data';
 import { FRAME_PADDING } from '../Constants';
 
 const ContentWrapper = styled.div`
@@ -75,26 +74,24 @@ function ContentRender() {
         <FocusContext.Provider value={focusKey}>
             <ContentWrapper>
                 {/*<SelectedItemWrapper>
-        <SelectedItemBox
-          color={selectedAsset ? selectedAsset.color : '#565b6b'}
-        />
-        <SelectedItemTitle>
-          {selectedAsset
-            ? selectedAsset.title
-            : 'Press "Enter" to select an asset'}
-        </SelectedItemTitle>
-          </SelectedItemWrapper> */}
+                        <SelectedItemBox
+                            color={selectedAsset ? selectedAsset.color : '#565b6b'}
+                        />
+                        <SelectedItemTitle>
+                        {selectedAsset
+                            ? selectedAsset.title
+                            : 'Press "Enter" to select an asset'}
+                        </SelectedItemTitle>
+                    </SelectedItemWrapper> */}
                 <ScrollingRows ref={ref}>
                     <div>
-                        {rows.map(({ title }) => (
-                            <ContentGrid
-                                key={title}
-                                title={title}
-                                assets={assets}
-                                scrollingRef={ref}
-                                onAssetPress={onAssetPress}
-                            />
-                        ))}
+                        <ContentGrid
+                            key={title}
+                            title={'Installed apps'}
+                            assets={assets}
+                            scrollingRef={ref}
+                            onAssetPress={onAssetPress}
+                        />
                     </div>
                 </ScrollingRows>
             </ContentWrapper>
