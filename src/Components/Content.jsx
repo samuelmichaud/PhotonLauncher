@@ -86,7 +86,7 @@ function ContentRender() {
                 <ScrollingRows ref={ref}>
                     <div>
                         <ContentGrid
-                            key={title}
+                            key={'Installed apps'}
                             title={'Installed apps'}
                             assets={assets}
                             scrollingRef={ref}

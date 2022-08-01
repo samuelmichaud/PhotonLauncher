@@ -95,7 +95,7 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
     return (
         <FocusContext.Provider value={focusKey}>
             <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                <MenuItem label={'Refresh library'} action={() => window.ShadowApi.scanForGames()}/>
+                <MenuItem label={'Refresh library'} action={() => window.ShadowApi.scanForGames()} />
                 <MenuItem label={'X'} action={() => window.ShadowApi.quitApp()}/>
             </MenuWrapper>
         </FocusContext.Provider>

@@ -70,9 +70,9 @@ function ContentGridRender({
     
     return (
         <FocusContext.Provider value={focusKey}>
-            <ContentGridWrapper ref={ref}>
+            <ContentGridWrapper>
                 <ContentGridTitle>{rowTitle}</ContentGridTitle>
-                <ContentGridScrollingWrapper>
+                <ContentGridScrollingWrapper ref={ref}>
                     <ContentGridScrollingContent>
                         {assets.map(({ id, title, launch, tgdbID, background_image }) => (
                             <Asset
