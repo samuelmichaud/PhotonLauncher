@@ -40,17 +40,26 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
 
+  console.log('totooooo');
+
   /* Use gamepad for TV navigation */
   window.joypad.set({axisMovementThreshold: 0.3});
 
   // @ts-ignore
   window.joypad.on('button_press', e => {
-    const { buttonName } = e.detail;
-    if (buttonName == 'button_12') triggerKey('ArrowUp');
-    if (buttonName == 'button_13') triggerKey('ArrowDown');
-    if (buttonName == 'button_14') triggerKey('ArrowLeft');
-    if (buttonName == 'button_15') triggerKey('ArrowRight');
-    if (buttonName == 'button_0')  triggerKey('Enter');
+    const { buttons } = e.detail.gamepad;
+
+    // We need a shortcut to bring the app to front
+    if (buttons[4].pressed && buttons[8].pressed || buttons[9].pressed && buttons[5].pressed) {
+      window.ShadowApi.bringWindowToFront();
+    };
+
+    // For navigation purposes 
+    if (buttons[12].pressed) triggerKey('ArrowUp');
+    if (buttons[13].pressed) triggerKey('ArrowDown');
+    if (buttons[14].pressed) triggerKey('ArrowLeft');
+    if (buttons[15].pressed) triggerKey('ArrowRight');
+    if (buttons[0].pressed)  triggerKey('Enter');
   });
 
   // @ts-ignore

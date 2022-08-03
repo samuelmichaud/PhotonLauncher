@@ -23,6 +23,9 @@ window.ShadowApi = {
     },
     quitApp: () => {
         ipcRenderer.send('exit-app');
+    },
+    bringWindowToFront: () => {
+        ipcRenderer.send('bringWindowToFront');
     }
 
 };

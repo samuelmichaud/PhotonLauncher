@@ -14,7 +14,7 @@ if (require('electron-squirrel-startup')) {
 }
 
 // We want to keep this reference for future re-use
-var mainWindow;
+var mainWindow: BrowserWindow;
 
 const createWindow = (): void => {
 
@@ -84,6 +84,13 @@ app.setLoginItemSettings({
 // code. You can also put them in separate files and import them here.
 ipcMain.on("exit-app", (event, args) => {
   app.quit();
+});
+
+ipcMain.on("bringWindowToFront", (event, args) => {
+  mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true }); // we need to be visible even if other app are on fullscreen (games, steam big picture, ...)
+  mainWindow.setAlwaysOnTop(true, "normal"); // this command will bring the window to front
+  mainWindow.moveTop(); // this command will give the real focus to the window
+  mainWindow.setAlwaysOnTop(false); // this is needed so we can launch other games
 });
 
 export { mainWindow };
