@@ -35,8 +35,8 @@ interface AssetBoxProps {
 }
 
 const AssetBox = styled.div<AssetBoxProps>`
-width: calc((100vw - 2 * ${FRAME_PADDING}px - (${GRID_COLUMN}-1) * ${GRID_GAP}px )/${GRID_COLUMN});
-height: calc(((100vw - 2 * ${FRAME_PADDING}px - (${GRID_COLUMN}-1) * ${GRID_GAP}px )/${GRID_COLUMN})*9/16);
+width: calc((100vw - 2 * ${FRAME_PADDING}px - (${GRID_COLUMN} - 1) * ${GRID_GAP}px )/${GRID_COLUMN});
+height: calc(((100vw - 2 * ${FRAME_PADDING}px - (${GRID_COLUMN} - 1) * ${GRID_GAP}px )/${GRID_COLUMN})*9/16);
 border-color: white;
 border-style: solid;
 border-width: ${({ focused }) => (focused ? '6px' : 0)};
