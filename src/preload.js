@@ -24,8 +24,11 @@ window.ShadowApi = {
     quitApp: () => {
         ipcRenderer.send('exit-app');
     },
-    bringWindowToFront: () => {
-        ipcRenderer.send('bringWindowToFront');
+    triggerAltTab: (reverse = false) => {
+        ipcRenderer.send('triggerAltTab', reverse);
+    },
+    releaseAltTab: () => {
+        ipcRenderer.send('releaseAltTab');
     }
 
 };

@@ -38,39 +38,46 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+/* Use gamepad for TV navigation */
+window.joypad.set({axisMovementThreshold: 0.3});
+
+// @ts-ignore
+window.joypad.on('button_press', e => {
+  const { buttons } = e.detail.gamepad;
+
+  // We need a shortcut to bring the app to front
+  if ((buttons[4].pressed || buttons[5].pressed ) && (buttons[8].pressed || buttons[9].pressed)) {
+    window.ShadowApi.triggerAltTab(buttons[5].pressed); // The left button trigger a reverse alt tab (ALT + SHIFT + TAB)
+  };
+
+  // For navigation purposes 
+  if (buttons[12].pressed) triggerKey('ArrowUp');
+  if (buttons[13].pressed) triggerKey('ArrowDown');
+  if (buttons[14].pressed) triggerKey('ArrowLeft');
+  if (buttons[15].pressed) triggerKey('ArrowRight');
+  if (buttons[0].pressed)  triggerKey('Enter');
+});
+
+// @ts-ignore
+window.joypad.on('button_release', e => {
+  const { buttonName } = e.detail;
+
+  // When the "menu" button is release, we need to unsubscribe (release) alt (+ shift if reverse) keys
+  if (buttonName == 'button_8' || buttonName == 'button_9') {
+    window.ShadowApi.releaseAltTab();
+  };
+});
+
+// @ts-ignore
+window.joypad.on('axis_move', e => {
+  const { directionOfMovement } = e.detail;
+    if (directionOfMovement == 'top') triggerKey('ArrowUp');
+    if (directionOfMovement == 'bottom') triggerKey('ArrowDown');
+    if (directionOfMovement == 'left') triggerKey('ArrowLeft');
+    if (directionOfMovement == 'right') triggerKey('ArrowRight');
+});
+
 function App() {
-
-  console.log('totooooo');
-
-  /* Use gamepad for TV navigation */
-  window.joypad.set({axisMovementThreshold: 0.3});
-
-  // @ts-ignore
-  window.joypad.on('button_press', e => {
-    const { buttons } = e.detail.gamepad;
-
-    // We need a shortcut to bring the app to front
-    if (buttons[4].pressed && buttons[8].pressed || buttons[9].pressed && buttons[5].pressed) {
-      window.ShadowApi.bringWindowToFront();
-    };
-
-    // For navigation purposes 
-    if (buttons[12].pressed) triggerKey('ArrowUp');
-    if (buttons[13].pressed) triggerKey('ArrowDown');
-    if (buttons[14].pressed) triggerKey('ArrowLeft');
-    if (buttons[15].pressed) triggerKey('ArrowRight');
-    if (buttons[0].pressed)  triggerKey('Enter');
-  });
-
-  // @ts-ignore
-  window.joypad.on('axis_move', e => {
-    const { directionOfMovement } = e.detail;
-      if (directionOfMovement == 'top') triggerKey('ArrowUp');
-      if (directionOfMovement == 'bottom') triggerKey('ArrowDown');
-      if (directionOfMovement == 'left') triggerKey('ArrowLeft');
-      if (directionOfMovement == 'right') triggerKey('ArrowRight');
-  });
-
   return (
     <AppContainer>
       <GlobalStyle />

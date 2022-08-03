@@ -35,7 +35,8 @@ export interface ShadowApi {
     loadLibraryFromSource: () => void,
     fetchApps: (func: any) => void,
     quitApp: () => void,
-    bringWindowToFront: () => void,
+    triggerAltTab: (reverse?: boolean) => void,
+    releaseAltTab: () => void,
     downloadAndOptimizeMetadata: () => void
 }
   
