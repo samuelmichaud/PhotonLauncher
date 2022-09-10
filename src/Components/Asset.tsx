@@ -28,8 +28,20 @@ background-color: #101322;
 background-position: center;
 background-repeat: no-repeat;
 border-radius: 7px;
+overflow: hidden;
 `;
 
+interface AssetOverlayProps {
+  launchingState: boolean;
+}
+const AssetOverlay = styled.div<AssetOverlayProps>`
+  background: ${({ launchingState }) => (launchingState ? 'rgba(0, 0, 0, 50%);' : '')}
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+`
 interface AssetBoxProps {
   focused: boolean;
 }
@@ -59,16 +71,12 @@ bottom: 0;
 interface AssetProps {
   asset: any;
   scrollingRef: any;
-  /*onFocus: (
-    layout: FocusableComponentLayout,
-    props: object,
-    details: FocusDetails
-  ) => void;*/
 }
 
 function AssetRender({ asset, scrollingRef }: AssetProps) {
 
   const [shouldHandleMouse, setMouseSupport] = useState(false);
+  const [launchingState, setLaunchingState] = useState(false);
   
   document.addEventListener('mousemove', () => {
     setMouseSupport(true);
@@ -93,8 +101,16 @@ function AssetRender({ asset, scrollingRef }: AssetProps) {
   });
 
   const onAssetPress = (asset: any) => {
+
+    // we don't want user be able to clic multiple times because she thinks that the app isn't launching
+    if (launchingState) {
       window.ShadowApi.launchExternalApp(asset.launch);
+    }
+    setLaunchingState(true);
       focusSelf();
+      setTimeout(() => {
+        setLaunchingState(false);
+      }, 10000); // 10s throttle between user clics
   }
 
   const onMouseEnter = () => {
@@ -111,7 +127,8 @@ function AssetRender({ asset, scrollingRef }: AssetProps) {
         key={asset.id}
         tgdbID={asset.tgdbID}
         background_image={asset.background_image}>
-      <AssetBox focused={focused} />
+      <AssetOverlay launchingState={launchingState}/>
+      <AssetBox focused={focused}/>
       <AssetTitle>{asset.title}</AssetTitle>
     </AssetWrapper>
   );
