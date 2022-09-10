@@ -84,7 +84,13 @@ function AssetRender({ title, id, path, tgdbID, background_image, onEnterPress, 
   });
 
   return (
-    <AssetWrapper ref={ref} onClick={() => {focusSelf()}} key={id} tgdbID={tgdbID} background_image={background_image}>
+    <AssetWrapper 
+        ref={ref} 
+        onClick={() => {focusSelf()}} 
+        onMouseEnter={() => {focusSelf()}}
+        key={id} 
+        tgdbID={tgdbID} 
+        background_image={background_image}>
       <AssetBox focused={focused} />
       <AssetTitle>{title}</AssetTitle>
     </AssetWrapper>

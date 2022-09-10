@@ -905,9 +905,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@noriginmedia/norigin-spatial-navigation@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@noriginmedia/norigin-spatial-navigation/-/norigin-spatial-navigation-1.0.5.tgz"
+"@noriginmedia/norigin-spatial-navigation@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@noriginmedia/norigin-spatial-navigation/-/norigin-spatial-navigation-1.1.0.tgz#b417c52d826d20699884decfc80ebf71c69b8a7f"
   dependencies:
     lodash "^4.17.21"
 

@@ -13,3 +13,4 @@
 
 # Bugs
 - [ ] Navigation bug when going left (parent component is focused)
+- [ ] Avoid scroll when navigation with mouse

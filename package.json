@@ -109,7 +109,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "@noriginmedia/norigin-spatial-navigation": "^1.0.5",
+    "@noriginmedia/norigin-spatial-navigation": "^1.1.0",
     "@nut-tree/nut-js": "^2.1.1",
     "axios": "^0.27.2",
     "electron-log": "^4.4.8",

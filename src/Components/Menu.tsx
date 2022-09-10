@@ -39,7 +39,7 @@ function MenuItem({label, action, onEnterPress, children}: MenuItemBoxProps) {
     });
 
     return (
-        <MenuItemBox ref={ref} focused={focused} onClick={() => action()} label={label}>
+        <MenuItemBox ref={ref} focused={focused} onClick={() => action()} label={label}  onMouseEnter={() => focusSelf()}>
             {children}
         </MenuItemBox>
         );
