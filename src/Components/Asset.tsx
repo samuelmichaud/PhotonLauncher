@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -57,42 +57,62 @@ bottom: 0;
 `;
 
 interface AssetProps {
-  title: string;
-  id: string;
-  path: string;
-  tgdbID: string;
-  background_image: string;
-  onEnterPress: (props: object, details: KeyPressDetails) => void;
-  onFocus: (
+  asset: any;
+  scrollingRef: any;
+  /*onFocus: (
     layout: FocusableComponentLayout,
     props: object,
     details: FocusDetails
-  ) => void;
+  ) => void;*/
 }
 
-function AssetRender({ title, id, path, tgdbID, background_image, onEnterPress, onFocus }: AssetProps) {
+function AssetRender({ asset, scrollingRef }: AssetProps) {
+
+  const [shouldHandleMouse, setMouseSupport] = useState(false);
+  
+  document.addEventListener('mousemove', () => {
+    setMouseSupport(true);
+  });
+
   const { ref, focused, focusSelf } = useFocusable({
-    onEnterPress,
-    onFocus,
-    extraProps: {
-      title,
-      id,
-      path,
-      tgdbID,
-      background_image
+    onFocus: ({ x, y, height, width, top, left }) => {
+      if (shouldHandleMouse === false) {
+        scrollingRef.current.scrollTo({
+          top: top - height,
+          behavior: "smooth"
+      });
+      }
+    },
+    onArrowPress: (direction: string, keysDetails: KeyPressDetails) => {
+      setMouseSupport(false);
+      return true;
+    },
+    onEnterPress: (props: any, details: KeyPressDetails) => {
+      onAssetPress(asset);
     }
   });
+
+  const onAssetPress = (asset: any) => {
+      window.ShadowApi.launchExternalApp(asset.launch);
+      focusSelf();
+  }
+
+  const onMouseEnter = () => {
+    if (shouldHandleMouse) {
+      focusSelf();
+    }
+  }
 
   return (
     <AssetWrapper 
         ref={ref} 
-        onClick={() => {focusSelf()}} 
-        onMouseEnter={() => {focusSelf()}}
-        key={id} 
-        tgdbID={tgdbID} 
-        background_image={background_image}>
+        onClick={() => {onAssetPress(asset)}} 
+        onMouseEnter={() => {onMouseEnter()}}
+        key={asset.id}
+        tgdbID={asset.tgdbID}
+        background_image={asset.background_image}>
       <AssetBox focused={focused} />
-      <AssetTitle>{title}</AssetTitle>
+      <AssetTitle>{asset.title}</AssetTitle>
     </AssetWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -57,16 +57,6 @@ function ContentGridRender({
     const { ref, focusKey } = useFocusable({
         onFocus
     });
-
-    const onAssetFocus = useCallback(
-        ({ x, y, height, width, top, left }) => {
-            scrollingRef.current.scrollTo({
-                top: top - height,
-                behavior: "smooth"
-            });
-        },
-        [scrollingRef]
-    );
     
     return (
         <FocusContext.Provider value={focusKey}>
@@ -74,16 +64,11 @@ function ContentGridRender({
                 <ContentGridTitle>{rowTitle}</ContentGridTitle>
                 <ContentGridScrollingWrapper ref={ref}>
                     <ContentGridScrollingContent>
-                        {assets.map(({ id, title, launch, tgdbID, background_image }) => (
+                        {assets.map((item) => (
                             <Asset
-                                id={id}
-                                title={title}
-                                path={launch}
-                                tgdbID={tgdbID}
-                                background_image={background_image}
-                                onEnterPress={onAssetPress}
-                                onFocus={onAssetFocus}
-                                key={rowTitle + id}
+                                key={item.id}
+                                asset={item}
+                                scrollingRef={scrollingRef}
                             />
                         ))}
                     </ContentGridScrollingContent>

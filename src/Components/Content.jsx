@@ -54,22 +54,14 @@ flex-grow: 1;
 function ContentRender() {
     const { ref, focusKey } = useFocusable();
 
-    const [selectedAsset, setSelectedAsset] = useState(null);
-    const [assets, setAssets] = useState([]);
-
-    const onAssetPress = useCallback((asset) => {
-        window.ShadowApi.launchExternalApp(asset.path);
-        setSelectedAsset(asset);
-    }, []);
-
     // Fetch games, but only the first time to avoid infinite loop (because changings assets will trigger a render)
+    const [assets, setAssets] = useState([]);
     useEffect(() => {
         window.ShadowApi.fetchApps((data) => {
             setAssets(data);
         });
     }, assets);
-        
-
+    
     return (
         <FocusContext.Provider value={focusKey}>
             <ContentWrapper>
@@ -90,7 +82,6 @@ function ContentRender() {
                             title={'Installed apps'}
                             assets={assets}
                             scrollingRef={ref}
-                            onAssetPress={onAssetPress}
                         />
                     </div>
                 </ScrollingRows>
