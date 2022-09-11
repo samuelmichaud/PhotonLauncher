@@ -1,5 +1,5 @@
 
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -9,6 +9,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AssetOverlay, AssetBox, AssetTitle} from './AssetInner'
+import {GlobalState} from '../Store/Store'
 
 interface AssetWrapperProps {
   tgdbID: string;
@@ -37,16 +38,14 @@ interface AssetProps {
 
 function AssetRender({ asset, scrollingRef }: AssetProps) {
 
-  const [shouldHandleMouse, setMouseSupport] = useState(false);
+  //@ts-ignore
+  const [state, dispatch] = useContext(GlobalState);
+
   const [launchingState, setLaunchingState] = useState(false);
   
-  document.addEventListener('mousemove', () => {
-    setMouseSupport(true);
-  });
-
   const { ref, focused, focusSelf } = useFocusable({
     onFocus: ({ x, y, height, width, top, left }) => {
-      if (shouldHandleMouse === false) {
+      if (state.config.handleMouse === false) {
         scrollingRef.current.scrollTo({
           top: top - height,
           behavior: "smooth"
@@ -54,7 +53,7 @@ function AssetRender({ asset, scrollingRef }: AssetProps) {
       }
     },
     onArrowPress: (direction: string, keysDetails: KeyPressDetails) => {
-      setMouseSupport(false);
+      dispatch({type: 'SET_MOUSE_SUPPORT', payload: false});
       return true;
     },
     onEnterPress: (props: any, details: KeyPressDetails) => {
@@ -76,7 +75,7 @@ function AssetRender({ asset, scrollingRef }: AssetProps) {
   }
 
   const onMouseEnter = () => {
-    if (shouldHandleMouse) {
+    if (state.config.handleMouse) {
       focusSelf();
     }
   }

@@ -33,9 +33,21 @@ function ContentRender() {
   
     // Fetch games, but only the first time to avoid infinite loop (because changings assets will trigger a render)
     useEffect(() => {
+        console.info('useEffect in contentRender');
+
         window.ShadowApi.fetchApps((data) => {
             dispatch({type: 'SET_APPS', payload: data});
         });
+        // When the user move a mouse we want to re-enable mouse support
+        function mouseMouveDetection() {
+            dispatch({type: 'SET_MOUSE_SUPPORT', payload: true});
+        }
+        document.addEventListener('mousemove', mouseMouveDetection, {passive: true});
+        
+        // unmount callback
+        return () => {
+            document.removeEventListener('mousemove', mouseMouveDetection);
+        }
     }, []);
     
     return (

@@ -5,7 +5,9 @@ import Reducer from './Reducer'
 
 const initialState = {
     apps: [],
-    config: {}
+    config: {
+        handleMouse: false
+    }
 };
 
 const Store = ({children}) => {

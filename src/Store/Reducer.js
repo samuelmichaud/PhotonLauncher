@@ -15,6 +15,14 @@ const Reducer = (state, action) => {
                 ...state,
                 apps: state.apps.map((app) => app.id === action.id ? {...app, hidden: action.hidden} : app )
             };
+        case 'SET_MOUSE_SUPPORT':
+            return {
+                ...state,
+                config: {
+                    ...state.config,
+                    handleMouse: action.payload
+                }
+            };
         default:
             return state;
     }
