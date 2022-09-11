@@ -13,6 +13,7 @@ import 'joypad.js';
 import { Menu } from './Components/Menu';
 import { Content } from './Components/Content';
 import { triggerKey } from './Components/RendererUtil';
+import Store from './Store/Store';
 
 init({
   debug: false,
@@ -79,11 +80,13 @@ window.joypad.on('axis_move', e => {
 
 function App() {
   return (
-    <AppContainer>
-      <GlobalStyle />
-      <Menu focusKey="MENU" />
-      <Content />
-    </AppContainer>
+    <Store>
+      <AppContainer>
+        <GlobalStyle />
+        <Menu focusKey="MENU" />
+        <Content />
+      </AppContainer>
+    </Store>
   );
 }
 
