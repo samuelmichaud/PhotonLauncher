@@ -16,4 +16,4 @@
 - [ ] Big thumb for last game
 
 # Bugs
-- [ ] 
+- [ ] Throttle mousemove

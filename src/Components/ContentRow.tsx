@@ -80,6 +80,7 @@ function ContentRowRender({
                             <Asset
                                 asset={asset}
                                 key={asset.id}
+                                onFocus={onFocus}
                                 scrollingRef={scrollingRef}
                             />
                         ))}

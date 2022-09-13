@@ -1,5 +1,5 @@
 
-import React, { useCallback, useState, useContext } from 'react';
+import React, { useCallback, useState, useContext, useEffect } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import {
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
 
-import {AssetOverlay, AssetBox, AssetTitle} from './AssetInner'
+import {AssetOverlay, AssetBox, AssetTitle, AssetBadge} from './AssetInner'
 import {GlobalState} from '../Store/Store'
 
 interface AssetWrapperProps {
@@ -17,7 +17,7 @@ interface AssetWrapperProps {
 }
 
 const AssetWrapper = styled.div<AssetWrapperProps>`
-display: flex;
+display: ${({hidden}) => hidden? 'none' : 'flex'}
 flex-direction: column;
 position: relative;
 //background-image: url('https://cdn.thegamesdb.net/images/thumb/boxart/front/${ ({tgdbID}) => tgdbID}-1.jpg');
@@ -33,10 +33,11 @@ overflow: hidden;
 
 interface AssetProps {
   asset: any;
+  onFocus: any;
   scrollingRef: any;
 }
 
-function AssetRender({ asset, scrollingRef }: AssetProps) {
+function AssetRender({ asset, onFocus }: AssetProps) {
 
   //@ts-ignore
   const [state, dispatch] = useContext(GlobalState);
@@ -44,21 +45,15 @@ function AssetRender({ asset, scrollingRef }: AssetProps) {
   const [launchingState, setLaunchingState] = useState(false);
   
   const { ref, focused, focusSelf } = useFocusable({
-    onFocus: ({ x, y, height, width, top, left }) => {
-      if (state.config.handleMouse === false) {
-        scrollingRef.current.scrollTo({
-          top: top - height,
-          behavior: "smooth"
-      });
-      }
-    },
+    onFocus, // callback passed as prop
     onArrowPress: (direction: string, keysDetails: KeyPressDetails) => {
       dispatch({type: 'SET_MOUSE_SUPPORT', payload: false});
       return true;
     },
     onEnterPress: (props: any, details: KeyPressDetails) => {
       onAssetPress(asset);
-    }
+    },
+    extraProps: { ...asset }
   });
 
   const onAssetPress = (asset: any) => {
@@ -85,11 +80,13 @@ function AssetRender({ asset, scrollingRef }: AssetProps) {
         ref={ref} 
         onClick={() => {onAssetPress(asset)}} 
         onMouseEnter={() => {onMouseEnter()}}
+        hidden={asset.hidden}
         key={asset.id}
         tgdbID={asset.tgdbID}
         background_image={asset.background_image}>
       <AssetOverlay launchingState={launchingState}/>
       <AssetBox focused={focused}/>
+      <AssetBadge favourite={asset.favourite} />
       <AssetTitle>{asset.title}</AssetTitle>
     </AssetWrapper>
   );

@@ -51,7 +51,6 @@ function ContentGridRender({
     title: rowTitle,
     assets,
     scrollingRef,
-    onAssetPress,
     onFocus
 }: ContentGridProps) {
     const { ref, focusKey } = useFocusable({
@@ -68,6 +67,7 @@ function ContentGridRender({
                             <Asset
                                 key={item.id}
                                 asset={item}
+                                onFocus={onFocus}
                                 scrollingRef={scrollingRef}
                             />
                         ))}
