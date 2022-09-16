@@ -59,15 +59,19 @@ function ContentRender() {
         <FocusContext.Provider value={focusKey}>
             <ContentWrapper>
                 <ScrollingRows ref={ref}>
-                    <div>
-                        <ContentGrid
-                            key={'Installed apps'}
-                            title={'Installed apps'}
-                            assets={globalState.apps}
-                            onFocus={onFocusCallback}
-                            scrollingRef={ref}
-                        />
-                    </div>
+                    <ContentGrid
+                        key={'Carrousel'}
+                        assets={globalState.apps.slice(0, 2)}
+                        onFocus={onFocusCallback}
+                        scrollingRef={ref}
+                        layoutType={'big'}/>
+                    <ContentGrid
+                        key={'Installed apps'}
+                        assets={globalState.apps.slice(2)}
+                        onFocus={onFocusCallback}
+                        scrollingRef={ref}
+                        layoutType={'normal'}
+                    />
                 </ScrollingRows>
             </ContentWrapper>
         </FocusContext.Provider>

@@ -72,7 +72,7 @@ window.joypad.on('button_press', e => {
 
     // We need a shortcut to bring the app to front
     if ((buttons[4].pressed || buttons[5].pressed ) && (buttons[8].pressed || buttons[9].pressed)) {
-    window.ShadowApi.triggerAltTab(buttons[5].pressed); // The left button trigger a reverse alt tab (ALT + SHIFT + TAB)
+        window.ShadowApi.triggerAltTab(buttons[5].pressed); // The left button trigger a reverse alt tab (ALT + SHIFT + TAB)
     };
 
     // For navigation purposes 
@@ -83,6 +83,9 @@ window.joypad.on('button_press', e => {
     if (buttons[0].pressed)  triggerKey('Enter'); // 'A'
     if (buttons[2].pressed)  triggerKey('ToggleHideView'); // 'X'
     if (buttons[3].pressed)  triggerKey('ToggleFavourite'); // 'Y'
+
+    // if a key is triggered, we want to remove mouse support
+    store.dispatch(setMouseSupport(false));
 });
 
 // Shortcut to do a alt-tab

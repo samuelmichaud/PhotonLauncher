@@ -9,12 +9,14 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AssetOverlay, AssetBox, AssetTitle, AssetBadge} from './AssetInner'
+import { FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP } from '../Constants';
 
 import { useSelector } from 'react-redux'
 
 interface AssetWrapperProps {
   tgdbID: string;
   background_image: string;
+  nbColumn: number;
 }
 
 const AssetWrapper = styled.div<AssetWrapperProps>`
@@ -29,6 +31,8 @@ background-position: center;
 background-repeat: no-repeat;
 border-radius: 7px;
 overflow: hidden;
+width: calc((100vw - 2 * ${FRAME_PADDING}px - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}px )/${({nbColumn}) => nbColumn});
+height: calc(((100vw - 2 * ${FRAME_PADDING}px - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}px )/${({nbColumn}) => nbColumn})*9/16);
 `;
 
 
@@ -36,9 +40,10 @@ interface AssetProps {
   asset: any;
   onFocus: any;
   scrollingRef: any;
+  layoutType: string;
 }
 
-function AssetRender({ asset, onFocus }: AssetProps) {
+function AssetRender({ asset, onFocus, layoutType }: AssetProps) {
 
   // @ts-ignore
   const { globalState } = useSelector((state) => state);
@@ -81,9 +86,11 @@ function AssetRender({ asset, onFocus }: AssetProps) {
         hidden={asset.hidden}
         key={asset.id}
         tgdbID={asset.tgdbID}
-        background_image={asset.background_image}>
+        background_image={asset.background_image}
+        nbColumn={(layoutType == 'big')? GRID_COLUMN_BIG : GRID_COLUMN}
+        >
       <AssetOverlay launchingState={launchingState}/>
-      <AssetBox focused={focused}/>
+      <AssetBox focused={focused} />
       <AssetBadge favourite={asset.favourite} />
       <AssetTitle>{asset.title}</AssetTitle>
     </AssetWrapper>

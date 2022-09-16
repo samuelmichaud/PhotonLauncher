@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -36,9 +36,10 @@ gap: ${GRID_GAP}px;
 `;
 
 interface ContentGridProps {
-    title: string;
+    title?: string;
     assets: Array<any>;
     scrollingRef: any;
+    layoutType: string;
     onAssetPress: (props: object, details: KeyPressDetails) => void;
     onFocus: (
         layout: FocusableComponentLayout,
@@ -48,9 +49,10 @@ interface ContentGridProps {
 }
 
 function ContentGridRender({
-    title: rowTitle,
+    title,
     assets,
     scrollingRef,
+    layoutType,
     onFocus
 }: ContentGridProps) {
     const { ref, focusKey } = useFocusable({
@@ -60,7 +62,7 @@ function ContentGridRender({
     return (
         <FocusContext.Provider value={focusKey}>
             <ContentGridWrapper>
-                <ContentGridTitle>{rowTitle}</ContentGridTitle>
+                {(title)? <ContentGridTitle>{title}</ContentGridTitle> : ''}
                 <ContentGridScrollingWrapper ref={ref}>
                     <ContentGridScrollingContent>
                         {assets.map((item) => (
@@ -69,6 +71,7 @@ function ContentGridRender({
                                 asset={item}
                                 onFocus={onFocus}
                                 scrollingRef={scrollingRef}
+                                layoutType={layoutType}
                             />
                         ))}
                     </ContentGridScrollingContent>
