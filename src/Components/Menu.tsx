@@ -51,7 +51,7 @@ interface MenuWrapperProps {
 
 const MenuWrapper = styled.div<MenuWrapperProps>`
     position: absolute;
-    right: 0;
+    right: ${FRAME_PADDING}px;
     top: 0;
     flex: 1;
     display: flex;
@@ -59,7 +59,6 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
     align-items: flex-end;
     justify-content: end;
     max-height: 80px;
-    padding: 0 60px;
     background-color: ${({ hasFocusedChild }) =>
         hasFocusedChild ? 'transparent' : 'transparent'};
   `;
@@ -101,7 +100,7 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
 
     return (
         <FocusContext.Provider value={focusKey}>
-            <div style={{textAlign: 'center', position: 'relative', marginTop: '10px'}}>
+            <div style={{position: 'relative', marginTop: '10px', padding: '0 ' + FRAME_PADDING + 'px' }}>
                 <svg width="160" height="50" viewBox="0 0 202 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.4634 20.9294C28.5897 20.9294 29.9712 17.8797 29.9712 14.9496H9.00937C4.95515 14.9496 0 18.0292 0 23.9193C0 29.8094 5.04525 32.8891 9.00937 32.8891H21.0219C22.148 32.8891 24.025 33.7711 24.025 35.879C24.025 37.9869 22.088 38.8689 21.0219 38.8689H0C0 42.2026 2.94306 44.8487 6.60687 44.8487H21.0219C25.4064 44.8487 30.0312 41.5 30.0312 35.879C30.0312 30.2579 25.5266 26.9092 21.0219 26.9092H9.00937C7.64295 26.9092 6.00625 25.788 6.00625 23.9193C6.00625 22.0506 7.58289 20.9294 9.00937 20.9294H22.4634Z" fill="white"/>
                     <path d="M33.3347 6.57781C33.3347 1.25576 39.3409 0 39.3409 0V17.9694C39.3409 17.9694 42.7194 14.9496 48.3503 14.9496C55.3025 14.7253 63.3659 20.6454 63.3659 29.8991V44.8487H57.3597V31.0054C57.3597 23.6054 51.9841 21.1088 48.3503 21.1088C45.8427 21.1088 39.3409 22.5141 39.3409 32.2612V44.8487H33.3347V6.57781Z" fill="white"/>
