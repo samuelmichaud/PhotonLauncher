@@ -1,5 +1,5 @@
 
-import React, { useCallback, useState, useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -9,7 +9,9 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import { ContentGrid } from './ContentGrid';
 import { FRAME_PADDING } from '../Constants'
-import {GlobalState} from './../Store/Store';
+
+import { useSelector, useDispatch } from 'react-redux'
+import { setApps, setFocusApp } from './../Store/Reducer'
 
 const ContentWrapper = styled.div`
 flex: 1;
@@ -26,54 +28,31 @@ flex-shrink: 1;
 flex-grow: 1;
 `;
 
-var currentFocusedItem = null;
-
 function ContentRender() {
-    const [state, dispatch] = useContext(GlobalState);
-  
+      
     const { ref, focusKey } = useFocusable();
+    const { globalState } = useSelector((state) => state);
+    const dispatch = useDispatch();
 
     const onFocusCallback = ({ x, y, height, width, top, left }, itemFocused, details) => {
 
-        // since we are inside a function, we can't use a useState hook (need to be at root), so we use a simple var
-        currentFocusedItem = itemFocused;
+        dispatch(setFocusApp({currentFocusedApp: itemFocused }));
 
-        if (state.config.handleMouse === false) {
+        if (globalState.config.handleMouse === false) {
             ref.current.scrollTo({
-            top: top - height,
-            behavior: "smooth"
-        });
+                top: top - height,
+                behavior: "smooth"
+            });
         }
-      }
+    }
   
     // Fetch games, detect mouse/keyboard events, but only the first time to avoid infinite loop (because changings assets will trigger a render)
     useEffect(() => {
         console.info('useEffect in contentRender');
 
         window.ShadowApi.fetchApps((data) => {
-            dispatch({type: 'SET_APPS', payload: data});
+            dispatch(setApps(data));
         });
-        // When the user move a mouse we want to re-enable mouse support
-        const mouseMouveDetection = () => {
-            dispatch({type: 'SET_MOUSE_SUPPORT', payload: true});
-        }
-
-        const handlekeyUpEvent = (event) => {
-            if (event.key === 'f' && currentFocusedItem && currentFocusedItem.id) {
-              dispatch({type: 'SET_APP_FAVOURITE', id: currentFocusedItem.id, favourite: !currentFocusedItem.favourite });
-            } else if (event.key === 'h'  && currentFocusedItem && currentFocusedItem.id) {
-                dispatch({type: 'SET_APP_VISIBILITY', id: currentFocusedItem.id, hidden: !currentFocusedItem.hidden });
-            }
-          }
-      
-        document.addEventListener('keyup', handlekeyUpEvent);
-        document.addEventListener('mousemove', mouseMouveDetection, {passive: true});
-        
-        // unmount callback
-        return () => {
-            document.removeEventListener('mousemove', mouseMouveDetection);
-            document.removeEventListener('keyup', handlekeyUpEvent);
-        }
     }, []);
     
     return (
@@ -84,7 +63,7 @@ function ContentRender() {
                         <ContentGrid
                             key={'Installed apps'}
                             title={'Installed apps'}
-                            assets={state.apps}
+                            assets={globalState.apps}
                             onFocus={onFocusCallback}
                             scrollingRef={ref}
                         />

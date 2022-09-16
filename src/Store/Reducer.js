@@ -1,41 +1,44 @@
-const Reducer = (state, action) => {
-    switch (action.type) {
-        case 'SET_APPS':
-            return {
-                ...state,
-                apps: [...action.payload.filter((app) => app.favourite), ...action.payload.filter((app) => !app.favourite)] // we want all favourites firsts
-            };
-        case 'SET_APP_FAVOURITE':
-            let itemToUpdate = state.apps.filter((app) => app.id === action.id)[0];
-            itemToUpdate.favourite = action.favourite;
+import { createSlice } from '@reduxjs/toolkit'
+
+export const GlobalState = createSlice({
+    name: 'globalState',
+    initialState: {
+        apps: [],
+        currentFocusedApp: null,
+        config: {
+            handleMouse: false
+        }
+    },
+    reducers: {
+        setFocusApp: (state, action) => {
+            state.currentFocusedApp = action.payload.currentFocusedApp
+        },
+        setApps: (state, action) => {
+            state.apps = [...action.payload.filter((app) => app.favourite), ...action.payload.filter((app) => !app.favourite)] // we want all favourites firsts
+        },
+        setAppFavourite: (state, action) => {
+            let itemToUpdate = state.apps.filter((app) => app.id === action.payload.id)[0];
+            itemToUpdate.favourite = action.payload.favourite;
             // if it's an add to Favourite, we want that the new favourite item first of the list
-            if (action.favourite) {
-                return {
-                    ...state,
-                    apps: [itemToUpdate, ...state.apps.filter((app) => app.id != action.id)]
-                };
+            if (action.payload.favourite) {
+                state.apps = [itemToUpdate, ...state.apps.filter((app) => app.id != action.payload.id)]
             }
             // else it's a remove and we add it just after favourites
-            return {
-                ...state,
-                apps: [...state.apps.filter((app) => app.favourite), itemToUpdate, ...state.apps.filter((app) => !app.favourite && app.id != action.id)]
+            else {
+                state.apps = [...state.apps.filter((app) => app.favourite), itemToUpdate, ...state.apps.filter((app) => !app.favourite && app.id != action.payload.id)]
             }
-        case 'SET_APP_VISIBILITY':
-            return {
-                ...state,
-                apps: state.apps.map((app) => app.id === action.id ? {...app, hidden: action.hidden} : app )
-            };
-        case 'SET_MOUSE_SUPPORT':
-            return {
-                ...state,
-                config: {
-                    ...state.config,
-                    handleMouse: action.payload
-                }
-            };
-        default:
-            return state;
-    }
-};
+            state.currentFocusedApp = itemToUpdate;
+        },
+        setAppVisibility: (state, action) => {
+            state.apps = state.apps.map((app) => app.id === action.payload.id ? {...app, hidden: action.payload.hidden} : app )
+        },
+        setMouseSupport: (state, action) => {
+            state.config.handleMouse = action.payload
+        },
+    },
+})
 
-export default Reducer;
+// Action creators are generated for each case reducer function
+export const { setFocusApp, setApps, setAppFavourite, setAppVisibility, setMouseSupport } = GlobalState.actions
+
+export default GlobalState.reducer

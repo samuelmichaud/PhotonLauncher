@@ -1,23 +1,10 @@
 
-import React, {createContext, useReducer} from "react";
-import Reducer from './Reducer'
+import GlobalReducer from './Reducer'
+import { configureStore } from '@reduxjs/toolkit'
 
 
-const initialState = {
-    apps: [],
-    config: {
-        handleMouse: false
+export default configureStore({
+    reducer: {
+        'globalState': GlobalReducer
     }
-};
-
-const Store = ({children}) => {
-    const [state, dispatch] = useReducer(Reducer, initialState);
-    return (
-        <GlobalState.Provider value={[state, dispatch]}>
-            {children}
-        </GlobalState.Provider>
-    )
-};
-
-export const GlobalState = createContext(initialState);
-export default Store;
+});

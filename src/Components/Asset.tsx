@@ -1,5 +1,5 @@
 
-import React, { useCallback, useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -9,7 +9,8 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AssetOverlay, AssetBox, AssetTitle, AssetBadge} from './AssetInner'
-import {GlobalState} from '../Store/Store'
+
+import { useSelector } from 'react-redux'
 
 interface AssetWrapperProps {
   tgdbID: string;
@@ -39,17 +40,13 @@ interface AssetProps {
 
 function AssetRender({ asset, onFocus }: AssetProps) {
 
-  //@ts-ignore
-  const [state, dispatch] = useContext(GlobalState);
+  // @ts-ignore
+  const { globalState } = useSelector((state) => state);
 
   const [launchingState, setLaunchingState] = useState(false);
   
   const { ref, focused, focusSelf } = useFocusable({
     onFocus, // callback passed as prop
-    onArrowPress: (direction: string, keysDetails: KeyPressDetails) => {
-      dispatch({type: 'SET_MOUSE_SUPPORT', payload: false});
-      return true;
-    },
     onEnterPress: (props: any, details: KeyPressDetails) => {
       onAssetPress(asset);
     },
@@ -70,7 +67,8 @@ function AssetRender({ asset, onFocus }: AssetProps) {
   }
 
   const onMouseEnter = () => {
-    if (state.config.handleMouse) {
+    // @ts-ignore
+    if (globalState.config.handleMouse) {
       focusSelf();
     }
   }

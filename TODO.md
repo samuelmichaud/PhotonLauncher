@@ -17,3 +17,4 @@
 
 # Bugs
 - [ ] Throttle mousemove
+- [ ] No more focus after hide an app

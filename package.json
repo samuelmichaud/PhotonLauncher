@@ -111,11 +111,13 @@
   "dependencies": {
     "@noriginmedia/norigin-spatial-navigation": "^1.1.0",
     "@nut-tree/nut-js": "^2.1.1",
+    "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
     "electron-log": "^4.4.8",
     "electron-main-window": "^1.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "joypad.js": "^2.3.2",
+    "react-redux": "^8.0.2",
     "slugify": "^1.6.5",
     "underscore": "^1.13.4"
   },
