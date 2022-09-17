@@ -130,6 +130,10 @@ export const storeDatabase = (data, callback) => {
     storeToJSONFile(libraryPathJSONdatabase, data, callback);
 }
 
+ipcMain.on("storeDatabase", (event, args) => {
+    storeDatabase(args);
+});
+
 ipcMain.on("fetchAppsFromSource", (event, args) => {
     fetchAppsFromSource();
 });

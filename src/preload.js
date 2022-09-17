@@ -21,6 +21,9 @@ window.ShadowApi = {
     downloadAndOptimizeMetadata: () => {
         ipcRenderer.send('downloadAndOptimizeMetadata');
     },
+    storeDatabase: (data) => {
+        ipcRenderer.send('storeDatabase', data);
+    },
     quitApp: () => {
         ipcRenderer.send('exit-app');
     },

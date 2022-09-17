@@ -33,6 +33,7 @@ export interface ShadowApi {
     launchExternalApp: (path: string) => void,
     scanForGames: () => void,
     loadLibraryFromSource: () => void,
+    storeDatabase: (data: any) => void,
     fetchApps: (func: any) => void,
     quitApp: () => void,
     triggerAltTab: (reverse?: boolean) => void,
