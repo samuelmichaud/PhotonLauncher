@@ -7,7 +7,7 @@ import {
     FocusContext,
     KeyPressDetails
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FRAME_PADDING } from '../Constants';
+import { FRAME_PADDING, FOCUS_BORDER_SIZE } from '../Constants';
 
 interface MenuItemBoxProps {
     focused?: boolean;
@@ -25,7 +25,7 @@ const MenuItemBox = styled.div<MenuItemBoxProps>`
     border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
     padding: 5px 10px;
     border-style: solid;
-    border-width: 6px;
+    border-width: ${FOCUS_BORDER_SIZE}px;
     box-sizing: border-box;
     border-radius: 7px;
     margin-left: 20px;
@@ -125,7 +125,7 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
                     </MenuItem>
                 </MenuWrapper>
             </div>
-            <hr style={{border: 'none', boxShadow: '0 2px 2px rgba(255, 255, 255, 100%)', width: `calc(100vw - 2 * ${FRAME_PADDING}px)`, height: '2px'}}/>
+            <hr style={{border: 'none', background: '#9ab0ff', width: `calc(100vw - 2 * ${FRAME_PADDING}px)`, height: '1px'}}/>
         </FocusContext.Provider>
     );
 }

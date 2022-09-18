@@ -2,18 +2,21 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
+import { FOCUS_BORDER_SIZE } from './../Constants'
 
 interface AssetOverlayProps {
     launchingState: boolean;
 }
 
 export const AssetOverlay = styled.div<AssetOverlayProps>`
-background: ${({ launchingState }) => (launchingState ? 'rgba(0, 0, 0, 50%);' : '')}
+background: rgba(0, 0, 0, 50%);
 top: 0;
 bottom: 0;
 left: 0;
 right: 0;
+opacity: ${({ launchingState }) => (launchingState ? '1' : '0')};
 position: absolute;
+transition: all 0.2s;
 `
 interface AssetBoxProps {
     focused: boolean;
@@ -24,8 +27,9 @@ height: 100%;
 width: 100%;
 border-color: white;
 border-style: solid;
-border-width: ${({ focused }) => (focused ? '6px' : 0)};
 box-sizing: border-box;
+//border: ${({ focused }) => (focused ? 'white' : 'transparent')} solid 3px;
+border: white solid ${({ focused }) => (focused ? FOCUS_BORDER_SIZE + 'px' : '0')};
 border-radius: 7px;
 background: linear-gradient(to top, #101322, transparent 40%);
 `;

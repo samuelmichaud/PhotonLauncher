@@ -15,17 +15,10 @@ import { setApps, setFocusApp } from './../Store/Reducer'
 
 const ContentWrapper = styled.div`
 flex: 1;
-overflow: hidden;
+overflow-y: auto;
 display: flex;
 flex-direction: column;
-padding: 0 ${FRAME_PADDING}px;
-`;
-
-const ScrollingRows = styled.div`
-overflow-y: auto;
-overflow-x: hidden;
-flex-shrink: 1;
-flex-grow: 1;
+padding: 20px ${FRAME_PADDING}px;
 `;
 
 function ContentRender() {
@@ -57,22 +50,20 @@ function ContentRender() {
     
     return (
         <FocusContext.Provider value={focusKey}>
-            <ContentWrapper>
-                <ScrollingRows ref={ref}>
-                    <ContentGrid
-                        key={'Carrousel'}
-                        assets={globalState.apps.slice(0, 2)}
-                        onFocus={onFocusCallback}
-                        scrollingRef={ref}
-                        layoutType={'big'}/>
-                    <ContentGrid
-                        key={'Installed apps'}
-                        assets={globalState.apps.slice(2)}
-                        onFocus={onFocusCallback}
-                        scrollingRef={ref}
-                        layoutType={'normal'}
-                    />
-                </ScrollingRows>
+            <ContentWrapper ref={ref}>
+                <ContentGrid
+                    key={'Carrousel'}
+                    assets={globalState.apps.slice(0, 2)}
+                    onFocus={onFocusCallback}
+                    scrollingRef={ref}
+                    layoutType={'big'}/>
+                <ContentGrid
+                    key={'Installed apps'}
+                    assets={globalState.apps.slice(2)}
+                    onFocus={onFocusCallback}
+                    scrollingRef={ref}
+                    layoutType={'normal'}
+                />
             </ContentWrapper>
         </FocusContext.Provider>
     );
