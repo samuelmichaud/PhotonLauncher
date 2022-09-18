@@ -55,9 +55,7 @@ function ContentGridRender({
     layoutType,
     onFocus
 }: ContentGridProps) {
-    const { ref, focusKey } = useFocusable({
-        onFocus
-    });
+    const { ref, focusKey } = useFocusable();
     
     return (
         <FocusContext.Provider value={focusKey}>

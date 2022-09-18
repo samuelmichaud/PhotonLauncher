@@ -23,9 +23,15 @@ padding: 20px ${FRAME_PADDING}px;
 
 function ContentRender() {
       
-    const { ref, focusKey } = useFocusable();
     const { globalState } = useSelector((state) => state);
     const dispatch = useDispatch();
+
+    const { ref, focusKey } = useFocusable({
+        // when the focus leave <Content /> (ie for the menu), we need to reset current focus state so we cannot do action while being in the menu
+        onBlur: () => {
+            dispatch(setFocusApp({currentFocusedApp: null }));
+        }
+    });
 
     const onFocusCallback = ({ x, y, height, width, top, left }, itemFocused, details) => {
 
