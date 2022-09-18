@@ -64,6 +64,12 @@ document.addEventListener('mousemove', () => {
     store.dispatch(setMouseSupport(true));
 }, {passive: true});
 
+document.addEventListener('mouseup', (event) => {
+    if (event.button === 2 /* Right clic */) {
+        triggerKey('ToggleFavourite'); // will do nothing if no item focused
+    }
+});
+
 /* Use gamepad for TV navigation */
 window.joypad.set({axisMovementThreshold: 0.3});
 
