@@ -29,6 +29,7 @@ const createWindow = (): void => {
     width: dimensions.width,
     fullscreen: isProductionEnv(), // true for Prod, false for dev
     skipTaskbar: isProductionEnv(), // true for Prod, false for dev
+    icon: 'src/Assets/shadow_icon.png',
     // @ts-ignore
     titleBarStyle: (isProductionEnv()? "hidden" : "defaut"),
     webPreferences: {
