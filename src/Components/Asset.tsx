@@ -68,7 +68,7 @@ function AssetRender({ asset, onFocus, layoutType }: AssetProps) {
   const onAssetPress = (asset: any) => {
 
     // we don't want user be able to clic multiple times because she thinks that the app isn't launching
-    if (launchingState) {
+    if (!launchingState) {
       window.ShadowApi.launchExternalApp(asset.launch);
     }
     setLaunchingState(true);
