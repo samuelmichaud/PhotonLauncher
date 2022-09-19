@@ -18,6 +18,7 @@ interface AssetWrapperProps {
   background_image: string;
   nbColumn: number;
   focused: boolean;
+  launchingState: boolean;
 }
 
 const AssetWrapper = styled.div<AssetWrapperProps>`
@@ -38,6 +39,7 @@ width: calc((100vw - 2 * ${FRAME_PADDING}px - (${({nbColumn}) => nbColumn} - 1) 
 height: calc(((100vw - 2 * ${FRAME_PADDING}px - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}px )/${({nbColumn}) => nbColumn})*9/16);
 box-sizing: border-box;
 transition: all 0.2s ease-in-out;
+${ ({launchingState}) => launchingState? 'background-blend-mode: luminosity;': ''}
 `;
 
 
@@ -94,6 +96,7 @@ function AssetRender({ asset, onFocus, layoutType }: AssetProps) {
         background_image={asset.background_image}
         nbColumn={(layoutType == 'big')? GRID_COLUMN_BIG : GRID_COLUMN}
         focused={focused}
+        launchingState={launchingState}
         >
       <AssetOverlay launchingState={launchingState}/>
       <AssetBox focused={focused} />
