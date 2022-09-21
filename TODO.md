@@ -2,7 +2,6 @@
 
 # Library management
 - [ ] EPIC Onboarding & first use
-- [ ] Remove uninstalled games on a rescan
 - [ ] Improve match for RAWG (fix false positive)
 
 # Design

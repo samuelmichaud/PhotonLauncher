@@ -1,6 +1,6 @@
 
 import { ipcMain } from 'electron';
-import { union, uniq, find } from 'underscore';
+import { union, uniq, each, find } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
 import axios from 'axios';
@@ -88,11 +88,29 @@ async function scanForGames () {
         switch (code) {
             case 0:
                 log.info('Gamescan is done. Exit code: ' + code);
-                // Add new games to database
+
+                // Add new games to database, remove unstalled games BUT if a games was already detected
+                // we use the library from old scan as reference to keep sorting & all changes
                 let newLibrary = await loadMetadaFromJSONfile();
-                library = uniq(union(library, newLibrary), false, (item, key) => item.id);
-                addCustomApps(library);
-                // TODO remove games no more found (uninstalled games). See : https://stackoverflow.com/questions/13147278/using-underscores-difference-method-on-arrays-of-objects
+                addCustomApps(newLibrary); // add shortcuts like Steam big picture mode
+                let tempLibrary = [];
+
+                each(library, item => {
+                    let tempItem = find(newLibrary, (newItem) => item.id === newItem.id);
+                    if (tempItem) {
+                        tempLibrary.push(item);
+                    } else {
+                        // the item is not found in new library scan so we should remove it
+                    }
+                })
+                each(newLibrary, item => {
+                    let tempItem = find(library, (oldItem) => item.id === oldItem.id);
+                    if (!tempItem) { // this is a new item that should be added to the library
+                        tempLibrary.push(item);
+                    }
+                });
+                library = tempLibrary;
+                
                 storeDatabase(library, () => {
                     log.info('Library stored, starting fetchAppsFromSource');
                     fetchAppsFromSource();
