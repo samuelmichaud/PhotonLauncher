@@ -12,6 +12,10 @@
 # UX
 - [ ] Big thumb for last game
 
+# Features
+- [ ] Settings "launch at startup"
+- [ ] Shutdown computer
+
 # Bugs
 - [ ] Throttle mousemove
 - [ ] No more focus after hide an app

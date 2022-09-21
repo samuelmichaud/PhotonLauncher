@@ -18,7 +18,7 @@ flex: 1;
 overflow-y: auto;
 display: flex;
 flex-direction: column;
-padding: 20px ${FRAME_PADDING}px;
+padding: 2rem ${FRAME_PADDING}rem;
 `;
 
 function ContentRender() {

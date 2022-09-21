@@ -31,12 +31,12 @@ background-size: cover;
 background-color: #101322;
 background-position: center;
 background-repeat: no-repeat;
-border-radius: 7px;
-filter: ${({ focused }) => (focused ? 'drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.50))': '')};
-transform: scale(${({ focused }) => (focused ? '1.03' : '1')});
+border-radius: 0.7rem;
+filter: ${({ focused }) => (focused ? 'drop-shadow(0rem 0rem 0.7rem rgba(255, 255, 255, 0.50))': '')};
+transform: scale(${({ focused }) => (focused ? '1.05' : '1')});
 overflow: hidden;
-width: calc((100vw - 2 * ${FRAME_PADDING}px - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}px )/${({nbColumn}) => nbColumn});
-height: calc(((100vw - 2 * ${FRAME_PADDING}px - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}px )/${({nbColumn}) => nbColumn})*9/16);
+width: calc((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn});
+height: calc(((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn})*9/16);
 box-sizing: border-box;
 transition: all 0.2s ease-in-out;
 ${ ({launchingState}) => launchingState? 'background-blend-mode: luminosity;': ''}

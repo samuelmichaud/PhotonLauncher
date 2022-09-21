@@ -18,19 +18,20 @@ interface MenuItemBoxProps {
 }
 
 const MenuItemBox = styled.div<MenuItemBoxProps>`
-    min-width: 50px;
-    height: 50px;
+    min-width: 5rem;
+    height: 5rem;
     color: white;
     background-color: #101322;
     border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     border-style: solid;
-    border-width: ${FOCUS_BORDER_SIZE}px;
+    border-width: ${FOCUS_BORDER_SIZE}rem;
     box-sizing: border-box;
-    border-radius: 7px;
-    margin-left: 20px;
+    border-radius: 0.7rem;
+    margin-left: 2rem;
     display: flex;
     align-items: center;
+    font-size: 1.8rem;
   `;
 
 function MenuItem({label, action, onEnterPress, children}: MenuItemBoxProps) {
@@ -51,14 +52,14 @@ interface MenuWrapperProps {
 
 const MenuWrapper = styled.div<MenuWrapperProps>`
     position: absolute;
-    right: ${FRAME_PADDING}px;
+    right: ${FRAME_PADDING}rem;
     top: 0;
     flex: 1;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: end;
-    max-height: 80px;
+    max-height: 8rem;
     background-color: ${({ hasFocusedChild }) =>
         hasFocusedChild ? 'transparent' : 'transparent'};
   `;
@@ -100,8 +101,8 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
 
     return (
         <FocusContext.Provider value={focusKey}>
-            <div style={{position: 'relative', marginTop: '10px', padding: '0 ' + FRAME_PADDING + 'px' }}>
-                <svg width="160" height="50" viewBox="0 0 202 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
+                <svg width="16rem" height="5rem" viewBox="0 0 202 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.4634 20.9294C28.5897 20.9294 29.9712 17.8797 29.9712 14.9496H9.00937C4.95515 14.9496 0 18.0292 0 23.9193C0 29.8094 5.04525 32.8891 9.00937 32.8891H21.0219C22.148 32.8891 24.025 33.7711 24.025 35.879C24.025 37.9869 22.088 38.8689 21.0219 38.8689H0C0 42.2026 2.94306 44.8487 6.60687 44.8487H21.0219C25.4064 44.8487 30.0312 41.5 30.0312 35.879C30.0312 30.2579 25.5266 26.9092 21.0219 26.9092H9.00937C7.64295 26.9092 6.00625 25.788 6.00625 23.9193C6.00625 22.0506 7.58289 20.9294 9.00937 20.9294H22.4634Z" fill="white"/>
                     <path d="M33.3347 6.57781C33.3347 1.25576 39.3409 0 39.3409 0V17.9694C39.3409 17.9694 42.7194 14.9496 48.3503 14.9496C55.3025 14.7253 63.3659 20.6454 63.3659 29.8991V44.8487H57.3597V31.0054C57.3597 23.6054 51.9841 21.1088 48.3503 21.1088C45.8427 21.1088 39.3409 22.5141 39.3409 32.2612V44.8487H33.3347V6.57781Z" fill="white"/>
                     <path d="M66.6693 29.8991C66.6693 22.0506 72.9909 14.9496 81.685 14.9496C90.379 14.9496 96.7006 22.1104 96.7006 29.8991V44.8487C96.7006 44.8487 90.6117 44.3853 90.6943 38.4652C90.7145 37.0301 90.6943 34.5036 90.6943 29.8991C90.6943 25.2947 86.9404 20.9294 81.685 20.9294C76.4295 20.9294 72.6756 25.2947 72.6756 29.8991C72.6756 34.5036 76.3694 38.8689 81.685 38.8689C86.2197 38.8689 88.3669 42.8754 88.3819 44.8487H81.685C72.9309 44.8487 66.6693 37.7477 66.6693 29.8991Z" fill="white"/>
@@ -113,19 +114,19 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
                 </svg>
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
                     <MenuItem label={'Refresh library'} action={() => window.ShadowApi.scanForGames()} >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '5px'}}>
+                        <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '0.5rem'}}>
                             <path opacity="0.54" fillRule="evenodd" clipRule="evenodd" d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C11.7 16 14.8 13.4 16 10H14C12.8 12.3 10.6 14 8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C9.7 2 11.1 2.7 12 4L9 7H16V0L14 2C12.2 1 10.2 0 8 0Z" fill="white"/>
                         </svg>
                         <span>{'Refresh library'}</span>
                     </MenuItem>
                     <MenuItem label={'Quit'} action={() => window.ShadowApi.quitApp()}>
-                        <svg width="20" height="30" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="2rem" height="3rem" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M18.2003 0C17.0957 0 16.2003 0.895431 16.2003 2V18C16.2003 19.1046 17.0957 20 18.2003 20C19.3048 20 20.2003 19.1046 20.2003 18V2C20.2003 0.895431 19.3048 0 18.2003 0ZM8.69964 8.67666C7.9688 7.84844 6.70493 7.76949 5.87671 8.50033C2.10471 11.8288 0 16.6727 0 22C0 31.9411 8.05888 40 18 40C27.9412 40 36 31.9411 36 22C36 16.7023 33.8825 11.838 30.1279 8.50438C29.3019 7.77102 28.0378 7.8461 27.3044 8.67209C26.5711 9.49807 26.6462 10.7622 27.4722 11.4955C30.3586 14.0583 32 17.8289 32 22C32 29.732 25.732 36 18 36C10.268 36 4 29.732 4 22C4 17.8006 5.62756 14.0548 8.5233 11.4996C9.35153 10.7688 9.43047 9.50489 8.69964 8.67666Z" fill="white" fillOpacity="0.75"/>
                         </svg>
                     </MenuItem>
                 </MenuWrapper>
             </div>
-            <hr style={{border: 'none', background: '#9ab0ff', width: `calc(100vw - 2 * ${FRAME_PADDING}px)`, height: '1px'}}/>
+            <hr style={{border: 'none', background: '#9ab0ff', width: `calc(100vw - 2 * ${FRAME_PADDING}rem)`, height: '0.1rem'}}/>
         </FocusContext.Provider>
     );
 }

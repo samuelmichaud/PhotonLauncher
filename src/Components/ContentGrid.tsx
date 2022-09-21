@@ -13,13 +13,13 @@ import { Asset } from './Asset';
 import { GRID_GAP } from '..//Constants';
 
 const ContentGridWrapper = styled.div`
-margin-bottom: 37px;
+margin-bottom: 3.7rem;
 `;
 
 const ContentGridTitle = styled.div`
 color: white;
-margin-bottom: 22px;
-font-size: 27px;
+margin-bottom: 2.2rem;
+font-size: 2.7rem;
 font-weight: 700;
 font-family: 'Segoe UI';
 `;
@@ -32,7 +32,7 @@ flex-grow: 1;
 const ContentGridScrollingContent = styled.div`
 display: flex;
 flex-wrap: wrap;
-gap: ${GRID_GAP}px;
+gap: ${GRID_GAP}rem;
 `;
 
 interface ContentGridProps {
