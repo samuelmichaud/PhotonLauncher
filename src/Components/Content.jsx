@@ -23,7 +23,7 @@ padding: 2rem ${FRAME_PADDING}rem;
 
 function ContentRender() {
       
-    const { globalState } = useSelector((state) => state);
+    const { apps, config } = useSelector((state) => state.globalState);
     const dispatch = useDispatch();
 
     const { ref, focusKey } = useFocusable({
@@ -37,7 +37,7 @@ function ContentRender() {
 
         dispatch(setFocusApp({currentFocusedApp: itemFocused }));
 
-        if (globalState.config.handleMouse === false) {
+        if (config.handleMouse === false) {
             ref.current.scrollTo({
                 top: top - height,
                 behavior: "smooth"
@@ -59,13 +59,13 @@ function ContentRender() {
             <ContentWrapper ref={ref}>
                 <ContentGrid
                     key={'Carrousel'}
-                    assets={globalState.apps.slice(0, 2)}
+                    assets={apps.slice(0, 2)}
                     onFocus={onFocusCallback}
                     scrollingRef={ref}
                     layoutType={'big'}/>
                 <ContentGrid
                     key={'Installed apps'}
-                    assets={globalState.apps.slice(2)}
+                    assets={apps.slice(2)}
                     onFocus={onFocusCallback}
                     scrollingRef={ref}
                     layoutType={'normal'}
