@@ -32,14 +32,15 @@ background-color: #101322;
 background-position: center;
 background-repeat: no-repeat;
 border-radius: 0.7rem;
-filter: ${({ focused }) => (focused ? 'drop-shadow(0rem 0rem 0.7rem rgba(255, 255, 255, 0.50))': '')};
+filter: drop-shadow(0rem 0rem 0.6rem rgba(255, 255, 255, ${({ focused }) => focused ? '0.50' : '0'}));
 transform: scale(${({ focused }) => (focused ? '1.05' : '1')});
+z-index: ${({ focused }) => (focused ? '99' : '1')};
 overflow: hidden;
 width: calc((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn});
 height: calc(((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn})*9/16);
 box-sizing: border-box;
 transition: all 0.2s ease-in-out;
-${ ({launchingState}) => launchingState? 'background-blend-mode: luminosity;': ''}
+${({launchingState}) => launchingState? 'background-blend-mode: luminosity;': ''}
 `;
 
 
