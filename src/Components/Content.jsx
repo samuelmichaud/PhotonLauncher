@@ -57,19 +57,23 @@ function ContentRender() {
     return (
         <FocusContext.Provider value={focusKey}>
             <ContentWrapper ref={ref}>
-                <ContentGrid
-                    key={'Carrousel'}
-                    assets={apps.slice(0, 2)}
-                    onFocus={onFocusCallback}
-                    scrollingRef={ref}
-                    layoutType={'big'}/>
-                <ContentGrid
-                    key={'Installed apps'}
-                    assets={apps.slice(2)}
-                    onFocus={onFocusCallback}
-                    scrollingRef={ref}
-                    layoutType={'normal'}
-                />
+                {apps.length > 0?
+                    <div>
+                        <ContentGrid
+                            key={'Carrousel'}
+                            assets={apps.slice(0, 2)}
+                            onFocus={onFocusCallback}
+                            scrollingRef={ref}
+                            layoutType={'big'}/>
+                        <ContentGrid
+                            key={'Installed apps'}
+                            assets={apps.slice(2)}
+                            onFocus={onFocusCallback}
+                            scrollingRef={ref}
+                            layoutType={'normal'} />
+                    </div>
+                : 'Launch a scan to see your apps' /* TODO */
+                }
             </ContentWrapper>
         </FocusContext.Provider>
     );
