@@ -7,7 +7,8 @@ export const GlobalState = createSlice({
         currentFocusedApp: null,
         config: {
             handleMouse: false
-        }
+        },
+        windowHasFocus: true
     },
     reducers: {
         setFocusApp: (state, action) => {
@@ -33,12 +34,15 @@ export const GlobalState = createSlice({
             state.apps = state.apps.map((app) => app.id === action.payload.id ? {...app, hidden: action.payload.hidden} : app )
         },
         setMouseSupport: (state, action) => {
-            state.config.handleMouse = action.payload
+            state.config.handleMouse = action.payload;
         },
+        setWindowFocusState: (state, action) => {
+            state.windowHasFocus = action.payload;
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setFocusApp, setApps, setAppFavourite, setAppVisibility, setMouseSupport } = GlobalState.actions
+export const { setFocusApp, setApps, setAppFavourite, setAppVisibility, setMouseSupport, setWindowFocusState } = GlobalState.actions
 
 export default GlobalState.reducer

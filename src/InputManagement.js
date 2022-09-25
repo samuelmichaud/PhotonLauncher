@@ -11,7 +11,7 @@ store.subscribe(() => {
 
 // Util function to trigger keyboard events that will do a navigation on NoriginSpacialNavigation library
 const triggerKey = (key) => {
-    if (document && document.hasFocus()){
+    if (document && state.windowHasFocus){
         switch(key) {
             case 'ArrowUp':
                 document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowUp', 'keyCode': 38, 'bubbles': true}));

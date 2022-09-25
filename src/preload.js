@@ -32,6 +32,9 @@ window.ShadowApi = {
     },
     releaseAltTab: () => {
         ipcRenderer.send('releaseAltTab');
+    },
+    listenForWindowFocusChange: (func) => {
+        ipcRenderer.on('setWindowFocusState', (event, ...args) => func(...args));
     }
 
 };

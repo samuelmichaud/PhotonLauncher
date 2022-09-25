@@ -12,6 +12,7 @@ import { init } from '@noriginmedia/norigin-spatial-navigation';
 import { Menu } from './Components/Menu';
 import { Content } from './Components/Content';
 import store from './Store/Store';
+import { setWindowFocusState } from './Store/Reducer'
 import { Provider } from 'react-redux'
 
 import './InputManagement.js';
@@ -25,6 +26,9 @@ init({
 
 // at launch, we want the system to refresh installed games. However, this is asynchronous
 window.ShadowApi.loadLibraryFromSource();
+window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
+  store.dispatch(setWindowFocusState(payload));
+});   
 
 const AppContainer = styled.div`
   background: linear-gradient(to bottom left, #4224BF, #34B0EF);
@@ -42,7 +46,6 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
-  
   return (
     <Provider store={store}>
       <AppContainer>

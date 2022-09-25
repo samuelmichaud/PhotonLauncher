@@ -53,6 +53,14 @@ const createWindow = (): void => {
   mainWindow.moveTop(); // this command will give the real focus to the window
   mainWindow.setAlwaysOnTop(false); // this is needed so we can launch other games*/
 
+  // Detect whether the app has focus or not and store it in state
+  mainWindow.on('focus', () => {
+    mainWindow.webContents.send('setWindowFocusState', true);
+  });
+  mainWindow.on('blur', () => {
+    mainWindow.webContents.send('setWindowFocusState', false);
+  });
+
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
     callback({
       responseHeaders: {
