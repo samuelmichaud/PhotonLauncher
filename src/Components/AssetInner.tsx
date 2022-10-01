@@ -2,13 +2,18 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
-import { FOCUS_BORDER_SIZE } from './../Constants'
+import { Loading } from './../Components/Loading';
+import { FOCUS_BORDER_SIZE } from './../Constants';
 
 interface AssetOverlayProps {
     launchingState: boolean;
 }
 
-export const AssetOverlay = styled.div<AssetOverlayProps>`
+export const AssetOverlay = styled(({ className, children, launchingState }) => (
+    <div>
+        {launchingState? <Loading /> : ''}
+    </div>
+  ))<AssetOverlayProps>`
 background: rgba(0, 0, 0, 50%);
 top: 0;
 bottom: 0;
