@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Lottie from 'lottie-react';
+import animatedLogo from './../Assets/animatedLogo.json'
 
 const LoadingWrapper = styled.div`
     position: absolute;
@@ -11,12 +13,15 @@ const LoadingWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
 `
 
 export const Loading = () => {
     return (
         <LoadingWrapper>
-            <h2>{'Loading...'}</h2>
+            <Lottie animationData={animatedLogo} loop={true} />
+            <h1>{'Loading...'}</h1>
         </LoadingWrapper>
     )
 }

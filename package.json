@@ -119,6 +119,7 @@
     "electron-main-window": "^1.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "joypad.js": "^2.3.2",
+    "lottie-react": "^2.3.1",
     "react-redux": "^8.0.2",
     "slugify": "^1.6.5",
     "underscore": "^1.13.4"
