@@ -4,47 +4,10 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import {
     useFocusable,
-    FocusContext,
-    KeyPressDetails
+    FocusContext
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FRAME_PADDING, FOCUS_BORDER_SIZE } from '../Constants';
-
-interface MenuItemBoxProps {
-    focused?: boolean;
-    action?: () => void;
-    onEnterPress?: (props: object, details: KeyPressDetails) => void;
-    label: string; 
-    children?: any;
-}
-
-const MenuItemBox = styled.div<MenuItemBoxProps>`
-    min-width: 5rem;
-    height: 5rem;
-    color: white;
-    background-color: #101322;
-    border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
-    padding: 0.5rem 1rem;
-    border-style: solid;
-    border-width: ${FOCUS_BORDER_SIZE}rem;
-    box-sizing: border-box;
-    border-radius: 0.7rem;
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-    font-size: 1.8rem;
-  `;
-
-function MenuItem({label, action, onEnterPress, children}: MenuItemBoxProps) {
-    const { ref, focused, focusSelf } = useFocusable({
-        onEnterPress: () => { focusSelf(); action(); }
-    });
-
-    return (
-        <MenuItemBox ref={ref} focused={focused} onClick={() => action()} label={label}  onMouseEnter={() => focusSelf()}>
-            {children}
-        </MenuItemBox>
-        );
-}
+import { FRAME_PADDING } from '../Constants';
+import { Button } from './Button';
 
 interface MenuWrapperProps {
     hasFocusedChild: boolean;
@@ -113,17 +76,17 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
                     <path d="M167.312 11.0887L167.424 11.0456L167.352 10.8605L167.221 11.0101L167.312 11.0887ZM162.794 16.2538L162.703 16.1752L162.656 16.2297L162.682 16.2971L162.794 16.2538ZM173.881 44.6693L173.769 44.7127L173.881 44.9997L173.993 44.7127L173.881 44.6693ZM182.109 23.5605L182.221 23.5171L182.109 23.2305L181.997 23.5173L182.109 23.5605ZM190.368 44.6693L190.256 44.7127L190.368 45L190.48 44.7124L190.368 44.6693ZM201.84 15.129L201.952 15.1721L202 15.0485L201.871 15.0136L201.84 15.129ZM190.338 27.8959L190.226 27.9392L190.338 28.2272L190.45 27.939L190.338 27.8959ZM185.278 14.9197L185.39 14.8764L185.36 14.8001H185.278V14.9197ZM178.881 14.9197V14.8001H178.799L178.769 14.8765L178.881 14.9197ZM173.836 27.8959L173.724 27.939L173.836 28.2274L173.948 27.9391L173.836 27.8959ZM167.221 11.0101L162.703 16.1752L162.885 16.3323L167.402 11.1672L167.221 11.0101ZM162.682 16.2971L173.769 44.7127L173.993 44.626L162.906 16.2104L162.682 16.2971ZM173.993 44.7127L182.221 23.6038L181.997 23.5173L173.769 44.626L173.993 44.7127ZM181.997 23.6039L190.256 44.7127L190.48 44.626L182.221 23.5171L181.997 23.6039ZM190.48 44.7124L201.952 15.1721L201.728 15.0859L190.256 44.6263L190.48 44.7124ZM201.84 15.129C201.871 15.0136 201.871 15.0136 201.871 15.0136L201.866 15.0122C201.866 15.0122 201.859 15.0102 201.853 15.0087C201.841 15.0057 201.824 15.0014 201.801 14.996C201.756 14.9853 201.691 14.9703 201.607 14.9533C201.439 14.9193 201.198 14.8768 200.901 14.8425C200.31 14.7739 199.498 14.7377 198.618 14.8687C196.855 15.1311 194.818 16.0671 193.755 18.7477L193.978 18.8355C195.002 16.2539 196.952 15.3585 198.654 15.1052C199.507 14.9783 200.296 15.0131 200.874 15.0801C201.162 15.1135 201.397 15.1548 201.559 15.1877C201.64 15.2041 201.703 15.2185 201.745 15.2286C201.766 15.2336 201.783 15.2376 201.793 15.2404C201.798 15.2417 201.805 15.2434 201.805 15.2434L201.808 15.2442C201.808 15.2442 201.808 15.2443 201.84 15.129ZM193.755 18.7477L190.226 27.8528L190.45 27.939L193.978 18.8355L193.755 18.7477ZM190.45 27.8526L185.39 14.8764L185.166 14.963L190.226 27.9392L190.45 27.8526ZM185.278 14.8001H178.881V15.0393H185.278V14.8001ZM178.769 14.8765L173.724 27.8527L173.948 27.9391L178.993 14.9628L178.769 14.8765ZM173.948 27.8528L167.424 11.0456L167.2 11.1318L173.724 27.939L173.948 27.8528Z" fill="white"/>
                 </svg>
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                    <MenuItem label={'Refresh library'} action={() => window.ShadowApi.scanForGames()} >
+                    <Button label={'Refresh library'} action={() => window.ShadowApi.scanForGames()} >
                         <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '0.5rem'}}>
                             <path opacity="0.54" fillRule="evenodd" clipRule="evenodd" d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C11.7 16 14.8 13.4 16 10H14C12.8 12.3 10.6 14 8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C9.7 2 11.1 2.7 12 4L9 7H16V0L14 2C12.2 1 10.2 0 8 0Z" fill="white"/>
                         </svg>
                         <span>{'Refresh library'}</span>
-                    </MenuItem>
-                    <MenuItem label={'Quit'} action={() => window.ShadowApi.quitApp()}>
+                    </Button>
+                    <Button label={'Quit'} action={() => window.ShadowApi.quitApp()}>
                         <svg width="2rem" height="3rem" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M18.2003 0C17.0957 0 16.2003 0.895431 16.2003 2V18C16.2003 19.1046 17.0957 20 18.2003 20C19.3048 20 20.2003 19.1046 20.2003 18V2C20.2003 0.895431 19.3048 0 18.2003 0ZM8.69964 8.67666C7.9688 7.84844 6.70493 7.76949 5.87671 8.50033C2.10471 11.8288 0 16.6727 0 22C0 31.9411 8.05888 40 18 40C27.9412 40 36 31.9411 36 22C36 16.7023 33.8825 11.838 30.1279 8.50438C29.3019 7.77102 28.0378 7.8461 27.3044 8.67209C26.5711 9.49807 26.6462 10.7622 27.4722 11.4955C30.3586 14.0583 32 17.8289 32 22C32 29.732 25.732 36 18 36C10.268 36 4 29.732 4 22C4 17.8006 5.62756 14.0548 8.5233 11.4996C9.35153 10.7688 9.43047 9.50489 8.69964 8.67666Z" fill="white" fillOpacity="0.75"/>
                         </svg>
-                    </MenuItem>
+                    </Button>
                 </MenuWrapper>
             </div>
             <hr style={{border: 'none', background: '#9ab0ff', width: `calc(100vw - 2 * ${FRAME_PADDING}rem)`, height: '0.1rem'}}/>

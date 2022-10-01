@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -8,6 +8,8 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { ContentGrid } from './ContentGrid';
+import { Loading } from './Loading';
+import { EmptyLibrary } from './EmptyLibrary';
 import { FRAME_PADDING } from '../Constants'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -22,11 +24,12 @@ padding: 2rem ${FRAME_PADDING}rem;
 `;
 
 function ContentRender() {
-      
+    
+    const [loadingState, setLoadingState] = useState(true);
     const { apps, config } = useSelector((state) => state.globalState);
     const dispatch = useDispatch();
 
-    const { ref, focusKey } = useFocusable({
+    const { ref, focusKey, focusSelf } = useFocusable({
         // when the focus leave <Content /> (ie for the menu), we need to reset current focus state so we cannot do action while being in the menu
         onBlur: () => {
             dispatch(setFocusApp({currentFocusedApp: null }));
@@ -51,8 +54,10 @@ function ContentRender() {
 
         window.ShadowApi.fetchApps((data) => {
             dispatch(setApps(data));
+            setLoadingState(false);
+            focusSelf();
         });
-    }, []);
+    }, [focusSelf]);
     
     return (
         <FocusContext.Provider value={focusKey}>
@@ -72,7 +77,9 @@ function ContentRender() {
                             scrollingRef={ref}
                             layoutType={'normal'} />
                     </div>
-                : 'Launch a scan to see your apps' /* TODO */
+                : (loadingState? 
+                    <Loading /> :
+                    <EmptyLibrary />)
                 }
             </ContentWrapper>
         </FocusContext.Provider>
