@@ -10,10 +10,11 @@ import ReactDOM from 'react-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { init } from '@noriginmedia/norigin-spatial-navigation';
 import { Menu } from './Components/Menu';
+import { Settings } from './Components/Settings';
 import { Content } from './Components/Content';
 import store from './Store/Store';
-import { setWindowFocusState } from './Store/Reducer'
-import { Provider } from 'react-redux'
+import { setWindowFocusState, toggleSettingsPopin } from './Store/Reducer'
+import { Provider, useSelector, useDispatch } from 'react-redux'
 
 import './InputManagement.js';
 
@@ -30,31 +31,35 @@ window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
   store.dispatch(setWindowFocusState(payload));
 });   
 
-const AppContainer = styled.div`
-  background: linear-gradient(to bottom left, #4224BF, #34B0EF);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
 const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
     display: none;
   }
 `;
 
+const AppWrapper = styled.div`
+  background: linear-gradient(to bottom left, #4224BF, #34B0EF);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
 
-function App() {
+const AppContainer = () => {
+  //@ts-ignore
+  const { ui } = useSelector((state) => state.globalState);
+
   return (
-    <Provider store={store}>
-      <AppContainer>
+      <AppWrapper>
         <GlobalStyle />
         <Menu focusKey="MENU" />
         <Content />
-      </AppContainer>
-    </Provider>
-  );
-}
+        {(ui.showSettings)? <Settings /> : ''}
+      </AppWrapper>
+      )
+};
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>, document.querySelector('#root'));

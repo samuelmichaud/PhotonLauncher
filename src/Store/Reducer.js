@@ -8,7 +8,10 @@ export const GlobalState = createSlice({
         config: {
             handleMouse: false
         },
-        windowHasFocus: true
+        windowHasFocus: true,
+        ui: {
+            showSettings: false
+        }
     },
     reducers: {
         setFocusApp: (state, action) => {
@@ -38,11 +41,21 @@ export const GlobalState = createSlice({
         },
         setWindowFocusState: (state, action) => {
             state.windowHasFocus = action.payload;
+        },
+        toggleSettingsPopin: (state, action) => {
+            state.ui.showSettings = action.payload;
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setFocusApp, setApps, setAppFavourite, setAppVisibility, setMouseSupport, setWindowFocusState } = GlobalState.actions
+export const { 
+    setFocusApp, 
+    setApps, 
+    setAppFavourite, 
+    setAppVisibility, 
+    setMouseSupport, 
+    setWindowFocusState, 
+    toggleSettingsPopin } = GlobalState.actions
 
 export default GlobalState.reducer
