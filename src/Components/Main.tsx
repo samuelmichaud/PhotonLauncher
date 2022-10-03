@@ -53,7 +53,7 @@ const MainContainer = () => {
   return (
       <MainWrapper>
         <GlobalStyle />
-        <Menu focusKey={MENU_FOCUS} />
+        <Menu />
         <Content />
         {(ui.showSettings)? <Settings /> : ''}
       </MainWrapper>

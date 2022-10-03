@@ -30,16 +30,12 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
         hasFocusedChild ? 'transparent' : 'transparent'};
   `;
 
-interface MenuProps {
-    focusKey: string;
-}
-
-function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
+export const Menu = () => {
     const {
         ref,
         focusSelf,
         hasFocusedChild,
-        // focusKey,
+        focusKey,
         // setFocus, -- to set focus manually to some focusKey
         // navigateByDirection // -- to manually navigate by direction
         // pause, -- to pause all navigation events
@@ -51,7 +47,7 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
         trackChildren: true,
         autoRestoreFocus: true,
         isFocusBoundary: false,
-        focusKey: focusKeyParam,
+        focusKey: MENU_FOCUS,
         preferredChildFocusKey: null,
         onEnterPress: () => { },
         onEnterRelease: () => { },
@@ -68,7 +64,7 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
     const dispatch = useDispatch();
 
     return (
-        <FocusContext.Provider value={MENU_FOCUS}>
+        <FocusContext.Provider value={focusKey}>
             <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
                 <svg width="16rem" height="5rem" viewBox="0 0 202 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.4634 20.9294C28.5897 20.9294 29.9712 17.8797 29.9712 14.9496H9.00937C4.95515 14.9496 0 18.0292 0 23.9193C0 29.8094 5.04525 32.8891 9.00937 32.8891H21.0219C22.148 32.8891 24.025 33.7711 24.025 35.879C24.025 37.9869 22.088 38.8689 21.0219 38.8689H0C0 42.2026 2.94306 44.8487 6.60687 44.8487H21.0219C25.4064 44.8487 30.0312 41.5 30.0312 35.879C30.0312 30.2579 25.5266 26.9092 21.0219 26.9092H9.00937C7.64295 26.9092 6.00625 25.788 6.00625 23.9193C6.00625 22.0506 7.58289 20.9294 9.00937 20.9294H22.4634Z" fill="white"/>
@@ -97,5 +93,3 @@ function MenuRender({ focusKey: focusKeyParam }: MenuProps) {
         </FocusContext.Provider>
     );
 }
-
-export const Menu = MenuRender;

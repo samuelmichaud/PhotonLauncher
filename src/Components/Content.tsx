@@ -31,6 +31,7 @@ export const Content = () => {
     const dispatch = useDispatch();
 
     const { ref, focusKey, focusSelf } = useFocusable({
+        focusKey: CONTENT_FOCUS,
         // when the focus leave <Content /> (ie for the menu), we need to reset current focus state so we cannot do action while being in the menu
         onBlur: () => {
             dispatch(setFocusApp({currentFocusedApp: null }));
@@ -61,7 +62,7 @@ export const Content = () => {
     }, [focusSelf]);
     
     return (
-        <FocusContext.Provider value={CONTENT_FOCUS}>
+        <FocusContext.Provider value={focusKey}>
             <ContentWrapper ref={ref}>
                 {apps.length > 0?
                     <div>
