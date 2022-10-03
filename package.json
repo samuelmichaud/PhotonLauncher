@@ -20,7 +20,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "src/Assets/shadow.ico"
+        "icon": "src/Images/shadow.ico"
       },
       "makers": [
         {

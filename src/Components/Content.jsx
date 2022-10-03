@@ -16,11 +16,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setApps, setFocusApp } from './../Store/Reducer'
 
 const ContentWrapper = styled.div`
-flex: 1;
-overflow-y: auto;
-display: flex;
-flex-direction: column;
-padding: 2rem ${FRAME_PADDING}rem;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem ${FRAME_PADDING}rem;
 `;
 
 function ContentRender() {
@@ -66,13 +66,13 @@ function ContentRender() {
                     <div>
                         <ContentGrid
                             key={'Carrousel'}
-                            assets={apps.slice(0, 2)}
+                            apps={apps.slice(0, 2)}
                             onFocus={onFocusCallback}
                             scrollingRef={ref}
                             layoutType={'big'}/>
                         <ContentGrid
                             key={'Installed apps'}
-                            assets={apps.slice(2)}
+                            apps={apps.slice(2)}
                             onFocus={onFocusCallback}
                             scrollingRef={ref}
                             layoutType={'normal'} />

@@ -9,7 +9,7 @@ import {
     FocusableComponentLayout,
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
-import { Asset } from './Asset';
+import { AppCard } from './AppCard';
 import { GRID_GAP } from '..//Constants';
 
 const ContentGridWrapper = styled.div`
@@ -37,10 +37,10 @@ gap: ${GRID_GAP}rem;
 
 interface ContentGridProps {
     title?: string;
-    assets: Array<any>;
+    apps: Array<any>;
     scrollingRef: any;
     layoutType: string;
-    onAssetPress: (props: object, details: KeyPressDetails) => void;
+    onAppCarPress: (props: object, details: KeyPressDetails) => void;
     onFocus: (
         layout: FocusableComponentLayout,
         props: object,
@@ -48,13 +48,13 @@ interface ContentGridProps {
     ) => void;
 }
 
-function ContentGridRender({
+export const ContentGrid = ({
     title,
-    assets,
+    apps,
     scrollingRef,
     layoutType,
     onFocus
-}: ContentGridProps) {
+}: ContentGridProps) => {
     const { ref, focusKey } = useFocusable();
     
     return (
@@ -63,10 +63,10 @@ function ContentGridRender({
                 {(title)? <ContentGridTitle>{title}</ContentGridTitle> : ''}
                 <ContentGridScrollingWrapper ref={ref}>
                     <ContentGridScrollingContent>
-                        {assets.map((item) => (
-                            <Asset
+                        {apps.map((item) => (
+                            <AppCard
                                 key={item.id}
-                                asset={item}
+                                app={item}
                                 onFocus={onFocus}
                                 scrollingRef={scrollingRef}
                                 layoutType={layoutType}
@@ -78,5 +78,3 @@ function ContentGridRender({
         </FocusContext.Provider>
     );
 }
-
-export const ContentGrid = ContentGridRender;

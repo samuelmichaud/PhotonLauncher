@@ -37,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const AppWrapper = styled.div`
+const MainWrapper = styled.div`
   background: linear-gradient(to bottom left, #4224BF, #34B0EF);
   width: 100vw;
   height: 100vh;
@@ -45,21 +45,21 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `
 
-const AppContainer = () => {
+const MainContainer = () => {
   //@ts-ignore
   const { ui } = useSelector((state) => state.globalState);
 
   return (
-      <AppWrapper>
+      <MainWrapper>
         <GlobalStyle />
         <Menu focusKey="MENU" />
         <Content />
         {(ui.showSettings)? <Settings /> : ''}
-      </AppWrapper>
+      </MainWrapper>
       )
 };
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer />
+    <MainContainer />
   </Provider>, document.querySelector('#root'));
