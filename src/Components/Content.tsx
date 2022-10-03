@@ -10,7 +10,7 @@ import {
 import { ContentGrid } from './ContentGrid';
 import { Loading } from './Loading';
 import { EmptyLibrary } from './EmptyLibrary';
-import { FRAME_PADDING } from '../Constants'
+import { FRAME_PADDING, CONTENT_FOCUS } from '../Constants'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setApps, setFocusApp } from '../Store/Reducer'
@@ -61,7 +61,7 @@ export const Content = () => {
     }, [focusSelf]);
     
     return (
-        <FocusContext.Provider value={focusKey}>
+        <FocusContext.Provider value={CONTENT_FOCUS}>
             <ContentWrapper ref={ref}>
                 {apps.length > 0?
                     <div>

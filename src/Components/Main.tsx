@@ -13,8 +13,9 @@ import { Menu } from './Menu';
 import { Settings } from './Settings';
 import { Content } from './Content';
 import store from '../Store/Store';
-import { setWindowFocusState, toggleSettingsPopin } from '../Store/Reducer'
-import { Provider, useSelector, useDispatch } from 'react-redux'
+import { setWindowFocusState } from '../Store/Reducer'
+import { Provider, useSelector } from 'react-redux'
+import { MENU_FOCUS } from './../Constants'
 
 import '../InputManagement.js';
 
@@ -52,7 +53,7 @@ const MainContainer = () => {
   return (
       <MainWrapper>
         <GlobalStyle />
-        <Menu focusKey="MENU" />
+        <Menu focusKey={MENU_FOCUS} />
         <Content />
         {(ui.showSettings)? <Settings /> : ''}
       </MainWrapper>
