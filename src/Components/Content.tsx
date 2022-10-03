@@ -13,7 +13,7 @@ import { EmptyLibrary } from './EmptyLibrary';
 import { FRAME_PADDING } from '../Constants'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setApps, setFocusApp } from './../Store/Reducer'
+import { setApps, setFocusApp } from '../Store/Reducer'
 
 const ContentWrapper = styled.div`
     flex: 1;
@@ -23,9 +23,10 @@ const ContentWrapper = styled.div`
     padding: 2rem ${FRAME_PADDING}rem;
 `;
 
-function ContentRender() {
+export const Content = () => {
     
     const [loadingState, setLoadingState] = useState(true);
+    // @ts-ignore (because of globalState which is not recognized)
     const { apps, config } = useSelector((state) => state.globalState);
     const dispatch = useDispatch();
 
@@ -36,10 +37,10 @@ function ContentRender() {
         }
     });
 
-    const onFocusCallback = ({ x, y, height, width, top, left }, itemFocused, details) => {
-
+    const onFocusCallback = ({ x, y, height, width, top, left } : any, itemFocused : any) => {
+        // save the current focused item for later use (ex: action like favourites, hide, ...)
         dispatch(setFocusApp({currentFocusedApp: itemFocused }));
-
+        // when the AppCard is focused, we want to auto scroll the AppCard into view, however, if the user use her mouse, we don't auto scroll
         if (config.handleMouse === false) {
             ref.current.scrollTo({
                 top: top - height,
@@ -52,7 +53,7 @@ function ContentRender() {
     useEffect(() => {
         console.info('useEffect in contentRender');
 
-        window.ShadowApi.fetchApps((data) => {
+        window.ShadowApi.fetchApps((data: Array<any>) => {
             dispatch(setApps(data));
             setLoadingState(false);
             focusSelf();
@@ -85,5 +86,3 @@ function ContentRender() {
         </FocusContext.Provider>
     );
 }
-
-export const Content = ContentRender;

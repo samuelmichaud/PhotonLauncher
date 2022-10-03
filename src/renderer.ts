@@ -27,7 +27,7 @@
  */
 
 import './index.css';
-import './Main'
+import './Components/Main';
 
 export interface ShadowApi {
     launchExternalApp: (path: string) => void,

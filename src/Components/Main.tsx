@@ -9,14 +9,14 @@ import ReactDOM from 'react-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled, { createGlobalStyle } from 'styled-components';
 import { init } from '@noriginmedia/norigin-spatial-navigation';
-import { Menu } from './Components/Menu';
-import { Settings } from './Components/Settings';
-import { Content } from './Components/Content';
-import store from './Store/Store';
-import { setWindowFocusState, toggleSettingsPopin } from './Store/Reducer'
+import { Menu } from './Menu';
+import { Settings } from './Settings';
+import { Content } from './Content';
+import store from '../Store/Store';
+import { setWindowFocusState, toggleSettingsPopin } from '../Store/Reducer'
 import { Provider, useSelector, useDispatch } from 'react-redux'
 
-import './InputManagement.js';
+import '../InputManagement.js';
 
 init({
   debug: false,

@@ -22,5 +22,4 @@
 - [ ] No more focus after hide an app
 
 # Refacto
-- [ ] Content.jsx into tsx
 - [ ] Units Tests
