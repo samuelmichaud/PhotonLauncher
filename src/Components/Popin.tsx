@@ -30,6 +30,8 @@ const PopinOverlay = styled.div`
     bottom: 0;
     background: rgba(0, 0, 0, 50%);
     backdrop-filter: blur(5px);
+    animation-name: backdropAppear;
+    animation-duration: 0.3s;
 `;
 
 interface PopinBoxProps {
@@ -60,6 +62,8 @@ const PopinBox = styled.div<PopinBoxProps>`
     }}
     background: ${POPIN_BG_COLOR};
     padding: 2rem ${FRAME_PADDING}rem;
+    animation-name: fadein;
+    animation-duration: 0.2s;
     box-sizing: border-box;
 `;
 
