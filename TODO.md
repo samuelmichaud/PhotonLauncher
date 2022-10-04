@@ -20,7 +20,6 @@
 # Bugs
 - [ ] Throttle mousemove
 - [ ] No more focus after hide an app
-- [ ] Impossible to focus menu at onboarding
 
 # Refacto
 - [ ] Units Tests

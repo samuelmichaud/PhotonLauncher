@@ -39,6 +39,7 @@ const ButtonBox = styled.div<ButtonProps>`
         }
     }}
     border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
+    box-shadow: 0rem 0rem 0.6rem rgba(255, 255, 255, ${({ focused }) => focused ? '0.50' : '0'});
     padding: 0.5rem 1rem;
     border-style: solid;
     border-width: ${FOCUS_BORDER_SIZE}rem;
@@ -48,6 +49,7 @@ const ButtonBox = styled.div<ButtonProps>`
     align-items: center;
     font-size: 1.8rem;
     justify-content: center;
+    transition: all 0.2s ease-in-out;
   `;
 
 export const Button = ({label, action, onEnterPress, children, theme}: ButtonProps) => {
