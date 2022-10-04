@@ -1,6 +1,6 @@
 
 import { ipcMain } from 'electron';
-import { union, uniq, each, find } from 'underscore';
+import { each, find } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
 import axios from 'axios';
@@ -32,32 +32,35 @@ async function loadMetadaFromJSONfile () {
 
     //let gameDatabase = loadFromJSONFile(gamesPathJSONdatabase); // The glc.exe create a file named glc-games with the list of all games. We need to read it
     //gameDatabase = (typeof gameDatabase !== 'object')? [] : gameDatabase;
+    try {
+        installedApp = await Promise.all(installedApp.map(async (app) => {
 
-    installedApp = await Promise.all(installedApp.map(async (app) => {
-
-        await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}`).then((resp) => {
-            let data = resp.data;
-            if (data.results && data.results.length > 0) {
-                app = {...app, 'background_image': data.results[0].background_image};
-            }
-        });
-        
-        /*
-        // Search in local database from thegamedatabase.net
-        const titleSlug = slugify(app.title, slugifyConf);
-        const itemFound = gameDatabase.find((item) => {
-            let itemSlug = slugify(item.title, slugifyConf);
-            return titleSlug === itemSlug;
-        });
-
-        if (typeof itemFound != 'undefined') {
-            console.log('App found: ' + itemFound.title + '(' + itemFound.id + ')');
-            return {...app, 'tgdbID': itemFound.id}
-        }*/
-
-        return app;
-    }));
-
+            await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}`, {timeout: 2000}).then((resp) => {
+                let data = resp.data;
+                if (data.results && data.results.length > 0) {
+                    app = {...app, 'background_image': data.results[0].background_image};
+                }
+            });
+            
+            /*
+            // Search in local database from thegamedatabase.net
+            const titleSlug = slugify(app.title, slugifyConf);
+            const itemFound = gameDatabase.find((item) => {
+                let itemSlug = slugify(item.title, slugifyConf);
+                return titleSlug === itemSlug;
+            });
+    
+            if (typeof itemFound != 'undefined') {
+                console.log('App found: ' + itemFound.title + '(' + itemFound.id + ')');
+                return {...app, 'tgdbID': itemFound.id}
+            }*/
+    
+            return app;
+        }));
+    } catch (e) {
+        log.info('Error fetching remote metadata');
+    }
+    
     return installedApp;
 }
 
@@ -102,7 +105,7 @@ async function scanForGames () {
                     } else {
                         // the item is not found in new library scan so we should remove it
                     }
-                })
+                });
                 each(newLibrary, item => {
                     let tempItem = find(library, (oldItem) => item.id === oldItem.id);
                     if (!tempItem) { // this is a new item that should be added to the library
