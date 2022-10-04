@@ -9,7 +9,8 @@
     "hidden": false,
     "background_image": "https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg",
     "alias": "",
-    "frequency": 0
+    "frequency": 0,
+    "tgdbID": 72408
   }, {
     "id": "2",
     "title": "Age of Mythology: Extended Edition",
@@ -113,7 +114,8 @@
     "hidden": false,
     "background_image": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg",
     "alias": "",
-    "frequency": 0
+    "frequency": 0,
+    "tgdbID": 14517
   },
   {
     "id": "9",

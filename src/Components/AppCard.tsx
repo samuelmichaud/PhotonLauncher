@@ -25,7 +25,7 @@ const AppCardWrapper = styled.div<AppCardWrapperProps>`
     display: ${({hidden}) => hidden? 'none' : 'flex'};
     flex-direction: column;
     position: relative;
-    //background-image: url('https://cdn.thegamesdb.net/images/thumb/boxart/front/${ ({tgdbID}) => tgdbID}-1.jpg');
+    //${ ({tgdbID}) => tgdbID? "background-image: url('https://cdn.thegamesdb.net/images/original/clearlogo/" + tgdbID + "-1.png');": ''}
     border-radius: 0.7rem;
     filter: drop-shadow(0rem 0rem 0.6rem rgba(255, 255, 255, ${({ focused }) => focused ? '0.50' : '0'}));
     transform: scale(${({ focused }) => (focused ? '1.05' : '1')});
