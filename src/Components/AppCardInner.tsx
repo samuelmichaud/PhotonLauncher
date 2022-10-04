@@ -10,7 +10,7 @@ interface AppCardOverlayProps {
 }
 
 export const AppCardOverlay = styled(({ className, children, launchingState }) => (
-    <div>
+    <div className={className}>
         {launchingState? <Loading /> : ''}
     </div>
   ))<AppCardOverlayProps>`
@@ -30,6 +30,7 @@ interface AppCardBoxProps {
 export const AppCardBox = styled.div<AppCardBoxProps>`
     height: 100%;
     width: 100%;
+    position: absolute;
     border-color: white;
     border-style: solid;
     box-sizing: border-box;
@@ -37,6 +38,24 @@ export const AppCardBox = styled.div<AppCardBoxProps>`
     border-radius: 0.7rem;
     background: linear-gradient(to top, #101322, transparent 40%);
 `;
+
+interface AppCardBackgroundImageProps {
+    focused: boolean;
+    background_image: string;
+}
+
+export const AppCardBackgroundImage = styled.div<AppCardBackgroundImageProps>`
+    height: 100%;
+    width: 100%; 
+    position: absolute;
+    background-size: cover;
+    background-color: #101322;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(${({ focused }) => (focused ? '1.05' : '1.00')});
+    background-image: url('${ ({background_image}) => background_image}');
+    transition: all 0.5s;
+`
 
 export const AppCardTitle = styled.div`
     color: white;
