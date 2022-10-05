@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { POPIN_BG_COLOR, FRAME_PADDING, POPIN_SIZE_SMALL, POPIN_SIZE_MEDIUM, POPIN_SIZE_LARGE } from './../Constants'
+import { POPIN_BG_COLOR, FRAME_PADDING, POPIN_SIZE_SMALL, POPIN_SIZE_MEDIUM, POPIN_SIZE_LARGE, BORDER_RADIUS } from './../Constants'
 
 
 interface PopinProps {
@@ -44,26 +44,27 @@ const PopinBox = styled.div<PopinBoxProps>`
         switch(props.size) {
             case POPIN_SIZE_SMALL:
                 return `
-                    height: 30vh;
+                    min-height: 30vh;
                     width: 30vw;
                 `
             case POPIN_SIZE_MEDIUM:
                 return `
-                    height: 50vh;
+                    min-height: 50vh;
                     width: 50vw;
                 `
             case POPIN_SIZE_LARGE:
             default:
                 return `
-                    height: 90vh;
+                    min-height: 90vh;
                     width: 70vw;
                 `
         }
     }}
     background: ${POPIN_BG_COLOR};
     padding: 2rem ${FRAME_PADDING}rem;
+    border-radius: ${BORDER_RADIUS}rem;
     animation-name: fadein;
-    animation-duration: 0.2s;
+    animation-duration: 0.3s;
     box-sizing: border-box;
 `;
 

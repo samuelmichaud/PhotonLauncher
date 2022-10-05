@@ -14,7 +14,8 @@ export const GRID_GAP = 2; // Grid gap between items (contentGrid, contentRow, .
 export const GRID_COLUMN = 3; // Number of standard column
 export const GRID_COLUMN_BIG = 2; // Number of standard column
 export const FRAME_PADDING = 6; // Left and right padding of the window. In rem (base 10px).
-export const FOCUS_BORDER_SIZE = 0.3
+export const FOCUS_BORDER_SIZE = 0.3;
+export const BORDER_RADIUS = 1;
 
 // POPIN CONSTANTS
 export const POPIN_SIZE_SMALL = 'popin-size-small';

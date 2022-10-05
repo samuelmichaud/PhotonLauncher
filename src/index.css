@@ -12,24 +12,42 @@
 
 
 @keyframes fadein {
-  from {
-    opacity: 0;
+  /* Precalculation for a smoother experience. Not perfect still... */
+  0% {
+    visibility: hidden;
     transform: scale(0.8);
   }
-  to {
-    opacity: 1;
+  10% {
+    visibility: hidden;
+    transform: scale(1);
+  }
+  /* Now the real visible job */
+  10% {
+    visibility: visible;
+    transform: scale(0.8);
+  }
+  100% {
     transform: scale(1);
   }
 }
 
 
 @keyframes backdropAppear {
-  from {
-    opacity: 0;
+  /* Precalculation for a smoother experience. Not perfect still... */
+  0% {
+    visibility: hidden;
     backdrop-filter: blur(0px);
   }
-  to {
-    opacity: 1;
+  10% {
+    visibility: hidden;
+    backdrop-filter: blur(5px);
+  }
+  /* Now the real visible job */
+  10% {
+    visibility: visible;
+    backdrop-filter: blur(0px);
+  }
+  100% {
     backdrop-filter: blur(5px);
   }
 }

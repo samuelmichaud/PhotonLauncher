@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { toggleSettingsPopin } from './../Store/Reducer';
 import { Popin } from './Popin';
 import { Button } from './Button';
-import { MENU_FOCUS, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK } from './../Constants';
+import { MENU_FOCUS, POPIN_SIZE_MEDIUM, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK } from './../Constants';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -31,7 +31,7 @@ export const Settings = () => {
 
     return (
         <FocusContext.Provider value={focusKey}>
-            <Popin title={'Settings'} size={POPIN_SIZE_MEDIUM}>
+            <Popin title={'Settings'} size={POPIN_SIZE_SMALL}>
                 <InnerSettings ref={ref} >
                     <Button label={'Refresh library'} action={() => { onSettingsClose(); window.ShadowApi.scanForGames()}} theme={THEME_DARK}>
                         <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '0.5rem'}}>
