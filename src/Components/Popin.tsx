@@ -70,7 +70,7 @@ const PopinBox = styled.div<PopinBoxProps>`
 
 const Title = styled.h1`
     text-align: center;
-    margin: 1rem 0;
+    margin: 1rem 0 3rem 0;
     font-size: 2.5rem;
 `
 
