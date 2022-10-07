@@ -1,6 +1,6 @@
 
 import { ipcMain } from 'electron';
-import { each, find } from 'underscore';
+import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
 import axios from 'axios';
@@ -103,7 +103,8 @@ async function scanForGames () {
                 // Add new games to database, remove unstalled games BUT if a games was already detected
                 // we use the library from old scan as reference to keep sorting & all changes
                 let newLibrary = await loadMetadaFromJSONfile();
-                addCustomApps(newLibrary); // add shortcuts like Steam big picture mode
+                newLibrary = addCustomApps(newLibrary); // add shortcuts like Steam big picture mode
+                newLibrary = blackListApps(newLibrary); // reject some app detected we don't want to see
                 let tempLibrary = [];
 
                 each(library, item => {
@@ -149,6 +150,10 @@ function addCustomApps(library) {
         });
     }
     return library;
+}
+
+function blackListApps(library) {
+    return reject(library, (item) => contains(['appmanifest_228980.acf' /* Steamwork commons */], item.id));
 }
 
 export const loadLibraryDB = () => {
