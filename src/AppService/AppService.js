@@ -40,6 +40,7 @@ async function loadMetadaFromJSONfile () {
                 let titleSlugified = slugify(app.title, slugifyConf);
                 
                 if (data.results && data.results.length > 0) {
+                    // we want to iterate on first 5 items because the search engine is not always perfect...
                     for (let i=0; i < data.results.length && i < 5; i++) {
                         if (data.results[i].slug == titleSlugified || slugify(data.results[i].name, slugifyConf) == titleSlugified || data.results[i].name == app.title) {
                             app = {...app, 'background_image': data.results[i].background_image};
