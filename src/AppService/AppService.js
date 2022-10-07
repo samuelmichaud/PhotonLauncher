@@ -37,8 +37,16 @@ async function loadMetadaFromJSONfile () {
 
             await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}`, {timeout: 2000}).then((resp) => {
                 let data = resp.data;
+                let titleSlugified = slugify(app.title);
+                
                 if (data.results && data.results.length > 0) {
-                    app = {...app, 'background_image': data.results[0].background_image};
+                    for (let i=0; i < data.results.length && i < 5; i++) {
+                        if (data.results[i].slug == titleSlugified || slugify(data.results[i].name) == titleSlugified || data.results[i].name == app.title) {
+                            app = {...app, 'background_image': data.results[i].background_image};
+                            break;
+                        }
+                    }
+                    
                 }
             });
             

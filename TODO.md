@@ -1,26 +1,28 @@
 
 
 # Library management
-- [ ] EPIC Onboarding & first use
-- [ ] Improve match for RAWG (fix false positive)
+
 
 # Design
-- [ ] Add icons on top bar (cross & menu)
-- [ ] Add small shadow on bottom of top
 
 # UX
-- [ ] Big thumb for last game
-- [ ] Show infos on how to navigate with gamepad
+- [P1] Show infos on how to navigate with gamepad
+- [P1] Popin with progress bar on scan for games
 
 # Features
 - [ ] Settings "launch at startup"
 - [ ] Shutdown computer
+- [ ] Open source infos in a popin
 - [ ] Language switch
+- [ ] Add an external app from Windows
+- [ ] Help popin
 
 # Bugs
 - [ ] Throttle mousemove
 - [ ] No more focus after hide an app
+- [ ] Don't always launch on Windows startup
 
 # Refacto
+- [ ] Split job for reading games from files & fetch online metadata
 - [ ] Units Tests
 - [ ] Z-index constants on popins
