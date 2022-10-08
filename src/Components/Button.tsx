@@ -18,8 +18,8 @@ interface ButtonProps {
 }
 
 const ButtonBox = styled.div<ButtonProps>`
-    min-width: 5rem;
-    height: 5rem;
+    min-width: 6rem;
+    height: 6rem;
     color: white;
     ${props => {
         switch (props.theme) {

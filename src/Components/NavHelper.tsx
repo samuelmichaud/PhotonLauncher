@@ -18,7 +18,7 @@ const NavItemHelper = styled.div`
 
 const NavHelperWrapper = styled.div<NavHelperProps>`
     position: absolute;
-    height: 4rem;
+    height: 5rem;
     left: 0;
     right: 0;
     bottom: 0;
@@ -27,11 +27,11 @@ const NavHelperWrapper = styled.div<NavHelperProps>`
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: row;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
     padding: 1rem ${FRAME_PADDING}rem;
     z-index: 99;
     gap: 3rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
 `
 
 export const NavHelper = () => {

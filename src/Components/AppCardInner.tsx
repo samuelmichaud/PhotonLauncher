@@ -60,7 +60,7 @@ export const AppCardBackgroundImage = styled.div<AppCardBackgroundImageProps>`
 export const AppCardTitle = styled.div`
     color: white;
     font-family: 'Segoe UI';
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 400;
     position: absolute;
     max-width: 100%;

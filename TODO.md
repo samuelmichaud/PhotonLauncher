@@ -21,6 +21,7 @@
 - [ ] Don't always launch on Windows startup
 
 # Refacto
+- [ ] Languages into separate file
 - [ ] Split job for reading games from files & fetch online metadata
 - [ ] Units Tests
 - [ ] Z-index constants on popins
