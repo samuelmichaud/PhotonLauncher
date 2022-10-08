@@ -13,6 +13,7 @@ import { Button } from './Button';
 import { SettingsIcon } from '../Images/SettingsIcon';
 import { QuitIcon } from '../Images/QuitIcon';
 import { ShadowLogo } from '../Images/ShadowLogo';
+import { useTranslation } from "react-i18next";
 
 interface MenuWrapperProps {
     hasFocusedChild: boolean;
@@ -65,16 +66,17 @@ export const Menu = () => {
     }, [focusSelf]);
 
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     return (
         <FocusContext.Provider value={focusKey}>
             <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
                 <ShadowLogo />
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                    <Button label={'Settings'} action={() => dispatch(toggleSettingsPopin(true))} theme={THEME_TRANSPARENT}>
+                    <Button label={t('MenuSettings')} action={() => dispatch(toggleSettingsPopin(true))} theme={THEME_TRANSPARENT}>
                         <SettingsIcon />
                     </Button>
-                    <Button label={'Quit'} action={() => window.ShadowApi.quitApp()} theme={THEME_TRANSPARENT}>
+                    <Button label={t('Quit')} action={() => window.ShadowApi.quitApp()} theme={THEME_TRANSPARENT}>
                         <QuitIcon />
                     </Button>
                 </MenuWrapper>

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Lottie from 'lottie-react';
-import animatedLogo from './../Images/animatedLogo.json'
+import animatedLogo from './../Images/animatedLogo.json';
+import { useTranslation } from "react-i18next";
 
 const LoadingWrapper = styled.div`
     position: absolute;
@@ -18,10 +19,12 @@ const LoadingWrapper = styled.div`
 `
 
 export const Loading = () => {
+    const { t } = useTranslation();
+
     return (
         <LoadingWrapper>
             <Lottie animationData={animatedLogo} loop={true} />
-            <h1>{'Loading...'}</h1>
+            <h1>{t('LoadingMessage')}</h1>
         </LoadingWrapper>
     )
 }

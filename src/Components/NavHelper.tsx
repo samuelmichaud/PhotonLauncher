@@ -3,7 +3,8 @@ import { FRAME_PADDING } from '../Constants';
 import { GamepadButton } from '../Images/GamepadButton';
 import { MouseIcon } from '../Images/MouseIcon';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 
 interface NavHelperProps {
     
@@ -38,6 +39,7 @@ export const NavHelper = () => {
     
     // @ts-ignore (because of globalState which is not recognized)
     const { config } = useSelector((state) => state.globalState);
+    const { t } = useTranslation();
 
     return ( 
             <NavHelperWrapper>
@@ -45,19 +47,19 @@ export const NavHelper = () => {
                     {!config.handleMouse? 
                         <GamepadButton direction="down"/>: <MouseIcon button="left" />
                     }
-                    <span>{'Launch'}</span>
+                    <span>{t('NavHelperLaunch')}</span>
                 </NavItemHelper>
                 <NavItemHelper>
                     {!config.handleMouse? 
                         <GamepadButton direction="up"/>: <MouseIcon button="right" />
                     }
-                    <span>{'Favourite'}</span>
+                    <span>{t('NavHelperFavourite')}</span>
                 </NavItemHelper>
                 
                 {!config.handleMouse? 
                     <NavItemHelper>
                         <GamepadButton direction="left"/>
-                        <span>{'Hide'}</span>
+                        <span>{t('NavHelperHide')}</span>
                     </NavItemHelper>
                     : ''}
             </NavHelperWrapper>

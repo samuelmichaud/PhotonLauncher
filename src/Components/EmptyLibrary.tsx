@@ -5,6 +5,7 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { Button } from './Button';
+import { useTranslation } from "react-i18next";
 
 interface EmptyLibraryWrapperProps {
     
@@ -26,6 +27,7 @@ const EmptyLibraryWrapper = styled.div<EmptyLibraryWrapperProps>`
 
 export const EmptyLibrary = () => {
     const { ref, focusKey, focused, focusSelf  } = useFocusable();
+    const { t } = useTranslation();
 
     useEffect(() => {
         focusSelf();
@@ -34,10 +36,10 @@ export const EmptyLibrary = () => {
     return (
         <FocusContext.Provider value={focusKey}>
             <EmptyLibraryWrapper ref={ref} >
-                <h1>{'Launch a scan to see your apps...'}</h1>
+                <h1>{t('EmptyLibraryTitle')}</h1>
                 <Button 
                     focused={focused}
-                    label={'Launch a scan'}
+                    label={t('EmptyLibraryLabelButton')}
                     action={() => window.ShadowApi.scanForGames()}>
                 </Button>
             </EmptyLibraryWrapper>
