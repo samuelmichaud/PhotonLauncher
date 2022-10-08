@@ -10,12 +10,12 @@ import ReactDOM from 'react-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { init } from '@noriginmedia/norigin-spatial-navigation';
 import { Menu } from './Menu';
+import { NavHelper } from './NavHelper';
 import { Settings } from './Settings';
 import { Content } from './Content';
 import store from '../Store/Store';
 import { setWindowFocusState } from '../Store/Reducer'
 import { Provider, useSelector } from 'react-redux'
-import { MENU_FOCUS } from './../Constants'
 
 import '../InputManagement.js';
 
@@ -56,6 +56,7 @@ const MainContainer = () => {
         <Menu />
         <Content />
         {(ui.showSettings)? <Settings /> : ''}
+        <NavHelper />
       </MainWrapper>
       )
 };

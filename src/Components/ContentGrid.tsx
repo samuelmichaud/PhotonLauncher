@@ -9,7 +9,7 @@ import {
     FocusableComponentLayout
 } from '@noriginmedia/norigin-spatial-navigation';
 import { AppCard } from './AppCard';
-import { GRID_GAP } from '..//Constants';
+import { GRID_GAP } from '../Constants';
 
 const ContentGridWrapper = styled.div`
     margin-bottom: 3.7rem;
