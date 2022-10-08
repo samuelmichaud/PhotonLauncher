@@ -22,7 +22,7 @@ interface AppCardWrapperProps {
 }
 
 const AppCardWrapper = styled.div<AppCardWrapperProps>`
-    display: ${({hidden}) => hidden? 'none' : 'flex'};
+    display: flex;
     flex-direction: column;
     position: relative;
     //${ ({tgdbID}) => tgdbID? "background-image: url('https://cdn.thegamesdb.net/images/original/clearlogo/" + tgdbID + "-1.png');": ''}
@@ -86,7 +86,6 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
         ref={ref} 
         onClick={() => {onAppCardPress(app)}} 
         onMouseEnter={() => {onMouseEnter()}}
-        hidden={app.hidden}
         key={app.id}
         tgdbID={app.tgdbID}
         background_image={app.background_image}

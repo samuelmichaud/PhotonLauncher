@@ -62,6 +62,7 @@ export const ContentGrid = ({
                 <ContentGridScrollingWrapper ref={ref}>
                     <ContentGridScrollingContent>
                         {apps.map((item) => (
+                            !item.hidden && 
                             <AppCard
                                 key={item.id}
                                 app={item}

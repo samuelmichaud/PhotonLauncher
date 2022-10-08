@@ -2,7 +2,6 @@
 
 # Library management
 
-
 # Design
 
 # UX
@@ -19,7 +18,6 @@
 
 # Bugs
 - [ ] Throttle mousemove
-- [ ] No more focus after hide an app
 - [ ] Don't always launch on Windows startup
 
 # Refacto
