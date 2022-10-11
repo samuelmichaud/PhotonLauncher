@@ -21,6 +21,7 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 2rem ${FRAME_PADDING}rem;
+    position: relative;
 `;
 
 export const Content = () => {
