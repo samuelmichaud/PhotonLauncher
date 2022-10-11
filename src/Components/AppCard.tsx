@@ -9,7 +9,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AppCardOverlay, AppCardBox, AppCardTitle, AppCardBadge, AppCardBackgroundImage} from './AppCardInner'
-import { FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP } from '../Constants';
+import { FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE } from '../Constants';
 
 import { useSelector } from 'react-redux'
 
@@ -76,7 +76,7 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
 
   const onMouseEnter = () => {
     // @ts-ignore
-    if (globalState.config.handleMouse) {
+    if (globalState.config.mainInput === MAIN_INPUT_MOUSE) {
       focusSelf();
     }
   }

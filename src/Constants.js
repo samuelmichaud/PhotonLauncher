@@ -25,3 +25,8 @@ export const POPIN_SIZE_LARGE = 'popin-size-large';
 // FOCUS KEY CONSTANTS
 export const MENU_FOCUS = 'MENU';
 export const CONTENT_FOCUS = 'CONTENT';
+
+// INPUT CONSTANTS SUPPORT
+export const MAIN_INPUT_MOUSE = 'mouse';
+export const MAIN_INPUT_GAMEPAD = 'gamepad';
+export const MAIN_INPUT_KEYBOARD = 'keyboard';

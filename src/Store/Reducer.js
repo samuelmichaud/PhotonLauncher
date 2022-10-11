@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { MAIN_INPUT_MOUSE } from '../Constants';
 
 export const GlobalState = createSlice({
     name: 'globalState',
@@ -6,7 +7,7 @@ export const GlobalState = createSlice({
         apps: [],
         currentFocusedApp: null,
         config: {
-            handleMouse: false
+            mainInput: MAIN_INPUT_MOUSE // mouse / gamepad / keyboard
         },
         windowHasFocus: true,
         ui: {
@@ -36,8 +37,8 @@ export const GlobalState = createSlice({
         setAppVisibility: (state, action) => {
             state.apps = state.apps.map((app) => app.id === action.payload.id ? {...app, hidden: action.payload.hidden} : app )
         },
-        setMouseSupport: (state, action) => {
-            state.config.handleMouse = action.payload;
+        setMainInputSupport: (state, action) => {
+            state.config.mainInput = action.payload;
         },
         setWindowFocusState: (state, action) => {
             state.windowHasFocus = action.payload;
@@ -54,7 +55,7 @@ export const {
     setApps, 
     setAppFavourite, 
     setAppVisibility, 
-    setMouseSupport, 
+    setMainInputSupport, 
     setWindowFocusState, 
     toggleSettingsPopin } = GlobalState.actions
 

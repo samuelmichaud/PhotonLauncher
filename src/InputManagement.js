@@ -1,7 +1,8 @@
 import 'joypad.js';
 
 import store from './Store/Store';
-import { setAppFavourite, setAppVisibility, setMouseSupport } from './Store/Reducer'
+import { setAppFavourite, setAppVisibility, setMainInputSupport } from './Store/Reducer'
+import { MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE } from './Constants';
 
 let state = null;
 
@@ -51,17 +52,18 @@ const triggerKey = (key) => {
 document.addEventListener('keyup', (event) => {
     if (event.key === 'f') {
         triggerKey('ToggleFavourite');
-        } else if (event.key === 'h') {
+    } else if (event.key === 'h') {
         triggerKey('ToggleHideView');
-        }
-        
+    } else if (event.key === 'e') {
+        triggerKey('Enter');
+    }
     // if a key is triggered, we want to remove mouse support
-    store.dispatch(setMouseSupport(false));
+    store.dispatch(setMainInputSupport(MAIN_INPUT_KEYBOARD));
 });
 
 // When the user move a mouse we want to re-enable mouse support
 document.addEventListener('mousemove', () => {
-    store.dispatch(setMouseSupport(true));
+    store.dispatch(setMainInputSupport(MAIN_INPUT_MOUSE));
 }, {passive: true});
 
 document.addEventListener('mouseup', (event) => {
@@ -91,7 +93,7 @@ window.joypad.on('button_press', e => {
     if (buttons[3].pressed)  triggerKey('ToggleFavourite'); // 'Y'
 
     // if a key is triggered, we want to remove mouse support
-    store.dispatch(setMouseSupport(false));
+    store.dispatch(setMainInputSupport(MAIN_INPUT_GAMEPAD));
 });
 
 // Shortcut to do a alt-tab

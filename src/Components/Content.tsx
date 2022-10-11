@@ -10,7 +10,7 @@ import {
 import { ContentGrid } from './ContentGrid';
 import { Loading } from './Loading';
 import { EmptyLibrary } from './EmptyLibrary';
-import { FRAME_PADDING, CONTENT_FOCUS } from '../Constants'
+import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../Constants'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setApps, setFocusApp } from '../Store/Reducer'
@@ -21,7 +21,6 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 2rem ${FRAME_PADDING}rem;
-    position: relative;
 `;
 
 export const Content = () => {
@@ -43,7 +42,7 @@ export const Content = () => {
         // save the current focused item for later use (ex: action like favourites, hide, ...)
         dispatch(setFocusApp({currentFocusedApp: itemFocused }));
         // when the AppCard is focused, we want to auto scroll the AppCard into view, however, if the user use her mouse, we don't auto scroll
-        if (config.handleMouse === false) {
+        if (config.mainInput === MAIN_INPUT_KEYBOARD || config.mainInput === MAIN_INPUT_GAMEPAD) {
             ref.current.scrollTo({
                 top: top - height,
                 behavior: "smooth"

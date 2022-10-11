@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import { FRAME_PADDING } from '../Constants';
+import { FRAME_PADDING, MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE } from '../Constants';
 import { GamepadButton } from '../Images/GamepadButton';
 import { MouseIcon } from '../Images/MouseIcon';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
+import { KeyboardLetterIcon } from './../Images/KeyboardLetterIcon';
 
 interface NavHelperProps {
     
@@ -44,24 +45,25 @@ export const NavHelper = () => {
     return ( 
             <NavHelperWrapper>
                 <NavItemHelper>
-                    {!config.handleMouse? 
-                        <GamepadButton direction="down"/>: <MouseIcon button="left" />
-                    }
+                    {config.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
+                    {config.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
+                    {config.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='E'/> }
                     <span>{t('NavHelperLaunch')}</span>
                 </NavItemHelper>
                 <NavItemHelper>
-                    {!config.handleMouse? 
-                        <GamepadButton direction="up"/>: <MouseIcon button="right" />
-                    }
+                    {config.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
+                    {config.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
+                    {config.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
                     <span>{t('NavHelperFavourite')}</span>
                 </NavItemHelper>
                 
-                {!config.handleMouse? 
+                {config.mainInput !== MAIN_INPUT_MOUSE &&
                     <NavItemHelper>
-                        <GamepadButton direction="left"/>
+                        {config.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
+                        {config.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='H'/> }
                         <span>{t('NavHelperHide')}</span>
                     </NavItemHelper>
-                    : ''}
+                }
             </NavHelperWrapper>
     )
 }
