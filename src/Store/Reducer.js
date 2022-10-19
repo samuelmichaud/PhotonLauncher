@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { MAIN_INPUT_MOUSE } from '../Constants';
+import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED } from '../Constants';
 
 export const GlobalState = createSlice({
     name: 'globalState',
@@ -11,7 +11,11 @@ export const GlobalState = createSlice({
         },
         windowHasFocus: true,
         ui: {
-            showSettings: false
+            popin: SHOW_POPIN_NONE // settings, scan...
+        },
+        scanJob: {
+            status: SCAN_JOB_STATUS_NOT_STARTED, // not_started, ongoing_scan, ongoing_fetchmetadata, completed
+            progress: 0, // from 0 to 100 basis
         }
     },
     reducers: {
@@ -43,8 +47,12 @@ export const GlobalState = createSlice({
         setWindowFocusState: (state, action) => {
             state.windowHasFocus = action.payload;
         },
-        toggleSettingsPopin: (state, action) => {
-            state.ui.showSettings = action.payload;
+        togglePopin: (state, action) => {
+            state.ui.popin = action.payload;
+        },
+        setScanJobDetail: (state, action) => {
+            state.scanJob.status = action.payload.status;
+            state.scanJob.progress = action.payload.progress;
         }
     },
 })
@@ -57,6 +65,7 @@ export const {
     setAppVisibility, 
     setMainInputSupport, 
     setWindowFocusState, 
-    toggleSettingsPopin } = GlobalState.actions
+    togglePopin,
+    setScanJobDetail } = GlobalState.actions
 
 export default GlobalState.reducer

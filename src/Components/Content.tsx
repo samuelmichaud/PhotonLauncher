@@ -10,8 +10,8 @@ import {
 import { ContentGrid } from './ContentGrid';
 import { Loading } from './Loading';
 import { EmptyLibrary } from './EmptyLibrary';
-import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../Constants'
-
+import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../Constants';
+import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from 'react-redux'
 import { setApps, setFocusApp } from '../Store/Reducer'
 
@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
 `;
 
 export const Content = () => {
-    
+    const { t } = useTranslation();
     const [loadingState, setLoadingState] = useState(true);
     // @ts-ignore (because of globalState which is not recognized)
     const { apps, config } = useSelector((state) => state.globalState);
@@ -80,7 +80,7 @@ export const Content = () => {
                             layoutType={'normal'} />
                     </div>
                 : (loadingState? 
-                    <Loading /> :
+                    <Loading loadingMessage={t('loadingState')}/> :
                     <EmptyLibrary />)
                 }
             </ContentWrapper>

@@ -30,3 +30,12 @@ export const CONTENT_FOCUS = 'CONTENT';
 export const MAIN_INPUT_MOUSE = 'mouse';
 export const MAIN_INPUT_GAMEPAD = 'gamepad';
 export const MAIN_INPUT_KEYBOARD = 'keyboard';
+
+export const SCAN_JOB_STATUS_NOT_STARTED = 'not_started';
+export const SCAN_JOB_STATUS_ONGOING_SCAN = 'ongoing_scan';
+export const SCAN_JOB_STATUS_ONGOING_FETCH = 'ongoing_fetchmetadata';
+export const SCAN_JOB_STATUS_COMPLETED = 'completed';
+
+export const SHOW_POPIN_NONE = "popin_none"
+export const SHOW_POPIN_SETTINGS = "popin_settings"
+export const SHOW_POPIN_SCAN     = "popin_scan"

@@ -6,9 +6,9 @@ import {
     useFocusable,
     FocusContext
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FRAME_PADDING, MENU_FOCUS, THEME_TRANSPARENT } from '../Constants';
+import { FRAME_PADDING, MENU_FOCUS, SHOW_POPIN_SETTINGS, THEME_TRANSPARENT } from '../Constants';
 import { useDispatch } from 'react-redux';
-import { toggleSettingsPopin } from './../Store/Reducer';
+import { togglePopin } from './../Store/Reducer';
 import { Button } from './Button';
 import { SettingsIcon } from '../Images/SettingsIcon';
 import { QuitIcon } from '../Images/QuitIcon';
@@ -73,7 +73,7 @@ export const Menu = () => {
             <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
                 <ShadowLogo />
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                    <Button label={t('MenuSettings')} action={() => dispatch(toggleSettingsPopin(true))} theme={THEME_TRANSPARENT}>
+                    <Button label={t('MenuSettings')} action={() => dispatch(togglePopin(SHOW_POPIN_SETTINGS))} theme={THEME_TRANSPARENT}>
                         <SettingsIcon />
                     </Button>
                     <Button label={t('Quit')} action={() => window.ShadowApi.quitApp()} theme={THEME_TRANSPARENT}>

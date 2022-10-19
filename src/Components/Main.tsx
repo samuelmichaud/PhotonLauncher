@@ -14,10 +14,12 @@ import { NavHelper } from './NavHelper';
 import { Settings } from './Settings';
 import { Content } from './Content';
 import store from '../Store/Store';
-import { setWindowFocusState } from '../Store/Reducer'
+import { setWindowFocusState, togglePopin } from '../Store/Reducer'
 import { Provider, useSelector } from 'react-redux'
 
 import '../InputManagement.js';
+import { SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
+import { ScanPopin } from './ScanPopin';
 
 init({
   debug: false,
@@ -30,7 +32,10 @@ init({
 window.ShadowApi.loadLibraryFromSource();
 window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
   store.dispatch(setWindowFocusState(payload));
-});   
+});
+window.ShadowApi.listenForTogglePopin((payload: any) => {
+    store.dispatch(togglePopin(payload));
+});
 
 const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
@@ -55,7 +60,8 @@ const MainContainer = () => {
         <GlobalStyle />
         <Menu />
         <Content />
-        {(ui.showSettings)? <Settings /> : ''}
+        {ui.popin === SHOW_POPIN_SETTINGS && <Settings />}
+        {ui.popin === SHOW_POPIN_SCAN && <ScanPopin />}
         <NavHelper />
       </MainWrapper>
       )

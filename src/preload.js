@@ -1,7 +1,7 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
-import { shell, ipcRenderer } from 'electron';
+import { shell, ipcRenderer as backgroundProcess } from 'electron';
 
 window.ShadowApi = {
 
@@ -9,32 +9,35 @@ window.ShadowApi = {
         shell.openPath(path);
     },
     scanForGames: () => {
-        ipcRenderer.send('scanForGames'); // will send a fetchApps at the end of the job
+        backgroundProcess.send('scanForGames'); // will send a fetchApps at the end of the job
     },
     loadLibraryFromSource: () => {
-        ipcRenderer.send('fetchAppsFromSource'); // will send a fetchApps at the end of the job
+        backgroundProcess.send('fetchAppsFromSource'); // will send a fetchApps at the end of the job
     },
     fetchApps: (func) => {
-        ipcRenderer.on('fetchApps', (event, ...args) => func(...args));
-        ipcRenderer.send('fetchAppsFromSource');
+        backgroundProcess.on('fetchApps', (event, ...args) => func(...args));
+        backgroundProcess.send('fetchAppsFromSource');
     },
     downloadAndOptimizeMetadata: () => {
-        ipcRenderer.send('downloadAndOptimizeMetadata');
+        backgroundProcess.send('downloadAndOptimizeMetadata');
     },
     storeDatabase: (data) => {
-        ipcRenderer.send('storeDatabase', data);
+        backgroundProcess.send('storeDatabase', data);
     },
     quitApp: () => {
-        ipcRenderer.send('exit-app');
+        backgroundProcess.send('exit-app');
     },
     triggerAltTab: (reverse = false) => {
-        ipcRenderer.send('triggerAltTab', reverse);
+        backgroundProcess.send('triggerAltTab', reverse);
     },
     releaseAltTab: () => {
-        ipcRenderer.send('releaseAltTab');
+        backgroundProcess.send('releaseAltTab');
     },
     listenForWindowFocusChange: (func) => {
-        ipcRenderer.on('setWindowFocusState', (event, ...args) => func(...args));
+        backgroundProcess.on('setWindowFocusState', (event, ...args) => func(...args));
+    },
+    listenForTogglePopin: (func) => {
+        backgroundProcess.on('togglePopin', (event, ...args) => func(...args));
     }
 
 };

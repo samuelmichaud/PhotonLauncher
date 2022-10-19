@@ -4,7 +4,7 @@ import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
 import axios from 'axios';
-import { RAWG_APIKEY } from '../Constants';
+import { RAWG_APIKEY, SHOW_POPIN_NONE, SHOW_POPIN_SCAN } from '../Constants';
 
 const path = require('path');
 var slugify = require('slugify');
@@ -17,7 +17,13 @@ const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
 //const gamesPathJSONdatabase = path.resolve(glcDir, './games-database.json');
 const libraryPathJSONdatabase = path.resolve(glcDir, (isProductionEnv()? './library.json' : './dev-library.json'));
 
-async function loadMetadaFromJSONfile () {
+const loadMetadaFromJSONfile = async () => {
+    let installedApp = loadFromJSONFile(glcPathJSONdatabase); 
+    return (typeof installedApp.games == undefined)? [] : installedApp.games;;
+}
+
+const fetchOnlineMetada = async (installedApp) => {
+
     const slugifyConf = {
         replacement: '-',  // replace spaces with replacement character, defaults to `-`
         remove: undefined, // remove characters that match regex, defaults to `undefined`
@@ -26,12 +32,7 @@ async function loadMetadaFromJSONfile () {
         locale: 'en',       // language code of the locale to use
         trim: true         // trim leading and trailing replacement chars, defaults to `true`
       };
-    let installedApp = loadFromJSONFile(glcPathJSONdatabase);
-    
-    installedApp = (typeof installedApp.games == undefined)? [] : installedApp.games;
 
-    //let gameDatabase = loadFromJSONFile(gamesPathJSONdatabase); // The glc.exe create a file named glc-games with the list of all games. We need to read it
-    //gameDatabase = (typeof gameDatabase !== 'object')? [] : gameDatabase;
     try {
         installedApp = await Promise.all(installedApp.map(async (app) => {
 
@@ -50,26 +51,13 @@ async function loadMetadaFromJSONfile () {
                     
                 }
             });
-            
-            /*
-            // Search in local database from thegamedatabase.net
-            const titleSlug = slugify(app.title, slugifyConf);
-            const itemFound = gameDatabase.find((item) => {
-                let itemSlug = slugify(item.title, slugifyConf);
-                return titleSlug === itemSlug;
-            });
-    
-            if (typeof itemFound != 'undefined') {
-                console.log('App found: ' + itemFound.title + '(' + itemFound.id + ')');
-                return {...app, 'tgdbID': itemFound.id}
-            }*/
     
             return app;
         }));
     } catch (e) {
         log.info('Error fetching remote metadata');
     }
-    
+
     return installedApp;
 }
 
@@ -81,6 +69,8 @@ function fetchAppsFromSource() {
 
 // Launch glc.exe to scan the system for games
 async function scanForGames () {
+
+    mainWindow.webContents.send('togglePopin', SHOW_POPIN_SCAN);
 
     let library = loadLibraryDB(); // Read from file
 
@@ -104,10 +94,14 @@ async function scanForGames () {
                 // Add new games to database, remove unstalled games BUT if a games was already detected
                 // we use the library from old scan as reference to keep sorting & all changes
                 let newLibrary = await loadMetadaFromJSONfile();
+
+                newLibrary = await fetchOnlineMetada(newLibrary);
+
                 newLibrary = addCustomApps(newLibrary); // add shortcuts like Steam big picture mode
                 newLibrary = blackListApps(newLibrary); // reject some app detected we don't want to see
                 let tempLibrary = [];
-
+               
+                // remove old apps not found in new scan
                 each(library, item => {
                     let tempItem = find(newLibrary, (newItem) => item.id === newItem.id);
                     if (tempItem) {
@@ -116,6 +110,8 @@ async function scanForGames () {
                         // the item is not found in new library scan so we should remove it
                     }
                 });
+
+                // Add new items to the library
                 each(newLibrary, item => {
                     let tempItem = find(library, (oldItem) => item.id === oldItem.id);
                     if (!tempItem) { // this is a new item that should be added to the library
@@ -127,6 +123,7 @@ async function scanForGames () {
                 storeDatabase(library, () => {
                     log.info('Library stored, starting fetchAppsFromSource');
                     fetchAppsFromSource();
+                    mainWindow.webContents.send('togglePopin', SHOW_POPIN_NONE);
                 });
                 break;
             default: 

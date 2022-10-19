@@ -21,6 +21,8 @@ i18n
             SettingsPopinTitle: "Settings",
             SettingsPopinRefreshButton: "Refresh library",
             SettingsPopinCloseButton: "Save and close",
+            ScanPopinTitle: "Scan in progress...",
+            ScanPopinCloseButton: "Close"
         }
       }
     },

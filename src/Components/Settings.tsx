@@ -5,10 +5,10 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch } from 'react-redux';
-import { toggleSettingsPopin } from './../Store/Reducer';
+import { togglePopin } from './../Store/Reducer';
 import { Popin } from './Popin';
 import { Button } from './Button';
-import { MENU_FOCUS, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK } from './../Constants';
+import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK } from './../Constants';
 import { useTranslation } from "react-i18next";
 
 const InnerSettings = styled.div`
@@ -28,7 +28,7 @@ export const Settings = () => {
     }, [focusSelf]);
 
     const onSettingsClose = () => {
-        setFocus(MENU_FOCUS); dispatch(toggleSettingsPopin(false));
+        setFocus(MENU_FOCUS); dispatch(togglePopin(SHOW_POPIN_NONE));
     }
 
     return (

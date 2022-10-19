@@ -41,7 +41,8 @@ export interface ShadowApi {
     quitApp: () => void,
     triggerAltTab: (reverse?: boolean) => void,
     releaseAltTab: () => void,
-    downloadAndOptimizeMetadata: () => void
+    downloadAndOptimizeMetadata: () => void,
+    listenForTogglePopin: (func: any) => void
 }
   
 declare global {
