@@ -31,7 +31,6 @@ const PopinOverlay = styled.div`
     background: rgba(0, 0, 0, 50%);
     backdrop-filter: blur(5px);
     animation-name: backdropAppear;
-    animation-duration: 0.3s;
 `;
 
 interface PopinBoxProps {
