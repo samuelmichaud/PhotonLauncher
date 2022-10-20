@@ -5,11 +5,12 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch } from 'react-redux';
-import { togglePopin } from './../Store/Reducer';
+import { togglePopin, setLanguage } from './../Store/Reducer';
 import { Popin } from './Generics/Popin';
 import { Button } from './Generics/Button';
-import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK } from './../Constants';
+import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS } from './../Constants';
 import { useTranslation } from "react-i18next";
+import { OptionSelector } from './Generics/OptionSelector';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -41,6 +42,11 @@ export const Settings = () => {
                         </svg>
                         <span>{t('SettingsPopinRefreshButton')}</span>
                     </Button>
+
+                    <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
+                    <OptionSelector label='language' options={LANG_LIST_OPTIONS} getCurrentOption={(lang) => dispatch(setLanguage(lang))}></OptionSelector>
+                    <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
+
                     <Button label={t('SettingsPopinCloseButton')} action={() => { onSettingsClose(); }} theme={THEME_PRIMARY_DARK}></Button>
                 </InnerSettings>
             </Popin>

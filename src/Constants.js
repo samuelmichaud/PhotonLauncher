@@ -36,6 +36,11 @@ export const SCAN_JOB_STATUS_ONGOING_SCAN = 'ongoing_scan';
 export const SCAN_JOB_STATUS_ONGOING_FETCH = 'ongoing_fetchmetadata';
 export const SCAN_JOB_STATUS_COMPLETED = 'completed';
 
-export const SHOW_POPIN_NONE = "popin_none"
+export const SHOW_POPIN_NONE     = "popin_none"
 export const SHOW_POPIN_SETTINGS = "popin_settings"
 export const SHOW_POPIN_SCAN     = "popin_scan"
+
+// OPTIONS LANGUAGE SUPPORT
+export const LANG_OPTION_ENGLISH = { displayName: "English", value: 'en-US'}
+export const LANG_OPTION_FRENCH  = { displayName: "Français", value: 'fr-FR' }
+export const LANG_LIST_OPTIONS = [LANG_OPTION_ENGLISH, LANG_OPTION_FRENCH]

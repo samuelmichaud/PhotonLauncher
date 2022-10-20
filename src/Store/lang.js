@@ -24,6 +24,23 @@ i18n
             ScanPopinTitle: "Scan in progress...",
             ScanPopinCloseButton: "Close"
         }
+      },
+      fr: {
+        translation: {
+            EmptyLibraryTitle: "Lancer un scan pour voir vos applications...",
+            EmptyLibraryLabelButton: "Lancer un scan",
+            LoadingMessage: "Chargement...",
+            MenuSettings: "Paramètres",
+            MenuQuit: "Quitter",
+            NavHelperLaunch: "Lancer",
+            NavHelperFavourite: "Favoris",
+            NavHelperHide: "Cacher",
+            SettingsPopinTitle: "Paramètres",
+            SettingsPopinRefreshButton: "Rafraîchir la librairie",
+            SettingsPopinCloseButton: "Sauveguarder et fermer",
+            ScanPopinTitle: "Scan en cours...",
+            ScanPopinCloseButton: "Fermer"
+        }
       }
     },
     lng: "en", // if you're using a language detector, do not define the lng option

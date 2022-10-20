@@ -20,6 +20,7 @@ import { Provider, useSelector } from 'react-redux'
 import '../InputManagement.js';
 import { SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
 import { ScanPopin } from './ScanPopin';
+import { useTranslation } from "react-i18next";
 
 init({
   debug: false,
@@ -53,7 +54,12 @@ const MainWrapper = styled.div`
 
 const MainContainer = () => {
   //@ts-ignore
-  const { ui } = useSelector((state) => state.globalState);
+  const { ui, config } = useSelector((state) => state.globalState);
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(config.lang.value);
+  }, [config.lang.value]);
 
   return (
       <MainWrapper>
