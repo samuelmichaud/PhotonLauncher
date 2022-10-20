@@ -138,7 +138,7 @@ function addCustomApps(library) {
     if(find(library, (item) => item.platform == 'Steam') && typeof find(library, (item) => item.id == 'steambigpicture') == 'undefined') {
         library.push({
             "id": "steambigpicture",
-            "title": "Steam Big Picture",
+            "title": "Steam Big Picture ©",
             "launch": "steam://open/bigpicture",
             "icon": "",
             "uninstaller": "",
