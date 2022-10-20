@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Lottie from 'lottie-react';
-import animatedLogo from './../Images/animatedLogo.json';
+import animatedLogo from '../../Images/animatedLogo.json';
 
 const LoadingWrapper = styled.div`
     color: white;

@@ -8,7 +8,7 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { ContentGrid } from './ContentGrid';
-import { Loading } from './Loading';
+import { Loading } from './Generics/Loading';
 import { EmptyLibrary } from './EmptyLibrary';
 import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../Constants';
 import { useTranslation } from "react-i18next";

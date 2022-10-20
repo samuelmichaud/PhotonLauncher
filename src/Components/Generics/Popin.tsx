@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { POPIN_BG_COLOR, FRAME_PADDING, POPIN_SIZE_SMALL, POPIN_SIZE_MEDIUM, POPIN_SIZE_LARGE, BORDER_RADIUS } from './../Constants'
+import { POPIN_BG_COLOR, FRAME_PADDING, POPIN_SIZE_SMALL, POPIN_SIZE_MEDIUM, POPIN_SIZE_LARGE, BORDER_RADIUS } from '../../Constants'
 
 
 interface PopinProps {

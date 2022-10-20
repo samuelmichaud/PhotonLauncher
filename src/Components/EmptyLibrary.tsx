@@ -4,7 +4,7 @@ import {
     useFocusable,
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
-import { Button } from './Button';
+import { Button } from './Generics/Button';
 import { useTranslation } from "react-i18next";
 
 interface EmptyLibraryWrapperProps {

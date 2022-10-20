@@ -9,7 +9,7 @@ import {
 import { FRAME_PADDING, MENU_FOCUS, SHOW_POPIN_SETTINGS, THEME_TRANSPARENT } from '../Constants';
 import { useDispatch } from 'react-redux';
 import { togglePopin } from './../Store/Reducer';
-import { Button } from './Button';
+import { Button } from './Generics/Button';
 import { SettingsIcon } from '../Images/SettingsIcon';
 import { QuitIcon } from '../Images/QuitIcon';
 import { ShadowLogo } from '../Images/ShadowLogo';

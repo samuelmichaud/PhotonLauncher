@@ -6,11 +6,11 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch } from 'react-redux';
 import { togglePopin } from '../Store/Reducer';
-import { Popin } from './Popin';
-import { Button } from './Button';
+import { Popin } from './Generics/Popin';
+import { Button } from './Generics/Button';
 import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK } from '../Constants';
 import { useTranslation } from "react-i18next";
-import { Loading } from './Loading';
+import { Loading } from './Generics/Loading';
 
 const InnerScanPopin = styled.div`
     display: flex;

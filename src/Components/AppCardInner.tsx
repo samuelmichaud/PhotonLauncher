@@ -2,7 +2,7 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
-import { Loading } from './../Components/Loading';
+import { Loading } from './Generics/Loading';
 import { FOCUS_BORDER_SIZE } from './../Constants';
 
 interface AppCardOverlayProps {

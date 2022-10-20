@@ -6,7 +6,7 @@ import {
     useFocusable,
     KeyPressDetails
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT } from '../Constants';
+import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT } from '../../Constants';
 
 interface ButtonProps {
     label: string; 
