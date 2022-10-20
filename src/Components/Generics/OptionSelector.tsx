@@ -6,7 +6,8 @@ import {
     useFocusable,
     KeyPressDetails
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT } from '../../Constants';
+import { FOCUS_BORDER_SIZE } from '../../Constants';
+import { ArrowIcon } from '../../Images/ArrowIcon';
 
 interface OptionProps {
     displayName: string;
@@ -63,9 +64,8 @@ export const OptionSelector = ({label, getCurrentOption, options}: OptionSelecto
         <OptionSelectorWrapper ref={ref} focused={focused} onClick={() => action()}  onMouseEnter={() => focusSelf()} >
             {label}
             <Selector>
-                {'< '}
                 {options[selectedOption].displayName}
-                {' >'}
+                <ArrowIcon direction={'right'}/>
             </Selector>
         </OptionSelectorWrapper>
         );
