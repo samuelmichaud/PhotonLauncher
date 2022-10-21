@@ -1,5 +1,5 @@
 
-import { ipcMain } from 'electron';
+import { ipcMain as fromRendererProcess } from 'electron';
 import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
@@ -14,7 +14,6 @@ const log = require('electron-log');
 // Store the glc.exe directory for future reuse. Because the .exe generate files on its own folder
 const glcDir = path.resolve(__dirname, './../');
 const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
-//const gamesPathJSONdatabase = path.resolve(glcDir, './games-database.json');
 const libraryPathJSONdatabase = path.resolve(glcDir, (isProductionEnv()? './library.json' : './dev-library.json'));
 
 const loadMetadaFromJSONfile = async () => {
@@ -61,14 +60,14 @@ const fetchOnlineMetada = async (installedApp) => {
     return installedApp;
 }
 
-function fetchAppsFromSource() {
+const fetchAppsFromSource = () => {
     log.info('fetchAppsFromSource');
     // Read the library from file and send it to renderer
     mainWindow.webContents.send('fetchApps', loadLibraryDB());
 }
 
 // Launch glc.exe to scan the system for games
-async function scanForGames () {
+const scanForGames = async () => {
 
     mainWindow.webContents.send('togglePopin', SHOW_POPIN_SCAN);
 
@@ -132,7 +131,7 @@ async function scanForGames () {
     });
 }
 
-function addCustomApps(library) {
+const addCustomApps = (library) => {
     // ADD STEAM BIG PICTURE MODE
     // if we can find at least one game with the Steam platform, it must say that Steam big picture mode is available
     if(find(library, (item) => item.platform == 'Steam') && typeof find(library, (item) => item.id == 'steambigpicture') == 'undefined') {
@@ -150,7 +149,7 @@ function addCustomApps(library) {
     return library;
 }
 
-function blackListApps(library) {
+const blackListApps = (library) => {
     return reject(library, (item) => contains(['appmanifest_228980.acf' /* Steamwork commons */], item.id));
 }
 
@@ -162,14 +161,14 @@ export const storeDatabase = (data, callback) => {
     storeToJSONFile(libraryPathJSONdatabase, data, callback);
 }
 
-ipcMain.on("storeDatabase", (event, args) => {
+fromRendererProcess.on("storeDatabase", (event, args) => {
     storeDatabase(args);
 });
 
-ipcMain.on("fetchAppsFromSource", (event, args) => {
+fromRendererProcess.on("fetchAppsFromSource", (event, args) => {
     fetchAppsFromSource();
 });
 
-ipcMain.on("scanForGames", (event, args) => {
+fromRendererProcess.on("scanForGames", (event, args) => {
     scanForGames();
 });
