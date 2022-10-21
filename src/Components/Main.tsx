@@ -18,7 +18,7 @@ import { setWindowFocusState, togglePopin } from '../Store/Reducer'
 import { Provider, useSelector } from 'react-redux'
 
 import '../InputManagement.js';
-import { SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
+import { MAIN_INPUT_MOUSE, SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
 import { ScanPopin } from './ScanPopin';
 import { useTranslation } from "react-i18next";
 
@@ -44,12 +44,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const MainWrapper = styled.div`
+interface MainWrapperProps {
+  mainInput?: string;
+}
+
+const MainWrapper = styled.div<MainWrapperProps>`
   background: linear-gradient(to bottom left, #4224BF, #34B0EF);
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  ${({mainInput}) => (mainInput === MAIN_INPUT_MOUSE? '': 'cursor: none;')}
 `
 
 const MainContainer = () => {
@@ -63,8 +68,8 @@ const MainContainer = () => {
   }, [config.lang.value, config.launchOption]);
 
   return (
-      <MainWrapper>
-        <GlobalStyle />
+      <MainWrapper mainInput={config.mainInput}>
+        <GlobalStyle/>
         <Menu />
         <Content />
         {ui.popin === SHOW_POPIN_SETTINGS && <Settings />}
