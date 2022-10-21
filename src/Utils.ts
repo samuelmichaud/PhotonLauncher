@@ -4,7 +4,7 @@ export const isProductionEnv = () => {
     return !(process.env.WEBPACK_SERVE === "true");
 }
 
-export const loadFromJSONFile = (path) => {
+export const loadFromJSONFile = (path: string) => {
     let parsedData = [];
     try {
         console.log('loadFromJSONFile: ' + path);
@@ -17,9 +17,9 @@ export const loadFromJSONFile = (path) => {
     return parsedData;
 }
 
-export const storeToJSONFile = (path, data, callback) => {
+export const storeToJSONFile = (path: string, data: any, callback?: Function) => {
     data = JSON.stringify(data);
-    fs.writeFile(path, data, (err) => {
+    fs.writeFile(path, data, (err: any) => {
         if(err) {
             return console.log(err);
         }
