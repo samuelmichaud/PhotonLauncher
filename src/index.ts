@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, session, screen } from 'electron';
+import { app, BrowserWindow, ipcMain as fromRendererProcess, session, screen } from 'electron';
 import { isProductionEnv } from './Utils';
 const log = require('electron-log');
 const {keyboard, Key, getWindows} = require("@nut-tree/nut-js");
@@ -103,18 +103,20 @@ app.on('activate', () => {
   }
 });
 
-app.setLoginItemSettings({
-  openAtLogin: isProductionEnv() // launch by default if the app is bundled for PROD
+fromRendererProcess.on("updateStartupMode", (event, launchOption) => {
+  app.setLoginItemSettings({
+    openAtLogin: isProductionEnv() && launchOption.value === LAUNCH_OPTION_STARTUP // launch by default if the app is bundled for PROD
+  });
 });
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-ipcMain.on("exit-app", (event, args) => {
+fromRendererProcess.on("exit-app", (event, args) => {
   app.quit();
 });
 
 let firstTimeInput = true;
-ipcMain.on("triggerAltTab", (event, reverse) => {
+fromRendererProcess.on("triggerAltTab", (event, reverse) => {
   
   // the Alt key won't be release until we release the menu button so we can switch between apps by pressing other buttons
   if (firstTimeInput) {
@@ -133,7 +135,7 @@ ipcMain.on("triggerAltTab", (event, reverse) => {
   mainWindow.moveTop(); // this command will give the real focus to the window
   mainWindow.setAlwaysOnTop(false); // this is needed so we can launch other games*/
 });
-ipcMain.on("releaseAltTab", (event, args) => {
+fromRendererProcess.on("releaseAltTab", (event, args) => {
   keyboard.releaseKey(Key.LeftAlt, Key.LeftShift, Key.Tab); // We release everything 
   firstTimeInput = true;
 });
@@ -142,3 +144,4 @@ export { mainWindow };
 
 import './AppService/AppService'
 import './AppService/DataBaseManagement'
+import { LAUNCH_OPTION_STARTUP } from './Constants';

@@ -38,6 +38,9 @@ window.ShadowApi = {
     },
     listenForTogglePopin: (func) => {
         backgroundProcess.on('togglePopin', (event, ...args) => func(...args));
+    },
+    updateStartupMode: (startupMode) => {
+        backgroundProcess.send('updateStartupMode', startupMode);
     }
 
 };

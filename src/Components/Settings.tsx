@@ -5,10 +5,10 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch } from 'react-redux';
-import { togglePopin, setLanguage } from './../Store/Reducer';
+import { togglePopin, setLanguage, setLaunchOption } from './../Store/Reducer';
 import { Popin } from './Generics/Popin';
 import { Button } from './Generics/Button';
-import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_SMALL, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS } from './../Constants';
+import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS, LAUNCH_OPTION_STARTUP, LAUNCH_OPTION_NONE } from './../Constants';
 import { useTranslation } from "react-i18next";
 import { OptionSelector } from './Generics/OptionSelector';
 
@@ -32,9 +32,14 @@ export const Settings = () => {
         setFocus(MENU_FOCUS); dispatch(togglePopin(SHOW_POPIN_NONE));
     }
 
+    const launchSettings = [
+        { displayName: t('SettingsLaunchStartup'), value: LAUNCH_OPTION_STARTUP},
+        { displayName: t('SettingsLaunchNone'), value: LAUNCH_OPTION_NONE},
+    ]
+
     return (
         <FocusContext.Provider value={focusKey}>
-            <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_SMALL}>
+            <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM}>
                 <InnerSettings ref={ref} >
                     <Button label={t('SettingsPopinRefreshButton')} action={() => { onSettingsClose(); window.ShadowApi.scanForGames()}} theme={THEME_DARK}>
                         <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '0.5rem'}}>
@@ -44,7 +49,14 @@ export const Settings = () => {
                     </Button>
 
                     <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
-                    <OptionSelector label={t('SettingsLanguageLabel')} options={LANG_LIST_OPTIONS} getCurrentOption={(lang) => dispatch(setLanguage(lang))}></OptionSelector>
+                    <OptionSelector 
+                        label={t('SettingsLanguageLabel')} 
+                        options={LANG_LIST_OPTIONS} 
+                        getCurrentOption={(lang) => dispatch(setLanguage(lang))} />
+                    <OptionSelector 
+                        label={t('SettingsLaunchLabel')} 
+                        options={launchSettings} 
+                        getCurrentOption={(option) => {window.ShadowApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} />
                     <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
 
                     <Button label={t('SettingsPopinCloseButton')} action={() => { onSettingsClose(); }} theme={THEME_PRIMARY_DARK}></Button>

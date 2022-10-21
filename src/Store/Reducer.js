@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED, LANG_OPTION_ENGLISH } from '../Constants';
+import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED, LANG_OPTION_ENGLISH, LAUNCH_OPTION_STARTUP } from '../Constants';
 
 export const GlobalState = createSlice({
     name: 'globalState',
@@ -8,7 +8,8 @@ export const GlobalState = createSlice({
         currentFocusedApp: null,
         config: {
             mainInput: MAIN_INPUT_MOUSE, // mouse / gamepad / keyboard
-            lang: LANG_OPTION_ENGLISH
+            lang: LANG_OPTION_ENGLISH,
+            launchOption: LAUNCH_OPTION_STARTUP
         },
         windowHasFocus: true,
         ui: {
@@ -57,6 +58,9 @@ export const GlobalState = createSlice({
         },
         setLanguage: (state, action) => {
             state.config.lang = action.payload;
+        },
+        setLaunchOption: (state, action) => {
+            state.config.launchOption = action.payload;
         }
     },
 })
@@ -71,6 +75,7 @@ export const {
     setWindowFocusState, 
     togglePopin,
     setLanguage,
+    setLaunchOption,
     setScanJobDetail } = GlobalState.actions
 
 export default GlobalState.reducer

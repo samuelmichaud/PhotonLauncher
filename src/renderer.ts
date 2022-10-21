@@ -42,7 +42,8 @@ export interface ShadowApi {
     triggerAltTab: (reverse?: boolean) => void,
     releaseAltTab: () => void,
     downloadAndOptimizeMetadata: () => void,
-    listenForTogglePopin: (func: any) => void
+    listenForTogglePopin: (func: any) => void,
+    updateStartupMode: (launchOption: string) => void,
 }
   
 declare global {

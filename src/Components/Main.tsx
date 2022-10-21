@@ -59,7 +59,8 @@ const MainContainer = () => {
 
   useEffect(() => {
     i18n.changeLanguage(config.lang.value);
-  }, [config.lang.value]);
+    window.ShadowApi.updateStartupMode(config.launchOption);
+  }, [config.lang.value, config.launchOption]);
 
   return (
       <MainWrapper>

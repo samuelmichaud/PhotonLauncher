@@ -23,7 +23,10 @@ i18n
             SettingsPopinCloseButton: "Save and close",
             ScanPopinTitle: "Scan in progress...",
             ScanPopinCloseButton: "Close",
-            SettingsLanguageLabel: "Language"
+            SettingsLanguageLabel: "Language",
+            SettingsLaunchLabel: "Startup mode",
+            SettingsLaunchStartup: "Launch with Windows",
+            SettingsLaunchNone: "No automatic startup"
         }
       },
       fr: {
@@ -41,7 +44,10 @@ i18n
             SettingsPopinCloseButton: "Sauveguarder et fermer",
             ScanPopinTitle: "Scan en cours...",
             ScanPopinCloseButton: "Fermer",
-            SettingsLanguageLabel: "Langue"
+            SettingsLanguageLabel: "Langue",
+            SettingsLaunchLabel: "Mode de lancement",
+            SettingsLaunchStartup: "Démarrer avec Windows",
+            SettingsLaunchNone: "Pas de démarrage automatique"
         }
       }
     },
