@@ -22,7 +22,8 @@ i18n
             SettingsPopinRefreshButton: "Refresh library",
             SettingsPopinCloseButton: "Save and close",
             ScanPopinTitle: "Scan in progress...",
-            ScanPopinCloseButton: "Close"
+            ScanPopinCloseButton: "Close",
+            SettingsLanguageLabel: "Language"
         }
       },
       fr: {
@@ -39,7 +40,8 @@ i18n
             SettingsPopinRefreshButton: "Rafraîchir la librairie",
             SettingsPopinCloseButton: "Sauveguarder et fermer",
             ScanPopinTitle: "Scan en cours...",
-            ScanPopinCloseButton: "Fermer"
+            ScanPopinCloseButton: "Fermer",
+            SettingsLanguageLabel: "Langue"
         }
       }
     },
