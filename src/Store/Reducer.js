@@ -27,6 +27,19 @@ export const GlobalState = createSlice({
         setApps: (state, action) => {
             state.apps = [...action.payload.filter((app) => app.favourite), ...action.payload.filter((app) => !app.favourite)] // we want all favourites firsts
         },
+        addApp: (state, action) => {
+            const newApp = {
+                "id": action.payload.id,
+                "title": action.payload.title,
+                "launch": action.payload.path,
+                "icon": "",
+                "uninstaller": "",
+                "platform": "manual",
+                "favourite": true, // Because favourite are shown first and we want to be sure the app is viewed by the user, we add it into favourite
+                "hidden": false,
+            }
+            state.apps.unshift(newApp); // Web want to add the app first and not end (via push())
+        },
         setAppFavourite: (state, action) => {
             let itemToUpdate = state.apps.filter((app) => app.id === action.payload.id)[0];
             itemToUpdate.favourite = action.payload.favourite;
@@ -76,6 +89,7 @@ export const {
     togglePopin,
     setLanguage,
     setLaunchOption,
-    setScanJobDetail } = GlobalState.actions
+    setScanJobDetail,
+    addApp } = GlobalState.actions
 
 export default GlobalState.reducer

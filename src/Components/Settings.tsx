@@ -5,12 +5,14 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch } from 'react-redux';
-import { togglePopin, setLanguage, setLaunchOption } from './../Store/Reducer';
+import { togglePopin, setLanguage, setLaunchOption, addApp } from './../Store/Reducer';
 import { Popin } from './Generics/Popin';
 import { Button } from './Generics/Button';
-import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS, LAUNCH_OPTION_STARTUP, LAUNCH_OPTION_NONE } from './../Constants';
+import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS, LAUNCH_OPTION_STARTUP, LAUNCH_OPTION_NONE, MAIN_INPUT_MOUSE } from './../Constants';
 import { useTranslation } from "react-i18next";
 import { OptionSelector } from './Generics/OptionSelector';
+import { FileSelector } from './Generics/FileSelector';
+import { cp } from 'original-fs';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -37,6 +39,14 @@ export const Settings = () => {
         { displayName: t('SettingsLaunchNone'), value: LAUNCH_OPTION_NONE},
     ]
 
+    const onFileSelectorChange = (event: any) => {
+        const file = event.target.files[0]
+        const appName = file.name.substring(0, file.name.lastIndexOf("."));
+        dispatch(addApp({id: file.path, title: appName, path: file.path}));
+        onSettingsClose();
+        console.log(file);
+    }
+
     return (
         <FocusContext.Provider value={focusKey}>
             <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM}>
@@ -47,6 +57,7 @@ export const Settings = () => {
                         </svg>
                         <span>{t('SettingsPopinRefreshButton')}</span>
                     </Button>
+                    <FileSelector label={t('SettingsAddCustomAppLabel')} onChangeAction={(event) => onFileSelectorChange(event)}></FileSelector>
 
                     <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
                     <OptionSelector 

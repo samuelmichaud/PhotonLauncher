@@ -15,6 +15,7 @@ interface ButtonProps {
     onEnterPress?: (props: object, details: KeyPressDetails) => void;
     theme?: string;
     children?: any;
+    disableState?: boolean;
 }
 
 const ButtonBox = styled.div<ButtonProps>`
@@ -40,6 +41,7 @@ const ButtonBox = styled.div<ButtonProps>`
     }}
     border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
     box-shadow: 0rem 0rem 0.6rem rgba(255, 255, 255, ${({ focused }) => focused ? '0.50' : '0'});
+    opacity: ${({ disableState }) => (disableState ? '0.4' : '1')};
     padding: 0.5rem 1rem;
     border-style: solid;
     border-width: ${FOCUS_BORDER_SIZE}rem;
@@ -52,13 +54,14 @@ const ButtonBox = styled.div<ButtonProps>`
     transition: all 0.2s ease-in-out;
   `;
 
-export const Button = ({label, action, onEnterPress, children, theme}: ButtonProps) => {
+export const Button = ({label, action = () => {}, onEnterPress, children, theme, disableState}: ButtonProps) => {
     const { ref, focused, focusSelf } = useFocusable({
-        onEnterPress: () => { focusSelf(); action(); }
+        onEnterPress: () => { focusSelf(); action(); },
+        focusable: !disableState
     });
 
     return (
-        <ButtonBox ref={ref} focused={focused} onClick={() => action()} label={label}  onMouseEnter={() => focusSelf()} theme={theme}>
+        <ButtonBox ref={ref} focused={focused} onClick={() => action()} label={label}  onMouseEnter={() => focusSelf()} theme={theme} disableState={disableState}>
             {children? children : label}
         </ButtonBox>
         );

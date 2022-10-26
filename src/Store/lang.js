@@ -26,7 +26,8 @@ i18n
             SettingsLanguageLabel: "Language",
             SettingsLaunchLabel: "Startup mode",
             SettingsLaunchStartup: "Launch with Windows",
-            SettingsLaunchNone: "No automatic startup"
+            SettingsLaunchNone: "No automatic startup",
+            SettingsAddCustomAppLabel: "Add a custom app (mouse only)"
         }
       },
       fr: {
@@ -47,7 +48,8 @@ i18n
             SettingsLanguageLabel: "Langue",
             SettingsLaunchLabel: "Mode de lancement",
             SettingsLaunchStartup: "Démarrer avec Windows",
-            SettingsLaunchNone: "Pas de démarrage automatique"
+            SettingsLaunchNone: "Pas de démarrage automatique",
+            SettingsAddCustomAppLabel: "Ajouter une app manuellement (souris requise)"
         }
       }
     },

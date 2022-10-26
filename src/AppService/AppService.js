@@ -94,7 +94,7 @@ const scanForGames = async () => {
                 // we use the library from old scan as reference to keep sorting & all changes
                 let newLibrary = await loadMetadaFromJSONfile();
 
-                newLibrary = await fetchOnlineMetada(newLibrary);
+                
 
                 newLibrary = addCustomApps(newLibrary); // add shortcuts like Steam big picture mode
                 newLibrary = blackListApps(newLibrary); // reject some app detected we don't want to see
@@ -102,8 +102,7 @@ const scanForGames = async () => {
                
                 // remove old apps not found in new scan
                 each(library, item => {
-                    let tempItem = find(newLibrary, (newItem) => item.id === newItem.id);
-                    if (tempItem) {
+                    if (item.platform === 'manual' || find(newLibrary, (newItem) => item.id === newItem.id)) {
                         tempLibrary.push(item);
                     } else {
                         // the item is not found in new library scan so we should remove it
@@ -118,6 +117,8 @@ const scanForGames = async () => {
                     }
                 });
                 library = tempLibrary;
+
+                library = await fetchOnlineMetada(library);
                 
                 storeDatabase(library, () => {
                     log.info('Library stored, starting fetchAppsFromSource');
