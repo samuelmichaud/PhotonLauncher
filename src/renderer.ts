@@ -38,7 +38,7 @@ export interface ShadowApi {
     storeDatabase: (data: any) => void,
     loadConfig: (func: any) => void,
     storeConfig: (config: any) => void,
-    fetchApps: (func: any) => void,
+    loadApps: (func: any) => void,
     listenForWindowFocusChange: (func: any) => void,
     quitApp: () => void,
     triggerAltTab: (reverse?: boolean) => void,

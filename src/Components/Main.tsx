@@ -29,8 +29,6 @@ init({
   throttleKeypresses: true
 });
 
-// at launch, we want the system to refresh installed games. However, this is asynchronous
-window.ShadowApi.loadLibraryFromSource();
 window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
   store.dispatch(setWindowFocusState(payload));
 });

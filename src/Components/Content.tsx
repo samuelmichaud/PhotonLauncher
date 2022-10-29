@@ -54,7 +54,7 @@ export const Content = () => {
     useEffect(() => {
         console.info('useEffect in contentRender');
 
-        window.ShadowApi.fetchApps((data: Array<any>) => {
+        window.ShadowApi.loadApps((data: Array<any>) => {
             dispatch(setApps(data));
             setLoadingState(false);
             focusSelf();

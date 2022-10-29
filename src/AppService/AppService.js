@@ -77,10 +77,10 @@ const fetchOnlineMetada = async (installedApp) => {
     return installedApp;
 }
 
-const fetchAppsFromSource = () => {
-    log.info('fetchAppsFromSource');
+const loadAppFromFile = () => {
+    log.info('loadAppFromFile');
     // Read the library from file and send it to renderer
-    mainWindow.webContents.send('fetchApps', loadLibraryDB());
+    mainWindow.webContents.send('getApps', loadLibraryDB());
 }
 
 // Launch glc.exe to scan the system for games
@@ -136,8 +136,8 @@ const scanForGames = async () => {
                 library = await fetchOnlineMetada(library);
                 
                 storeDatabase(library, () => {
-                    log.info('Library stored, starting fetchAppsFromSource');
-                    fetchAppsFromSource();
+                    log.info('Library stored, starting loadAppFromFile');
+                    loadAppFromFile();
                     mainWindow.webContents.send('togglePopin', SHOW_POPIN_NONE);
                 });
                 break;
@@ -184,8 +184,8 @@ fromRendererProcess.on("storeConfig", (event, config) => {
     storeToJSONFile(configPathJSONdatabase, config);
 });
 
-fromRendererProcess.on("fetchAppsFromSource", (event, args) => {
-    fetchAppsFromSource();
+fromRendererProcess.on("getApps", (event, args) => {
+    loadAppFromFile();
 });
 
 fromRendererProcess.on("scanForGames", (event, args) => {

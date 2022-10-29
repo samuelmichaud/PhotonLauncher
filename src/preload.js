@@ -9,14 +9,11 @@ window.ShadowApi = {
         shell.openPath(path);
     },
     scanForGames: () => {
-        backgroundProcess.send('scanForGames'); // will send a fetchApps at the end of the job
+        backgroundProcess.send('scanForGames'); // will send a getApps at the end of the job
     },
-    loadLibraryFromSource: () => {
-        backgroundProcess.send('fetchAppsFromSource'); // will send a fetchApps at the end of the job
-    },
-    fetchApps: (func) => {
-        backgroundProcess.on('fetchApps', (event, ...args) => func(...args));
-        backgroundProcess.send('fetchAppsFromSource');
+    loadApps: (func) => {
+        backgroundProcess.on('getApps', (event, ...args) => func(...args));
+        backgroundProcess.send('getApps');
     },
     storeDatabase: (data) => {
         backgroundProcess.send('storeDatabase', data);
