@@ -18,9 +18,6 @@ window.ShadowApi = {
         backgroundProcess.on('fetchApps', (event, ...args) => func(...args));
         backgroundProcess.send('fetchAppsFromSource');
     },
-    downloadAndOptimizeMetadata: () => {
-        backgroundProcess.send('downloadAndOptimizeMetadata');
-    },
     storeDatabase: (data) => {
         backgroundProcess.send('storeDatabase', data);
     },
