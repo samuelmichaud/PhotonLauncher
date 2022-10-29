@@ -1,5 +1,5 @@
 
-import { ipcMain as fromRendererProcess } from 'electron';
+import { ipcMain as fromRendererProcess, app as electronApp } from 'electron';
 import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
@@ -15,7 +15,8 @@ const log = require('electron-log');
 // Store the glc.exe directory for future reuse. Because the .exe generate files on its own folder
 const glcDir = path.resolve(__dirname, './../');
 const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
-const libraryPathJSONdatabase = path.resolve(glcDir, (isProductionEnv()? './library.json' : './dev-library.json'));
+const libraryDir = electronApp.getPath('userData');
+const libraryPathJSONdatabase = path.resolve(libraryDir, (isProductionEnv()? './library.json' : './dev-library.json'));
 
 const loadMetadaFromJSONfile = async () => {
     let installedAppsFromFile = loadFromJSONFile(glcPathJSONdatabase);
