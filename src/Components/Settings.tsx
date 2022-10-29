@@ -12,7 +12,7 @@ import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMA
 import { useTranslation } from "react-i18next";
 import { OptionSelector } from './Generics/OptionSelector';
 import { FileSelector } from './Generics/FileSelector';
-import { cp } from 'original-fs';
+import App from '../Model/App';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -40,11 +40,10 @@ export const Settings = () => {
     ]
 
     const onFileSelectorChange = (event: any) => {
-        const file = event.target.files[0]
-        const appName = file.name.substring(0, file.name.lastIndexOf("."));
-        dispatch(addApp({id: file.path, title: appName, path: file.path}));
+        const file: File = event.target.files[0];
+        const appName:string = (file.name.substring(0, file.name.lastIndexOf(".")));
+        dispatch(addApp(new App({id: file.path, title: appName, launch: file.path})));
         onSettingsClose();
-        console.log(file);
     }
 
     return (

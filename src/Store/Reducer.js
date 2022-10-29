@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED, LANG_OPTION_ENGLISH, LAUNCH_OPTION_STARTUP } from '../Constants';
+import { createSlice } from '@reduxjs/toolkit';
+import App from '../Model/App';
+import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED, LANG_OPTION_ENGLISH, LAUNCH_OPTION_STARTUP, APP_PLATFORM_MANUAL } from '../Constants';
 
 export const GlobalState = createSlice({
     name: 'globalState',
@@ -28,16 +29,12 @@ export const GlobalState = createSlice({
             state.apps = [...action.payload.filter((app) => app.favourite), ...action.payload.filter((app) => !app.favourite)] // we want all favourites firsts
         },
         addApp: (state, action) => {
-            const newApp = {
-                "id": action.payload.id,
-                "title": action.payload.title,
-                "launch": action.payload.path,
-                "icon": "",
-                "uninstaller": "",
-                "platform": "manual",
-                "favourite": true, // Because favourite are shown first and we want to be sure the app is viewed by the user, we add it into favourite
-                "hidden": false,
-            }
+            const newApp = new App({
+                id: action.payload.id,
+                title: action.payload.title,
+                launch: action.payload.launch,
+                platform: APP_PLATFORM_MANUAL
+            })
             state.apps.unshift(newApp); // Web want to add the app first and not end (via push())
         },
         setAppFavourite: (state, action) => {

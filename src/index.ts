@@ -143,5 +143,4 @@ fromRendererProcess.on("releaseAltTab", (event, args) => {
 export { mainWindow };
 
 import './AppService/AppService'
-import './AppService/DataBaseManagement'
 import { LAUNCH_OPTION_STARTUP } from './Constants';

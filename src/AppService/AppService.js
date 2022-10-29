@@ -4,7 +4,8 @@ import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
 import axios from 'axios';
-import { RAWG_APIKEY, SHOW_POPIN_NONE, SHOW_POPIN_SCAN } from '../Constants';
+import { APP_PLATFORM_MANUAL, RAWG_APIKEY, SHOW_POPIN_NONE, SHOW_POPIN_SCAN } from '../Constants';
+import App from '../Model/App';
 
 const path = require('path');
 var slugify = require('slugify');
@@ -17,8 +18,23 @@ const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
 const libraryPathJSONdatabase = path.resolve(glcDir, (isProductionEnv()? './library.json' : './dev-library.json'));
 
 const loadMetadaFromJSONfile = async () => {
-    let installedApp = loadFromJSONFile(glcPathJSONdatabase); 
-    return (typeof installedApp.games == undefined)? [] : installedApp.games;;
+    let installedAppsFromFile = loadFromJSONFile(glcPathJSONdatabase);
+    let installedApps = [];
+
+    // we want to translate GLC app format into our format (even if they are almost similar from each other)
+    if (typeof installedAppsFromFile.games != undefined) {
+        each(installedAppsFromFile.games, item => {
+            let app = new App({
+                id: item.id,
+                title: item.title,
+                launch: item.launch,
+                platform: item.platform
+            });
+            installedApps.push(app);
+        });
+    }
+
+    return installedApps;
 }
 
 const fetchOnlineMetada = async (installedApp) => {
@@ -94,15 +110,13 @@ const scanForGames = async () => {
                 // we use the library from old scan as reference to keep sorting & all changes
                 let newLibrary = await loadMetadaFromJSONfile();
 
-                
-
                 newLibrary = addCustomApps(newLibrary); // add shortcuts like Steam big picture mode
                 newLibrary = blackListApps(newLibrary); // reject some app detected we don't want to see
                 let tempLibrary = [];
                
                 // remove old apps not found in new scan
                 each(library, item => {
-                    if (item.platform === 'manual' || find(newLibrary, (newItem) => item.id === newItem.id)) {
+                    if (item.platform === APP_PLATFORM_MANUAL || find(newLibrary, (newItem) => item.id === newItem.id)) {
                         tempLibrary.push(item);
                     } else {
                         // the item is not found in new library scan so we should remove it
@@ -136,16 +150,11 @@ const addCustomApps = (library) => {
     // ADD STEAM BIG PICTURE MODE
     // if we can find at least one game with the Steam platform, it must say that Steam big picture mode is available
     if(find(library, (item) => item.platform == 'Steam') && typeof find(library, (item) => item.id == 'steambigpicture') == 'undefined') {
-        library.push({
+        library.push(new App({
             "id": "steambigpicture",
             "title": "Steam Big Picture ©",
             "launch": "steam://open/bigpicture",
-            "icon": "",
-            "uninstaller": "",
-            "platform": "Steam",
-            "favourite": false,
-            "hidden": false,
-        });
+            "platform": APP_PLATFORM_MANUAL}));
     }
     return library;
 }
