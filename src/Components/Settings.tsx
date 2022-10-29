@@ -45,7 +45,7 @@ export const Settings = () => {
     const onFileSelectorChange = (event: any) => {
         const file: File = event.target.files[0];
         const appName:string = (file.name.substring(0, file.name.lastIndexOf(".")));
-        dispatch(addApp(new App({id: file.path, title: appName, launch: file.path})));
+        dispatch(addApp({... new App({id: file.path, title: appName, launch: file.path})} )); // the spread is here to serialize the object to send it to redux (error if not)
         onSettingsClose();
     }
 

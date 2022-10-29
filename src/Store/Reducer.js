@@ -36,7 +36,7 @@ export const GlobalState = createSlice({
                 launch: action.payload.launch,
                 platform: APP_PLATFORM_MANUAL
             })
-            state.apps.unshift(newApp); // Web want to add the app first and not end (via push())
+            state.apps.unshift({...newApp}); // Web want to add the app first and not end (via push()). Spread is for object serialization (error if not)
         },
         setAppFavourite: (state, action) => {
             let itemToUpdate = state.apps.filter((app) => app.id === action.payload.id)[0];

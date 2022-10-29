@@ -11,7 +11,6 @@
 - [ ] Disapear animation on hide
 
 # Features
-- [P1] Save settings in file
 - [P1] Settings : Detect Shadow and launch only on mobile device
 - [ ] Shutdown computer
 - [ ] Open source infos in a popin
