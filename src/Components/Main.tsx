@@ -68,7 +68,7 @@ const MainContainer = () => {
   }, [config.lang.value, config.launchOption]);
 
   return (
-      <MainWrapper mainInput={config.mainInput}>
+      <MainWrapper mainInput={ui.mainInput}>
         <GlobalStyle/>
         <Menu />
         <Content />

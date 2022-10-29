@@ -39,28 +39,28 @@ const NavHelperWrapper = styled.div<NavHelperProps>`
 export const NavHelper = () => {
     
     // @ts-ignore (because of globalState which is not recognized)
-    const { config } = useSelector((state) => state.globalState);
+    const { ui } = useSelector((state) => state.globalState);
     const { t } = useTranslation();
 
     return ( 
             <NavHelperWrapper>
                 <NavItemHelper>
-                    {config.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
-                    {config.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
-                    {config.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='E'/> }
+                    {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
+                    {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
+                    {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='E'/> }
                     <span>{t('NavHelperLaunch')}</span>
                 </NavItemHelper>
                 <NavItemHelper>
-                    {config.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
-                    {config.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
-                    {config.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
+                    {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
+                    {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
+                    {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
                     <span>{t('NavHelperFavourite')}</span>
                 </NavItemHelper>
                 
-                {config.mainInput !== MAIN_INPUT_MOUSE &&
+                {ui.mainInput !== MAIN_INPUT_MOUSE &&
                     <NavItemHelper>
-                        {config.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
-                        {config.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='H'/> }
+                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
+                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='H'/> }
                         <span>{t('NavHelperHide')}</span>
                     </NavItemHelper>
                 }

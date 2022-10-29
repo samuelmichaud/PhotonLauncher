@@ -22,7 +22,6 @@
 
 
 # Refacto & code improvment
-- [P1] Change the store folder for settings & library
 - [P1] Big refacto & cleanup on the scanning process
 - [ ] Input management => add custom events & move listener to components so we can have contextualized nav (for the settings popin, ...)
 - [ ] Refacto listener and store updater between backgroundProcess & renderer

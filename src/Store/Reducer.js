@@ -8,12 +8,12 @@ export const GlobalState = createSlice({
         apps: [],
         currentFocusedApp: null,
         config: {
-            mainInput: MAIN_INPUT_MOUSE, // mouse / gamepad / keyboard
             lang: LANG_OPTION_ENGLISH,
             launchOption: LAUNCH_OPTION_STARTUP
         },
         windowHasFocus: true,
         ui: {
+            mainInput: MAIN_INPUT_MOUSE, // mouse / gamepad / keyboard
             popin: SHOW_POPIN_NONE // settings, scan...
         },
         scanJob: {
@@ -54,7 +54,7 @@ export const GlobalState = createSlice({
             state.apps = state.apps.map((app) => app.id === action.payload.id ? {...app, hidden: action.payload.hidden} : app )
         },
         setMainInputSupport: (state, action) => {
-            state.config.mainInput = action.payload;
+            state.ui.mainInput = action.payload;
         },
         setWindowFocusState: (state, action) => {
             state.windowHasFocus = action.payload;

@@ -29,8 +29,8 @@ const Label = styled.label.attrs({htmlFor: "add-custom-app"})`
 export const FileSelector = ({label, onChangeAction, disableState}: FileSelectorProps) => {
     
     // @ts-ignore (because of globalState which is not recognized)
-    const { config } = useSelector((state) => state.globalState);
-    disableState = config.mainInput !== MAIN_INPUT_MOUSE;
+    const { ui } = useSelector((state) => state.globalState);
+    disableState = ui.mainInput !== MAIN_INPUT_MOUSE;
 
     return (
         <FileSelectorBox label={label} disableState={disableState} >

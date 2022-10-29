@@ -76,7 +76,7 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
 
   const onMouseEnter = () => {
     // @ts-ignore
-    if (globalState.config.mainInput === MAIN_INPUT_MOUSE) {
+    if (globalState.ui.mainInput === MAIN_INPUT_MOUSE) {
       focusSelf();
     }
   }

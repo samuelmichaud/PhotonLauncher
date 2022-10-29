@@ -27,7 +27,7 @@ export const Content = () => {
     const { t } = useTranslation();
     const [loadingState, setLoadingState] = useState(true);
     // @ts-ignore (because of globalState which is not recognized)
-    const { apps, config } = useSelector((state) => state.globalState);
+    const { apps, ui } = useSelector((state) => state.globalState);
     const dispatch = useDispatch();
 
     const { ref, focusKey, focusSelf } = useFocusable({
@@ -42,7 +42,7 @@ export const Content = () => {
         // save the current focused item for later use (ex: action like favourites, hide, ...)
         dispatch(setFocusApp({currentFocusedApp: itemFocused }));
         // when the AppCard is focused, we want to auto scroll the AppCard into view, however, if the user use her mouse, we don't auto scroll
-        if (config.mainInput === MAIN_INPUT_KEYBOARD || config.mainInput === MAIN_INPUT_GAMEPAD) {
+        if (ui.mainInput === MAIN_INPUT_KEYBOARD || ui.mainInput === MAIN_INPUT_GAMEPAD) {
             ref.current.scrollTo({
                 top: top - height,
                 behavior: "smooth"
