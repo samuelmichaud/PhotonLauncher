@@ -42,7 +42,7 @@ export const SHOW_POPIN_SCAN     = "popin_scan"
 
 // OPTIONS LANGUAGE SUPPORT
 export const LANG_OPTION_ENGLISH = { displayName: "English", value: 'en-US'}
-export const LANG_OPTION_FRENCH  = { displayName: "Français", value: 'fr-FR' }
+export const LANG_OPTION_FRENCH  = { displayName: "Français", value: 'fr-FR'}
 export const LANG_LIST_OPTIONS = [LANG_OPTION_ENGLISH, LANG_OPTION_FRENCH]
 
 export const LAUNCH_OPTION_STARTUP = "launch_startup"

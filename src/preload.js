@@ -24,6 +24,13 @@ window.ShadowApi = {
     storeDatabase: (data) => {
         backgroundProcess.send('storeDatabase', data);
     },
+    storeConfig: (config) => {
+        backgroundProcess.send('storeConfig', config);
+    },
+    loadConfig: (func) => {
+        backgroundProcess.on('getConfig', (event, ...args) => func(...args));
+        backgroundProcess.send('getConfig');
+    },
     quitApp: () => {
         backgroundProcess.send('exit-app');
     },

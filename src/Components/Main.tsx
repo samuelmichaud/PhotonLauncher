@@ -14,7 +14,7 @@ import { NavHelper } from './NavHelper';
 import { Settings } from './Settings';
 import { Content } from './Content';
 import store from '../Store/Store';
-import { setWindowFocusState, togglePopin } from '../Store/Reducer'
+import { setWindowFocusState, togglePopin, setConfig } from '../Store/Reducer'
 import { Provider, useSelector } from 'react-redux'
 
 import '../InputManagement.js';
@@ -36,6 +36,9 @@ window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
 });
 window.ShadowApi.listenForTogglePopin((payload: any) => {
     store.dispatch(togglePopin(payload));
+});
+window.ShadowApi.loadConfig((config: any) => {
+    store.dispatch(setConfig(config));
 });
 
 const GlobalStyle = createGlobalStyle`

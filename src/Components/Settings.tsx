@@ -4,7 +4,8 @@ import {
     useFocusable,
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { findIndex } from 'underscore';
 import { togglePopin, setLanguage, setLaunchOption, addApp } from './../Store/Reducer';
 import { Popin } from './Generics/Popin';
 import { Button } from './Generics/Button';
@@ -25,6 +26,8 @@ export const Settings = () => {
     const { ref, focusKey, focusSelf, setFocus } = useFocusable({isFocusBoundary: true});
     const dispatch = useDispatch();
     const { t } = useTranslation();
+    // @ts-ignore (because of globalState which is not recognized)
+    const { config } = useSelector((state) => state.globalState);
 
     useEffect(() => {
         focusSelf();
@@ -61,11 +64,13 @@ export const Settings = () => {
                     <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
                     <OptionSelector 
                         label={t('SettingsLanguageLabel')} 
-                        options={LANG_LIST_OPTIONS} 
+                        options={LANG_LIST_OPTIONS}
+                        initialOption={findIndex(LANG_LIST_OPTIONS, (item: any) => item.value === config.lang.value)}
                         getCurrentOption={(lang) => dispatch(setLanguage(lang))} />
                     <OptionSelector 
                         label={t('SettingsLaunchLabel')} 
-                        options={launchSettings} 
+                        options={launchSettings}
+                        initialOption={findIndex(launchSettings, (item: any) => item.value === config.launchOption.value)}
                         getCurrentOption={(option) => {window.ShadowApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} />
                     <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
 

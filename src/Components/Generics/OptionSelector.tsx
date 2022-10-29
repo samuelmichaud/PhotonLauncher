@@ -17,6 +17,7 @@ interface OptionProps {
 interface OptionSelectorProps {
     label: string; 
     options: Array<OptionProps>;
+    initialOption?: number;
     focused?: boolean;
     getCurrentOption?: (option: any) => void;
     onEnterPress?: (props: object, details: KeyPressDetails) => void;
@@ -48,8 +49,8 @@ const Selector = styled.div`
     justify-content: center;
 `
 
-export const OptionSelector = ({label, getCurrentOption, options}: OptionSelectorProps) => {
-    const [selectedOption, setSelectedOption] = useState(0);
+export const OptionSelector = ({label, getCurrentOption, options, initialOption = 0}: OptionSelectorProps) => {
+    const [selectedOption, setSelectedOption] = useState(initialOption);
     const action = () => {
         let nextOption = (selectedOption < options.length - 1)? (selectedOption + 1) : 0;
         setSelectedOption(nextOption);

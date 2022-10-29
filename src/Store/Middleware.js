@@ -8,6 +8,12 @@ export const DatabaseMiddleware = store => next => action => {
         next(action); // we need to apply the new state before accessing it
         window.ShadowApi.storeDatabase(store.getState().globalState.apps);
         return action;
+        
+    } else if (action.type == 'globalState/setLanguage'
+        || action.type == 'globalState/setLaunchOption') {
+        next(action); // we need to apply the new state before accessing it
+        window.ShadowApi.storeConfig(store.getState().globalState.config);
+        return action;
     }
     return next(action);
 }

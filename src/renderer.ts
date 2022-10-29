@@ -36,6 +36,8 @@ export interface ShadowApi {
     scanForGames: () => void,
     loadLibraryFromSource: () => void,
     storeDatabase: (data: any) => void,
+    loadConfig: (func: any) => void,
+    storeConfig: (config: any) => void,
     fetchApps: (func: any) => void,
     listenForWindowFocusChange: (func: any) => void,
     quitApp: () => void,

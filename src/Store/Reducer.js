@@ -22,6 +22,7 @@ export const GlobalState = createSlice({
         }
     },
     reducers: {
+        /** App management */
         setFocusApp: (state, action) => {
             state.currentFocusedApp = action.payload.currentFocusedApp
         },
@@ -53,6 +54,7 @@ export const GlobalState = createSlice({
         setAppVisibility: (state, action) => {
             state.apps = state.apps.map((app) => app.id === action.payload.id ? {...app, hidden: action.payload.hidden} : app )
         },
+        /** UI managment */
         setMainInputSupport: (state, action) => {
             state.ui.mainInput = action.payload;
         },
@@ -66,6 +68,10 @@ export const GlobalState = createSlice({
             state.scanJob.status = action.payload.status;
             state.scanJob.progress = action.payload.progress;
         },
+        /** Config management */
+        setConfig: (state, action) => {
+            state.config = { ...state.config, ...action.payload } // merge configs, new config override the current one
+        },
         setLanguage: (state, action) => {
             state.config.lang = action.payload;
         },
@@ -76,7 +82,8 @@ export const GlobalState = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { 
+export const {
+    addApp, 
     setFocusApp, 
     setApps, 
     setAppFavourite, 
@@ -87,6 +94,7 @@ export const {
     setLanguage,
     setLaunchOption,
     setScanJobDetail,
-    addApp } = GlobalState.actions
+    setConfig
+} = GlobalState.actions
 
 export default GlobalState.reducer

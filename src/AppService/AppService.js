@@ -14,8 +14,9 @@ import log from 'electron-log';
 // Store the glc.exe directory for future reuse. Because the .exe generate files on its own folder
 const glcDir = path.resolve(__dirname, './../');
 const glcPathJSONdatabase = path.resolve(glcDir, './glc-games.json');
-const libraryDir = electronApp.getPath('userData');
-const libraryPathJSONdatabase = path.resolve(libraryDir, (isProductionEnv()? './library.json' : './dev-library.json'));
+const appDatayDir = electronApp.getPath('userData');
+const libraryPathJSONdatabase = path.resolve(appDatayDir, (isProductionEnv()? './library.json' : './dev-library.json'));
+const configPathJSONdatabase = path.resolve(appDatayDir, './config.json');
 
 const loadMetadaFromJSONfile = async () => {
     let installedAppsFromFile = loadFromJSONFile(glcPathJSONdatabase);
@@ -173,6 +174,14 @@ export const storeDatabase = (data, callback) => {
 
 fromRendererProcess.on("storeDatabase", (event, args) => {
     storeDatabase(args);
+});
+
+fromRendererProcess.on("getConfig", () => {
+    mainWindow.webContents.send('getConfig', loadFromJSONFile(configPathJSONdatabase));
+});
+
+fromRendererProcess.on("storeConfig", (event, config) => {
+    storeToJSONFile(configPathJSONdatabase, config);
 });
 
 fromRendererProcess.on("fetchAppsFromSource", (event, args) => {
