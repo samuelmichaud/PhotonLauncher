@@ -3,14 +3,13 @@ import { ipcMain as fromRendererProcess, app as electronApp } from 'electron';
 import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
 import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
-import axios from 'axios';
 import { APP_PLATFORM_MANUAL, RAWG_APIKEY, SHOW_POPIN_NONE, SHOW_POPIN_SCAN } from '../Constants';
+import axios from 'axios';
 import App from '../Model/App';
-
-const path = require('path');
-var slugify = require('slugify');
-const child_process = require('child_process');
-const log = require('electron-log');
+import path from 'path';
+import slugify from 'slugify';
+import child_process from 'child_process';
+import log from 'electron-log';
 
 // Store the glc.exe directory for future reuse. Because the .exe generate files on its own folder
 const glcDir = path.resolve(__dirname, './../');
