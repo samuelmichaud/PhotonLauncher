@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { OptionSelector } from './Generics/OptionSelector';
 import { FileSelector } from './Generics/FileSelector';
 import App from '../Model/App';
+import { HorizontalSeparator } from './Generics/HorizontalSeparator';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -61,7 +62,7 @@ export const Settings = () => {
                     </Button>
                     <FileSelector label={t('SettingsAddCustomAppLabel')} onChangeAction={(event) => onFileSelectorChange(event)}></FileSelector>
 
-                    <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
+                    <HorizontalSeparator />
                     <OptionSelector 
                         label={t('SettingsLanguageLabel')} 
                         options={LANG_LIST_OPTIONS}
@@ -72,7 +73,7 @@ export const Settings = () => {
                         options={launchSettings}
                         initialOption={findIndex(launchSettings, (item: any) => item.value === config.launchOption.value)}
                         getCurrentOption={(option) => {window.ShadowApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} />
-                    <hr style={{border: 'none', background: '#9ab0ff', width: '100%', height: '0.1rem'}}/>
+                    <HorizontalSeparator />
 
                     <Button label={t('SettingsPopinCloseButton')} action={() => { onSettingsClose(); }} theme={THEME_PRIMARY_DARK}></Button>
                 </InnerSettings>
