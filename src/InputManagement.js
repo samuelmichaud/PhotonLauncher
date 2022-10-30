@@ -1,8 +1,8 @@
 import 'joypad.js';
 
 import store from './Store/Store';
-import { setAppFavourite, setAppVisibility, setMainInputSupport } from './Store/Reducer'
-import { MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE } from './Constants';
+import { setAppFavourite, setAppVisibility, setMainInputSupport, togglePopin } from './Store/Reducer'
+import { MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE, SHOW_POPIN_SETTINGS } from './Constants';
 
 let state = null;
 
@@ -28,6 +28,9 @@ const triggerKey = (key) => {
                 break;
             case 'Enter': // 'A' in a XBOX controller
                 document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', 'keyCode': 13, 'bubbles': true}));
+                break;
+            case 'Menu':
+                store.dispatch(togglePopin(SHOW_POPIN_SETTINGS));
                 break;
             case 'ToggleFavourite': // 'Y' in a XBOX controller
                 if (state.currentFocusedApp && state.currentFocusedApp.id) {
@@ -56,6 +59,8 @@ document.addEventListener('keyup', (event) => {
         triggerKey('ToggleHideView');
     } else if (event.key === 'e') {
         triggerKey('Enter');
+    } else if (event.key === 'm') {
+        triggerKey('Menu');
     }
     // if a key is triggered, we want to remove mouse support
     store.dispatch(setMainInputSupport(MAIN_INPUT_KEYBOARD));
@@ -102,7 +107,7 @@ window.joypad.on('button_release', e => {
 
     // When the "menu" button is release, we need to unsubscribe (release) alt (+ shift if reverse) keys
     if (buttonName == 'button_8' || buttonName == 'button_9') {
-    window.ShadowApi.releaseAltTab();
+        window.ShadowApi.releaseAltTab();
     };
 });
 
