@@ -10,7 +10,7 @@ import { FRAME_PADDING, MENU_FOCUS, SHOW_POPIN_SETTINGS, THEME_TRANSPARENT } fro
 import { useDispatch } from 'react-redux';
 import { togglePopin } from './../Store/Reducer';
 import { Button } from './Generics/Button';
-import { SettingsIcon } from '../Images/SettingsIcon';
+import { MenuIcon } from '../Images/MenuIcon';
 import { QuitIcon } from '../Images/QuitIcon';
 import { ShadowLogo } from '../Images/ShadowLogo';
 import { useTranslation } from "react-i18next";
@@ -74,7 +74,7 @@ export const Menu = () => {
                 <ShadowLogo />
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
                     <Button label={t('MenuSettings')} action={() => dispatch(togglePopin(SHOW_POPIN_SETTINGS))} theme={THEME_TRANSPARENT}>
-                        <SettingsIcon />
+                        <MenuIcon />
                     </Button>
                     <Button label={t('Quit')} action={() => window.ShadowApi.quitApp()} theme={THEME_TRANSPARENT}>
                         <QuitIcon />
