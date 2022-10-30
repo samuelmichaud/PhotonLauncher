@@ -1,12 +1,13 @@
 
 
 # Library management
-- [ ] Show hidden apps
+
 
 # Design
 - [ ] Enter key instead of 'E' in NavHelper
 
 # UX
+- [ ] Add a detail page for apps with actions
 - [ ] Animation on fav
 - [ ] Disapear animation on hide
 

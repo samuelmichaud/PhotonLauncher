@@ -12,6 +12,9 @@ i18n
         translation: {
             EmptyLibraryTitle: "Launch a scan to see your apps...",
             EmptyLibraryLabelButton: "Launch a scan",
+            ButtonShowHiddenApps: "Show hidden apps",
+            ButtonHideHiddenApps: "Hide apps",
+            TitleContentGridHiddenApps: "Hidden apps",
             LoadingMessage: "Loading...",
             MenuSettings: "Settings",
             MenuQuit: "Quit",
@@ -34,6 +37,9 @@ i18n
         translation: {
             EmptyLibraryTitle: "Lancer un scan pour voir vos applications...",
             EmptyLibraryLabelButton: "Lancer un scan",
+            ButtonShowHiddenApps: "Afficher les applications masquées",
+            ButtonHideHiddenApps: "Cacher les applications masquées",
+            TitleContentGridHiddenApps: "Applications masquées",
             LoadingMessage: "Chargement...",
             MenuSettings: "Paramètres",
             MenuQuit: "Quitter",

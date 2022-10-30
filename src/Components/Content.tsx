@@ -10,10 +10,12 @@ import {
 import { ContentGrid } from './ContentGrid';
 import { Loading } from './Generics/Loading';
 import { EmptyLibrary } from './EmptyLibrary';
-import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../Constants';
+import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD, THEME_TRANSPARENT } from '../Constants';
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from 'react-redux'
-import { setApps, setFocusApp } from '../Store/Reducer'
+import { useSelector, useDispatch } from 'react-redux';
+import { setApps, setFocusApp } from '../Store/Reducer';
+import App from './../Model/App';
+import { Button } from './Generics/Button';
 
 const ContentWrapper = styled.div`
     flex: 1;
@@ -26,6 +28,7 @@ const ContentWrapper = styled.div`
 export const Content = () => {
     const { t } = useTranslation();
     const [loadingState, setLoadingState] = useState(true);
+    const [showHiddenApps, forceShowHiddenApps] = useState(false);
     // @ts-ignore (because of globalState which is not recognized)
     const { apps, ui } = useSelector((state) => state.globalState);
     const dispatch = useDispatch();
@@ -60,6 +63,10 @@ export const Content = () => {
             focusSelf();
         });
     }, [focusSelf]);
+
+    const featuredApps = apps.slice(0, 2).filter((item: App) => !item.hidden);
+    const allApps = apps.slice(2).filter((item: App) => !item.hidden);
+    const hiddenApps = apps.filter((item: App) => item.hidden);
     
     return (
         <FocusContext.Provider value={focusKey}>
@@ -68,16 +75,27 @@ export const Content = () => {
                     <div>
                         <ContentGrid
                             key={'Carrousel'}
-                            apps={apps.slice(0, 2)}
+                            apps={featuredApps}
                             onFocus={onFocusCallback}
                             scrollingRef={ref}
                             layoutType={'big'}/>
                         <ContentGrid
                             key={'Installed apps'}
-                            apps={apps.slice(2)}
+                            apps={allApps}
                             onFocus={onFocusCallback}
                             scrollingRef={ref}
                             layoutType={'normal'} />
+                        { hiddenApps.length > 0 
+                            && <Button label={t(showHiddenApps? 'ButtonHideHiddenApps' : 'ButtonShowHiddenApps')} 
+                                       theme={THEME_TRANSPARENT} action={() => forceShowHiddenApps(!showHiddenApps)}/> }
+                        { showHiddenApps &&
+                            <ContentGrid
+                                key={'hidden apps'}
+                                title={t('TitleContentGridHiddenApps')}
+                                apps={hiddenApps}
+                                onFocus={onFocusCallback}
+                                scrollingRef={ref}
+                                layoutType={'normal'} />}
                     </div>
                 : (loadingState? 
                     <Loading loadingMessage={t('loadingState')}/> :
