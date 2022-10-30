@@ -9,7 +9,6 @@
 # UX
 - [ ] Animation on fav
 - [ ] Disapear animation on hide
-- [ ] Change settings icon by burger menu
 
 # Features
 - [P1] Settings : Detect Shadow and launch only on mobile device

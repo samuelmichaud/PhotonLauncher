@@ -19,21 +19,17 @@ const NavItemHelper = styled.div`
 `
 
 const NavHelperWrapper = styled.div<NavHelperProps>`
-    position: absolute;
-    height: 5rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    height: 3rem;
     color: white;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: row;
-    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+    box-shadow: 0px -7px 10px rgb(0 0 0 / 30%);
     padding: 1rem ${FRAME_PADDING}rem;
     z-index: 99;
     gap: 3rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
 `
 
 export const NavHelper = () => {
