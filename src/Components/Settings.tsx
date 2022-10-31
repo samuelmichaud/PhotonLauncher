@@ -35,7 +35,7 @@ export const Settings = () => {
     }, [focusSelf]);
 
     const onSettingsClose = () => {
-        setFocus(MENU_FOCUS); dispatch(togglePopin(SHOW_POPIN_NONE));
+        setFocus(MENU_FOCUS); dispatch(togglePopin({id: SHOW_POPIN_NONE}));
     }
 
     const launchSettings = [
@@ -52,7 +52,7 @@ export const Settings = () => {
 
     return (
         <FocusContext.Provider value={focusKey}>
-            <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM}>
+            <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM} closeAction={() => onSettingsClose()}>
                 <InnerSettings ref={ref} >
                     <Button label={t('SettingsPopinRefreshButton')} action={() => { onSettingsClose(); window.ShadowApi.scanForGames()}} theme={THEME_DARK}>
                         <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '0.5rem'}}>

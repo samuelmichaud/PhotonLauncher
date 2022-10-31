@@ -14,7 +14,10 @@ export const GlobalState = createSlice({
         windowHasFocus: true,
         ui: {
             mainInput: MAIN_INPUT_MOUSE, // mouse / gamepad / keyboard
-            popin: SHOW_POPIN_NONE // settings, scan...
+            popin: {
+                id: SHOW_POPIN_NONE, // settings, scan...
+                context: null
+            }
         },
         scanJob: {
             status: SCAN_JOB_STATUS_NOT_STARTED, // not_started, ongoing_scan, ongoing_fetchmetadata, completed
@@ -62,7 +65,10 @@ export const GlobalState = createSlice({
             state.windowHasFocus = action.payload;
         },
         togglePopin: (state, action) => {
-            state.ui.popin = action.payload;
+            state.ui.popin = {
+                id: action.payload.id,
+                context: action.payload.context
+            }
         },
         setScanJobDetail: (state, action) => {
             state.scanJob.status = action.payload.status;

@@ -64,8 +64,9 @@ export const Content = () => {
         });
     }, [focusSelf]);
 
-    const featuredApps = apps.slice(0, 2).filter((item: App) => !item.hidden);
-    const allApps = apps.slice(2).filter((item: App) => !item.hidden);
+    const allAppsNotHidden = apps.filter((item: App) => !item.hidden);
+    const featuredApps = allAppsNotHidden.slice(0, 2);
+    const allApps = allAppsNotHidden.slice(2);
     const hiddenApps = apps.filter((item: App) => item.hidden);
     
     return (

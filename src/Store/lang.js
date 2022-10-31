@@ -21,6 +21,7 @@ i18n
             NavHelperLaunch: "Launch",
             NavHelperFavourite: "Favourite",
             NavHelperHide: "Hide",
+            NavHelperActions: "Actions Menu",
             SettingsPopinTitle: "Settings",
             SettingsPopinRefreshButton: "Refresh library",
             SettingsPopinCloseButton: "Save and close",
@@ -30,7 +31,13 @@ i18n
             SettingsLaunchLabel: "Startup mode",
             SettingsLaunchStartup: "Launch with Windows",
             SettingsLaunchNone: "No automatic startup",
-            SettingsAddCustomAppLabel: "Add a custom app (mouse only)"
+            SettingsAddCustomAppLabel: "Add a custom app (mouse only)",
+            AppActionLaunchButton: "Open application",
+            AppActionAddToFavouriteButton: "Add to favourite",
+            AppActionRemoveFromFavouriteButton: "Remove from favourite",
+            AppActionHideButton: "Hide the app",
+            AppActionShowButton: "Show the app",
+            AppActionPopinCloseButton: "Close",
         }
       },
       fr: {
@@ -45,7 +52,8 @@ i18n
             MenuQuit: "Quitter",
             NavHelperLaunch: "Lancer",
             NavHelperFavourite: "Favoris",
-            NavHelperHide: "Cacher",
+            NavHelperHide: "Masquer",
+            NavHelperActions: "Actions",
             SettingsPopinTitle: "Paramètres",
             SettingsPopinRefreshButton: "Rafraîchir la librairie",
             SettingsPopinCloseButton: "Sauveguarder et fermer",
@@ -55,7 +63,13 @@ i18n
             SettingsLaunchLabel: "Mode de lancement",
             SettingsLaunchStartup: "Démarrer avec Windows",
             SettingsLaunchNone: "Pas de démarrage automatique",
-            SettingsAddCustomAppLabel: "Ajouter une app manuellement (souris requise)"
+            SettingsAddCustomAppLabel: "Ajouter une app manuellement (souris requise)",
+            AppActionLaunchButton: "Lancer l'application",
+            AppActionAddToFavouriteButton: "Ajouter au favoris",
+            AppActionRemoveFromFavouriteButton: "Supprimer des favoris",
+            AppActionHideButton: "Masquer l'application",
+            AppActionShowButton: "Rendre visible l'application",
+            AppActionPopinCloseButton: "Fermer",
         }
       }
     },

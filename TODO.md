@@ -7,15 +7,15 @@
 - [ ] Enter key instead of 'E' in NavHelper
 
 # UX
-- [ ] Add a detail page for apps with actions
-- [ ] Animation on fav
-- [ ] Disapear animation on hide
+- [P1] Add a detail page for apps with actions
+- [P2] Animation on fav
+- [P2] Disapear animation on hide
 
 # Features
-- [P1] Settings : Detect Shadow and launch only on mobile device
-- [ ] Shutdown computer
+- [P1] Help popin
+- [P2] Settings : Detect Shadow and launch only on mobile device
 - [ ] Open source infos in a popin
-- [ ] Help popin
+- [ ] Shutdown computer
 - [ ] Launch a refresh scan at startup
 
 # Bugs

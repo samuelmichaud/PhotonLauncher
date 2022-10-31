@@ -7,6 +7,7 @@ interface PopinProps {
     children?: any;
     title?: string;
     size?: string;
+    closeAction?: () => void;
 }
 
 const PopinWrapper = styled.div`
@@ -73,11 +74,11 @@ const Title = styled.h1`
     font-size: 2.5rem;
 `
 
-export const Popin = ({children, title, size}: PopinProps) => {
+export const Popin = ({children, title, size, closeAction}: PopinProps) => {
     
     return (
         <PopinWrapper>
-            <PopinOverlay />
+            <PopinOverlay onClick={() => closeAction()}/>
             <PopinBox size={size}>
                 <Title>{title}</Title>
                 {children}

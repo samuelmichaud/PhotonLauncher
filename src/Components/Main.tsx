@@ -18,9 +18,11 @@ import { setWindowFocusState, togglePopin, setConfig } from '../Store/Reducer'
 import { Provider, useSelector } from 'react-redux'
 
 import '../InputManagement.js';
-import { MAIN_INPUT_MOUSE, SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
+import { MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION, SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
 import { ScanPopin } from './ScanPopin';
+import { AppActionPopin } from './AppActionPopin';
 import { useTranslation } from "react-i18next";
+import App from '../Model/App';
 
 init({
   debug: false,
@@ -60,7 +62,7 @@ const MainWrapper = styled.div<MainWrapperProps>`
 
 const MainContainer = () => {
   //@ts-ignore
-  const { ui, config } = useSelector((state) => state.globalState);
+  const { ui, config, apps } = useSelector((state) => state.globalState);
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -73,8 +75,9 @@ const MainContainer = () => {
         <GlobalStyle/>
         <Menu />
         <Content />
-        {ui.popin === SHOW_POPIN_SETTINGS && <Settings />}
-        {ui.popin === SHOW_POPIN_SCAN && <ScanPopin />}
+        {ui.popin.id === SHOW_POPIN_SETTINGS && <Settings />}
+        {ui.popin.id === SHOW_POPIN_SCAN && <ScanPopin />}
+        {ui.popin.id === SHOW_POPIN_APP_ACTION && <AppActionPopin app={apps.filter((item: App) => item.id === ui.popin.context)[0]}/>}
         <NavHelper />
       </MainWrapper>
       )

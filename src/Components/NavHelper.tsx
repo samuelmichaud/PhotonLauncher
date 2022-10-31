@@ -46,12 +46,21 @@ export const NavHelper = () => {
                     {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='E'/> }
                     <span>{t('NavHelperLaunch')}</span>
                 </NavItemHelper>
+
                 <NavItemHelper>
-                    {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
-                    {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
-                    {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
-                    <span>{t('NavHelperFavourite')}</span>
+                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
+                        {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
+                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='A'/> }
+                        <span>{t('NavHelperActions')}</span>
                 </NavItemHelper>
+
+                {ui.mainInput !== MAIN_INPUT_MOUSE &&
+                    <NavItemHelper>
+                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
+                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
+                        <span>{t('NavHelperFavourite')}</span>
+                    </NavItemHelper>
+                }
                 
                 {ui.mainInput !== MAIN_INPUT_MOUSE &&
                     <NavItemHelper>

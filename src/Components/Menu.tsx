@@ -73,7 +73,7 @@ export const Menu = () => {
             <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
                 <ShadowLogo />
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-                    <Button label={t('MenuSettings')} action={() => dispatch(togglePopin(SHOW_POPIN_SETTINGS))} theme={THEME_TRANSPARENT}>
+                    <Button label={t('MenuSettings')} action={() => dispatch(togglePopin({id: SHOW_POPIN_SETTINGS}))} theme={THEME_TRANSPARENT}>
                         <MenuIcon />
                     </Button>
                     <Button label={t('Quit')} action={() => window.ShadowApi.quitApp()} theme={THEME_TRANSPARENT}>

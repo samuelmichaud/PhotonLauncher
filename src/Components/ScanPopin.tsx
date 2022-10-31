@@ -33,7 +33,7 @@ export const ScanPopin = () => {
     }, [focusSelf]);
 
     const onPopinClose = () => {
-        setFocus(MENU_FOCUS); dispatch(togglePopin(SHOW_POPIN_NONE));
+        setFocus(MENU_FOCUS); dispatch(togglePopin({id: SHOW_POPIN_NONE}));
     }
 
     return (

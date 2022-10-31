@@ -2,7 +2,7 @@ import 'joypad.js';
 
 import store from './Store/Store';
 import { setAppFavourite, setAppVisibility, setMainInputSupport, togglePopin } from './Store/Reducer'
-import { MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE, SHOW_POPIN_SETTINGS } from './Constants';
+import { MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION, SHOW_POPIN_SETTINGS } from './Constants';
 
 let state = null;
 
@@ -30,7 +30,12 @@ const triggerKey = (key) => {
                 document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', 'keyCode': 13, 'bubbles': true}));
                 break;
             case 'Menu':
-                store.dispatch(togglePopin(SHOW_POPIN_SETTINGS));
+                store.dispatch(togglePopin({id: SHOW_POPIN_SETTINGS}));
+                break;
+            case 'AppAction':
+                if (state.currentFocusedApp && state.currentFocusedApp.id) {
+                    store.dispatch(togglePopin({id: SHOW_POPIN_APP_ACTION, context: state.currentFocusedApp.id}));
+                }
                 break;
             case 'ToggleFavourite': // 'Y' in a XBOX controller
                 if (state.currentFocusedApp && state.currentFocusedApp.id) {
@@ -61,6 +66,8 @@ document.addEventListener('keyup', (event) => {
         triggerKey('Enter');
     } else if (event.key === 'm') {
         triggerKey('Menu');
+    } else if (event.key === 'a') {
+        triggerKey('AppAction');
     }
     // if a key is triggered, we want to remove mouse support
     store.dispatch(setMainInputSupport(MAIN_INPUT_KEYBOARD));
@@ -73,7 +80,7 @@ document.addEventListener('mousemove', () => {
 
 document.addEventListener('mouseup', (event) => {
     if (event.button === 2 /* Right clic */) {
-        triggerKey('ToggleFavourite'); // will do nothing if no item focused
+        triggerKey('AppAction'); // will do nothing if no item focused
     }
 });
 
