@@ -49,7 +49,7 @@ interface AppCardProps {
 export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
 
   // @ts-ignore
-  const { globalState } = useSelector((state) => state);
+  const { ui } = useSelector((state) => state.globalState);
 
   const [launchingState, setLaunchingState] = useState(false);
   
@@ -74,9 +74,8 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
       }, 10000); // 10s throttle between user clics
   }
 
-  const onMouseEnter = () => {
-    // @ts-ignore
-    if (globalState.ui.mainInput === MAIN_INPUT_MOUSE) {
+  const onMouseOver = () => {
+    if (ui.mainInput === MAIN_INPUT_MOUSE) {
       focusSelf();
     }
   }
@@ -85,7 +84,7 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
     <AppCardWrapper 
         ref={ref} 
         onClick={() => {onAppCardPress(app)}} 
-        onMouseEnter={() => {onMouseEnter()}}
+        onMouseOver={() => {onMouseOver()}}
         key={app.id}
         tgdbID={app.tgdbID}
         background_image={app.background_image}
