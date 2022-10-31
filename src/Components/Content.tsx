@@ -89,7 +89,7 @@ export const Content = () => {
                         { hiddenApps.length > 0 
                             && <Button label={t(showHiddenApps? 'ButtonHideHiddenApps' : 'ButtonShowHiddenApps')} 
                                        theme={THEME_TRANSPARENT} action={() => forceShowHiddenApps(!showHiddenApps)}/> }
-                        { showHiddenApps &&
+                        { showHiddenApps && hiddenApps.length > 0 &&
                             <ContentGrid
                                 key={'hidden apps'}
                                 title={t('TitleContentGridHiddenApps')}

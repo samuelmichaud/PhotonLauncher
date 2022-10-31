@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -9,7 +9,7 @@ import {
     FocusableComponentLayout
 } from '@noriginmedia/norigin-spatial-navigation';
 import { AppCard } from './AppCard';
-import { GRID_GAP } from '../Constants';
+import { GRID_GAP, CONTENT_FOCUS } from '../Constants';
 
 const ContentGridWrapper = styled.div`
     margin-bottom: 3.7rem;
@@ -53,7 +53,14 @@ export const ContentGrid = ({
     layoutType,
     onFocus
 }: ContentGridProps) => {
-    const { ref, focusKey } = useFocusable();
+    const { ref, focusKey, setFocus } = useFocusable();
+
+    // if the contentGrid unmount we need to focus elsewhere to avoid focus loose!
+    useEffect(() => {
+        return () => {
+            setFocus(CONTENT_FOCUS);
+        }
+    }, []);
     
     return (
         <FocusContext.Provider value={focusKey}>
