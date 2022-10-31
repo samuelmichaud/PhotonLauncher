@@ -6,7 +6,7 @@ import {
     useFocusable,
     KeyPressDetails
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT } from '../../Constants';
+import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT, THEME_SECONDARY_DARK } from '../../Constants';
 
 interface ButtonProps {
     label: string; 
@@ -37,6 +37,11 @@ const ButtonBox = styled.div<ButtonProps>`
                 return `
                     background-color: #2E344B;
                 `
+            case THEME_SECONDARY_DARK:
+                return `
+                    background-color: #1f2336;
+                    color: #ddd;
+                `
         }
     }}
     border-color: ${({ focused }) => (focused ? 'white' : 'transparent')};
@@ -52,6 +57,7 @@ const ButtonBox = styled.div<ButtonProps>`
     font-size: 1.8rem;
     justify-content: center;
     transition: all 0.2s ease-in-out;
+    gap: 1rem;
   `;
 
 export const Button = ({label, action = () => {}, onEnterPress, children, theme, disableState}: ButtonProps) => {

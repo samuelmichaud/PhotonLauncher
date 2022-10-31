@@ -55,7 +55,7 @@ const PopinBox = styled.div<PopinBoxProps>`
             case POPIN_SIZE_LARGE:
             default:
                 return `
-                    min-height: 90vh;
+                    min-height: 50vh;
                     width: 70vw;
                 `
         }

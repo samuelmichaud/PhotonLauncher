@@ -8,6 +8,7 @@ export const POPIN_BG_COLOR = "rgba(16, 19, 34, 100%)";
 export const THEME_PRIMARY_DARK = 'primary-dark';
 export const THEME_DARK = 'dark';
 export const THEME_TRANSPARENT = 'transparent';
+export const THEME_SECONDARY_DARK = 'secondary-dark';
 
 // UI CONSTANTS
 export const GRID_GAP = 2; // Grid gap between items (contentGrid, contentRow, ...). In rem (base 10px).
