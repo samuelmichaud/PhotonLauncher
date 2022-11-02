@@ -86,7 +86,7 @@ const loadAppFromFile = () => {
 // Launch glc.exe to scan the system for games
 const scanForGames = async () => {
 
-    mainWindow.webContents.send('togglePopin', SHOW_POPIN_SCAN);
+    mainWindow.webContents.send('togglePopin', {id: SHOW_POPIN_SCAN});
 
     let library = loadLibraryDB(); // Read from file
 
@@ -138,7 +138,7 @@ const scanForGames = async () => {
                 storeDatabase(library, () => {
                     log.info('Library stored, starting loadAppFromFile');
                     loadAppFromFile();
-                    mainWindow.webContents.send('togglePopin', SHOW_POPIN_NONE);
+                    mainWindow.webContents.send('togglePopin', {id: SHOW_POPIN_NONE});
                 });
                 break;
             default: 
