@@ -51,7 +51,7 @@ const Selector = styled.div`
 
 export const OptionSelector = ({label, getCurrentOption, options, initialOption = 0}: OptionSelectorProps) => {
     // check if initialOption is ok to avoid crash
-    initialOption = (initialOption > 0 && initialOption < (options.length - 1))? initialOption : 0;
+    initialOption = (initialOption > 0 && initialOption < options.length)? initialOption : 0;
 
     const [selectedOption, setSelectedOption] = useState(initialOption);
 
