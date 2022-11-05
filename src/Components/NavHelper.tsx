@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import { FRAME_PADDING, MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE } from '../Constants';
+import React, {useCallback, useEffect} from 'react';
+import { togglePopin, setAppFavourite, setAppVisibility } from '../Store/Reducer';
+import { FRAME_PADDING, GRADIENT_BOTTOM_LEFT, GRADIENT_TOP_RIGHT, MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION } from '../Constants';
 import { GamepadButton } from '../Images/GamepadButton';
 import { MouseIcon } from '../Images/MouseIcon';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { KeyboardLetterIcon } from './../Images/KeyboardLetterIcon';
 
@@ -35,8 +36,45 @@ const NavHelperWrapper = styled.div<NavHelperProps>`
 export const NavHelper = () => {
     
     // @ts-ignore (because of globalState which is not recognized)
-    const { ui } = useSelector((state) => state.globalState);
+    const { ui, currentFocusedApp } = useSelector((state) => state.globalState);
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        
+        // Show AppAction popin
+        let showAppListeners: Array<string> = ['MouseRightClic', 'a', 'GamePadLeftButton'];
+        const showAppAction = () => {
+            if (currentFocusedApp && currentFocusedApp.id) {
+                dispatch(togglePopin({id: SHOW_POPIN_APP_ACTION, context: currentFocusedApp.id}));
+            }
+        };
+        showAppListeners.forEach(event => document.addEventListener(event, showAppAction));
+
+        // Add to favourite
+        let favouriteListeners: Array<string> = ['f', 'GamePadUpButton'];
+        const favouriteAppAction = () => {
+            if (currentFocusedApp && currentFocusedApp.id) {
+                dispatch(setAppFavourite({id: currentFocusedApp.id, favourite: !currentFocusedApp.favourite }));
+            }
+        }
+        favouriteListeners.forEach(event => document.addEventListener(event, favouriteAppAction));
+
+        let hideAppListeners: Array<string> = ['h'];
+        const hideAppAction = () => {
+            if (currentFocusedApp && currentFocusedApp.id) {
+                dispatch(setAppVisibility({id: currentFocusedApp.id, hidden: !currentFocusedApp.hidden }));
+            }
+        }
+        hideAppListeners.forEach(event => document.addEventListener(event, hideAppAction));
+
+        // Clean up listener before next useEffect (in next render)
+        return () => {
+            showAppListeners.forEach(eventListener => document.removeEventListener(eventListener, showAppAction));
+            favouriteListeners.forEach(eventListener => document.removeEventListener(eventListener, favouriteAppAction));
+            hideAppListeners.forEach(eventListener => document.removeEventListener(eventListener, hideAppAction));
+        }
+    }, [currentFocusedApp]);
 
     return ( 
             <NavHelperWrapper>
@@ -62,10 +100,9 @@ export const NavHelper = () => {
                     </NavItemHelper>
                 }
                 
-                {ui.mainInput !== MAIN_INPUT_MOUSE &&
+                {ui.mainInput === MAIN_INPUT_KEYBOARD &&
                     <NavItemHelper>
-                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
-                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='H'/> }
+                        <KeyboardLetterIcon letter='H'/>
                         <span>{t('NavHelperHide')}</span>
                     </NavItemHelper>
                 }

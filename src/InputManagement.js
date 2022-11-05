@@ -29,24 +29,11 @@ const triggerKey = (key) => {
             case 'Enter': // 'A' in a XBOX controller
                 document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', 'keyCode': 13, 'bubbles': true}));
                 break;
-            case 'Menu':
-                store.dispatch(togglePopin({id: SHOW_POPIN_SETTINGS}));
-                break;
-            case 'AppAction':
-                if (state.currentFocusedApp && state.currentFocusedApp.id) {
-                    store.dispatch(togglePopin({id: SHOW_POPIN_APP_ACTION, context: state.currentFocusedApp.id}));
-                }
-                break;
-            case 'ToggleFavourite': // 'Y' in a XBOX controller
-                if (state.currentFocusedApp && state.currentFocusedApp.id) {
-                    store.dispatch(setAppFavourite({id: state.currentFocusedApp.id, favourite: !state.currentFocusedApp.favourite }));
-                }
-                break;
-            case 'ToggleHideView': // 'X' in a XBOX controller
-                if (state.currentFocusedApp && state.currentFocusedApp.id) {
-                    store.dispatch(setAppVisibility({id: state.currentFocusedApp.id, hidden: !state.currentFocusedApp.hidden }));
-                }
-                break;
+            
+            // All other events will be dispatch and listened in components
+            default:
+                document.dispatchEvent(new CustomEvent(key, { }));
+            break;
         }
     }
 } 
@@ -58,17 +45,8 @@ const triggerKey = (key) => {
 // Listener for keybord events.
 // Arrows & Enter keys are tracked by the NoriginNavigation Library
 document.addEventListener('keyup', (event) => {
-    if (event.key === 'f') {
-        triggerKey('ToggleFavourite');
-    } else if (event.key === 'h') {
-        triggerKey('ToggleHideView');
-    } else if (event.key === 'e') {
-        triggerKey('Enter');
-    } else if (event.key === 'm') {
-        triggerKey('Menu');
-    } else if (event.key === 'a') {
-        triggerKey('AppAction');
-    }
+    triggerKey(event.key);
+
     // if a key is triggered, we want to remove mouse support
     store.dispatch(setMainInputSupport(MAIN_INPUT_KEYBOARD));
 });
@@ -80,7 +58,7 @@ document.addEventListener('mousemove', () => {
 
 document.addEventListener('mouseup', (event) => {
     if (event.button === 2 /* Right clic */) {
-        triggerKey('AppAction'); // will do nothing if no item focused
+        triggerKey('MouseRightClic'); // will do nothing if no item focused
     }
 });
 
@@ -100,9 +78,10 @@ window.joypad.on('button_press', e => {
     if (buttons[13].pressed) triggerKey('ArrowDown');
     if (buttons[14].pressed) triggerKey('ArrowLeft');
     if (buttons[15].pressed) triggerKey('ArrowRight');
-    if (buttons[0].pressed)  triggerKey('Enter'); // 'A'
-    if (buttons[2].pressed)  triggerKey('ToggleHideView'); // 'X'
-    if (buttons[3].pressed)  triggerKey('ToggleFavourite'); // 'Y'
+    if (buttons[0].pressed)  triggerKey('Enter'); // 'A', it's always map to Enter/OK/Validate key
+    if (buttons[1].pressed)  triggerKey('GamePadRightButton'); // 'B'
+    if (buttons[2].pressed)  triggerKey('GamePadLeftButton'); // 'X'
+    if (buttons[3].pressed)  triggerKey('GamePadUpButton'); // 'Y'
 
     // if a key is triggered, we want to remove mouse support
     store.dispatch(setMainInputSupport(MAIN_INPUT_GAMEPAD));

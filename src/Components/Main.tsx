@@ -18,7 +18,7 @@ import { setWindowFocusState, togglePopin, setConfig } from '../Store/Reducer'
 import { Provider, useSelector } from 'react-redux'
 
 import '../InputManagement.js';
-import { MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION, SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
+import { GRADIENT_BOTTOM_LEFT, GRADIENT_TOP_RIGHT, MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION, SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
 import { ScanPopin } from './ScanPopin';
 import { AppActionPopin } from './AppActionPopin';
 import { useTranslation } from "react-i18next";
@@ -52,7 +52,7 @@ interface MainWrapperProps {
 }
 
 const MainWrapper = styled.div<MainWrapperProps>`
-  background: linear-gradient(to bottom left, #4224BF, #34B0EF);
+  background: linear-gradient(to bottom left, ${GRADIENT_TOP_RIGHT}, ${GRADIENT_BOTTOM_LEFT});
   width: 100vw;
   height: 100vh;
   display: flex;
