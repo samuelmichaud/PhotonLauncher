@@ -9,7 +9,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AppCardOverlay, AppCardBox, AppCardTitle, AppCardBadge, AppCardBackgroundImage} from './AppCardInner'
-import { CONTENT_FOCUS, FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE } from '../Constants';
+import { CONTENT_FOCUS, FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE, ZINDEX_FOCUSED_CARD } from '../Constants';
 
 import { useSelector } from 'react-redux'
 
@@ -29,7 +29,7 @@ const AppCardWrapper = styled.div<AppCardWrapperProps>`
     border-radius: 0.7rem;
     filter: drop-shadow(0rem 0rem 0.6rem rgba(255, 255, 255, ${({ focused }) => focused ? '0.50' : '0'}));
     transform: scale(${({ focused }) => (focused ? '1.05' : '1')});
-    z-index: ${({ focused }) => (focused ? '99' : '1')};
+    z-index: ${({ focused }) => (focused ? ZINDEX_FOCUSED_CARD : '1')};
     overflow: hidden;
     width: calc((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn});
     height: calc(((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn})*9/16);

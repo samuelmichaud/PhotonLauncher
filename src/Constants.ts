@@ -19,6 +19,7 @@ export const GRID_COLUMN_BIG = 2; // Number of standard column
 export const FRAME_PADDING = 6; // Left and right padding of the window. In rem (base 10px).
 export const FOCUS_BORDER_SIZE = 0.3;
 export const BORDER_RADIUS = 1;
+export const NAVHELPER_HEIGHT = 5;
 
 // POPIN CONSTANTS
 export const POPIN_SIZE_SMALL = 'popin-size-small';
@@ -54,3 +55,8 @@ export const LAUNCH_OPTION_NONE = "launch_none"
 
 // 
 export const APP_PLATFORM_MANUAL = "manual"
+
+// ELEMENTS Z-index
+export const ZINDEX_FOCUSED_CARD = 9;
+export const ZINDEX_POPIN = 99;
+export const ZINDEX_NAVHELPER = 999;

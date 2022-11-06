@@ -1,15 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
 
 interface KeyboardLetterIconProps {
     letter?: string;
 }
 
-export const KeyboardLetterIcon = ({letter}: KeyboardLetterIconProps) => {
-
-    return (
-        <svg width="2.8rem" height="2.8rem" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-            <rect width="2.8rem" height="2.8rem" rx="5" fill="#D9D9D9"/>
-            <text x="50%" y="55%" fontSize="2rem" color="black" dominantBaseline="middle" textAnchor="middle">{letter}</text>
-        </svg>
-    )
-}
+export const KeyboardLetterIcon = styled(({className, letter}) => (
+        <span className={className}>{letter}</span>
+    ))<KeyboardLetterIconProps>`
+    background-color: #D9D9D9;
+    border-radius: 0.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    color: black;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`

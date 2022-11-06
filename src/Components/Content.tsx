@@ -10,7 +10,7 @@ import {
 import { ContentGrid } from './ContentGrid';
 import { Loading } from './Generics/Loading';
 import { EmptyLibrary } from './EmptyLibrary';
-import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD, THEME_TRANSPARENT } from '../Constants';
+import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD, THEME_TRANSPARENT, NAVHELPER_HEIGHT } from '../Constants';
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from 'react-redux';
 import { setApps, setFocusApp } from '../Store/Reducer';
@@ -22,7 +22,8 @@ const ContentWrapper = styled.div`
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    padding: 2rem ${FRAME_PADDING}rem;
+    padding: 2rem ${FRAME_PADDING}rem 10rem ${FRAME_PADDING}rem;
+    margin-bottom: ${NAVHELPER_HEIGHT}rem;
 `;
 
 export const Content = () => {

@@ -1,10 +1,11 @@
 
 
 # Library management
-
+- [P1] Onboarding
+- [P1] Onboarding: Custom app from starting screen
 
 # Design
-- [ ] Enter key instead of 'E' in NavHelper
+
 
 # UX
 - [P1] Add a detail page for apps with actions
@@ -23,10 +24,9 @@
 
 # Refacto & code improvment
 - [P1] Big refacto & cleanup on the scanning process
+- [ ] Scan progress job reducers (remove or do something :)
 - [ ] Move AppService to ts
-- [ ] Input management => add custom events & move listener to components so we can have contextualized nav (for the settings popin, ...)
 - [ ] Refacto listener and store updater between backgroundProcess & renderer
 - [ ] Handle errors in scan & fetch (in popin)
 - [ ] Throttle mousemove
 - [ ] Units Tests
-- [ ] Z-index constants on popins

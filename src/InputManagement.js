@@ -103,5 +103,7 @@ window.joypad.on('axis_move', e => {
     if (directionOfMovement == 'bottom') triggerKey('ArrowDown');
     if (directionOfMovement == 'left') triggerKey('ArrowLeft');
     if (directionOfMovement == 'right') triggerKey('ArrowRight');
+    
+    store.dispatch(setMainInputSupport(MAIN_INPUT_GAMEPAD));
 });
 

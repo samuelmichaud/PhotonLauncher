@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import { togglePopin, setAppFavourite, setAppVisibility } from '../Store/Reducer';
-import { FRAME_PADDING, GRADIENT_BOTTOM_LEFT, GRADIENT_TOP_RIGHT, MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION } from '../Constants';
+import { FRAME_PADDING, GRADIENT_BOTTOM_LEFT, GRADIENT_TOP_RIGHT, MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE, NAVHELPER_HEIGHT, SHOW_POPIN_APP_ACTION, SHOW_POPIN_NONE, ZINDEX_NAVHELPER } from '../Constants';
 import { GamepadButton } from '../Images/GamepadButton';
 import { MouseIcon } from '../Images/MouseIcon';
 import styled from 'styled-components';
@@ -20,7 +20,12 @@ const NavItemHelper = styled.div`
 `
 
 const NavHelperWrapper = styled.div<NavHelperProps>`
-    height: 3rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    box-sizing: border-box;
+    height: ${NAVHELPER_HEIGHT}rem;
     color: white;
     display: flex;
     align-items: flex-end;
@@ -28,7 +33,7 @@ const NavHelperWrapper = styled.div<NavHelperProps>`
     flex-direction: row;
     box-shadow: 0px -7px 10px rgb(0 0 0 / 30%);
     padding: 1rem ${FRAME_PADDING}rem;
-    z-index: 99;
+    z-index: ${ZINDEX_NAVHELPER};
     gap: 3rem;
     font-size: 2rem;
 `
@@ -51,7 +56,7 @@ export const NavHelper = () => {
         };
         showAppListeners.forEach(event => document.addEventListener(event, showAppAction));
 
-        // Add to favourite
+        // Add or remove App from favourite
         let favouriteListeners: Array<string> = ['f', 'GamePadUpButton'];
         const favouriteAppAction = () => {
             if (currentFocusedApp && currentFocusedApp.id) {
@@ -60,6 +65,7 @@ export const NavHelper = () => {
         }
         favouriteListeners.forEach(event => document.addEventListener(event, favouriteAppAction));
 
+        // Hide / unhide app
         let hideAppListeners: Array<string> = ['h'];
         const hideAppAction = () => {
             if (currentFocusedApp && currentFocusedApp.id) {
@@ -76,36 +82,76 @@ export const NavHelper = () => {
         }
     }, [currentFocusedApp]);
 
-    return ( 
-            <NavHelperWrapper>
-                <NavItemHelper>
-                    {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
-                    {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
-                    {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='E'/> }
-                    <span>{t('NavHelperLaunch')}</span>
-                </NavItemHelper>
+    // compute the nav layout so the JSX is easier to read
+    let navLayout = 'generic';
+    if (currentFocusedApp && currentFocusedApp.id) {
+        navLayout = 'contentGrid';
+    } else if (ui.popin.id !== SHOW_POPIN_NONE) {
+        navLayout = 'popin';
+    }
 
-                <NavItemHelper>
-                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
-                        {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
-                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='A'/> }
-                        <span>{t('NavHelperActions')}</span>
-                </NavItemHelper>
+    return (
+        <div>
+            {navLayout === 'generic' && 
+                <NavHelperWrapper>
+                    <NavItemHelper>
+                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
+                        {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
+                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter={t('NavHelperEnterButton')}/> }
+                        <span>{t('NavHelperSelectButton')}</span>
+                    </NavItemHelper>
+                </NavHelperWrapper>
+            }
+            {navLayout === 'popin' && 
+                <NavHelperWrapper>
+                    <NavItemHelper>
+                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
+                        {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
+                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter={t('NavHelperEnterButton')}/> }
+                        <span>{t('NavHelperSelectButton')}</span>
+                    </NavItemHelper>
 
-                {ui.mainInput !== MAIN_INPUT_MOUSE &&
+                    {ui.mainInput !== MAIN_INPUT_MOUSE &&
+                        <NavItemHelper>
+                            {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="right"/> }
+                            {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter={t('NavHelperEscapeButton')}/> }
+                            <span>{t('NavHelperClosePopin')}</span>
+                        </NavItemHelper>
+                    }
+                </NavHelperWrapper>
+            }
+            {navLayout === 'contentGrid' && 
+                <NavHelperWrapper>
                     <NavItemHelper>
-                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
-                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
-                        <span>{t('NavHelperFavourite')}</span>
+                        {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="down"/> }
+                        {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="left" /> }
+                        {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter={t('NavHelperEnterButton')}/> }
+                        <span>{t('NavHelperLaunch')}</span>
                     </NavItemHelper>
-                }
-                
-                {ui.mainInput === MAIN_INPUT_KEYBOARD &&
+
                     <NavItemHelper>
-                        <KeyboardLetterIcon letter='H'/>
-                        <span>{t('NavHelperHide')}</span>
+                            {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="left"/> }
+                            {ui.mainInput === MAIN_INPUT_MOUSE && <MouseIcon button="right" /> }
+                            {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='A'/> }
+                            <span>{t('NavHelperActions')}</span>
                     </NavItemHelper>
-                }
-            </NavHelperWrapper>
+
+                    {ui.mainInput !== MAIN_INPUT_MOUSE &&
+                        <NavItemHelper>
+                            {ui.mainInput === MAIN_INPUT_GAMEPAD && <GamepadButton direction="up"/> }
+                            {ui.mainInput === MAIN_INPUT_KEYBOARD && <KeyboardLetterIcon letter='F'/> }
+                            <span>{t('NavHelperFavourite')}</span>
+                        </NavItemHelper>
+                    }
+                    
+                    {ui.mainInput === MAIN_INPUT_KEYBOARD &&
+                        <NavItemHelper>
+                            <KeyboardLetterIcon letter='H'/>
+                            <span>{t('NavHelperHide')}</span>
+                        </NavItemHelper>
+                    }
+                </NavHelperWrapper>
+            }
+        </div>
     )
 }
