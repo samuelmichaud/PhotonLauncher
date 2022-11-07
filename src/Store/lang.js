@@ -42,6 +42,7 @@ i18n
             AppActionHideButton: "Hide the app",
             AppActionShowButton: "Show the app",
             AppActionPopinCloseButton: "Close",
+            AppActionPopinCredit: "Image from"
         }
       },
       fr: {
@@ -78,6 +79,7 @@ i18n
             AppActionHideButton: "Masquer l'application",
             AppActionShowButton: "Rendre visible l'application",
             AppActionPopinCloseButton: "Fermer",
+            AppActionPopinCredit: "Image de"
         }
       }
     },

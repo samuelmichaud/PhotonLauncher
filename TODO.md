@@ -21,6 +21,7 @@
 
 # Bugs
 - [ ] Crash if we add multiple time the same custom app. Should verify unicity
+- [ ] Cursor don't hide anymore with keyboard & gamepad
 
 # Refacto & code improvment
 - [P1] Big refacto & cleanup on the scanning process

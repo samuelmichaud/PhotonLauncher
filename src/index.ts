@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain as fromRendererProcess, session, screen } from 'electron';
+import { app, BrowserWindow, ipcMain as fromRendererProcess, session, screen, shell } from 'electron';
 import { isProductionEnv } from './Utils';
 import log from 'electron-log';
 import { keyboard, Key } from "@nut-tree/nut-js";
@@ -69,6 +69,12 @@ const createWindow = (): void => {
   });
   mainWindow.on('blur', () => {
     mainWindow.webContents.send('setWindowFocusState', false);
+  });
+
+  // open external links on new windows in browser (for rawg.io for example)
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: 'deny' }
   });
 
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {

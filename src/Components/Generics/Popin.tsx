@@ -44,25 +44,23 @@ const PopinBox = styled.div<PopinBoxProps>`
         switch(props.size) {
             case POPIN_SIZE_SMALL:
                 return `
-                    min-height: 30vh;
                     width: 30vw;
                 `
             case POPIN_SIZE_MEDIUM:
                 return `
-                    min-height: 50vh;
                     width: 50vw;
                 `
             case POPIN_SIZE_LARGE:
             default:
                 return `
-                    min-height: 50vh;
                     width: 70vw;
                 `
         }
     }}
     background: ${POPIN_BG_COLOR};
-    padding: 2rem ${FRAME_PADDING}rem;
+    padding: 0rem ${FRAME_PADDING}rem 2rem ${FRAME_PADDING}rem;
     border-radius: ${BORDER_RADIUS}rem;
+    overflow: hidden;
     animation-name: fadein;
     animation-duration: 0.3s;
     box-sizing: border-box;
@@ -70,7 +68,7 @@ const PopinBox = styled.div<PopinBoxProps>`
 
 const Title = styled.h1`
     text-align: center;
-    margin: 1rem 0 3rem 0;
+    margin: 3rem 0 3rem 0;
     font-size: 2.5rem;
 `
 
@@ -93,7 +91,7 @@ export const Popin = ({children, title, size, closeAction}: PopinProps) => {
         <PopinWrapper>
             <PopinOverlay onClick={() => closeAction()}/>
             <PopinBox size={size}>
-                <Title>{title}</Title>
+                {title && <Title>{title}</Title>}
                 {children}
             </PopinBox>
         </PopinWrapper>

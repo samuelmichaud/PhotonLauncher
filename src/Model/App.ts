@@ -9,8 +9,9 @@ export default class App {
     favourite?: boolean;
     hidden?: boolean;
     background_image?: string;
+    rawgSlug?: string;
 
-    constructor({id, title, launch, icon = "", platform = APP_PLATFORM_MANUAL, favourite = false, hidden = false, background_image = ""}: App) {
+    constructor({id, title, launch, icon = "", platform = APP_PLATFORM_MANUAL, favourite = false, hidden = false, background_image = "", rawgSlug = ""}: App) {
         this.id = id;
         this.title = title;
         this.launch = launch;
@@ -19,5 +20,6 @@ export default class App {
         this.favourite = favourite;
         this.hidden = hidden;
         this.background_image = background_image;
+        this.rawgSlug = rawgSlug;
     }
 }
