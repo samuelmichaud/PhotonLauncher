@@ -1,6 +1,7 @@
 [{
     "id": "1",
     "title": "God of War",
+    "rawgSlug": "god-of-war-2",
     "launch": "steam://rungameid/228980",
     "icon": "",
     "uninstaller": "steam://uninstall/228980",
@@ -14,6 +15,7 @@
   }, {
     "id": "2",
     "title": "Age of Mythology: Extended Edition",
+    "rawgSlug": "age-of-mythology",
     "launch": "steam://rungameid/266840",
     "icon": "C:\\Program Files (x86)\\Steam\\steam\\games\\d1d00aedac6ea76c02e12cfc2603fe59f4056127.ico",
     "uninstaller": "steam://uninstall/266840",
