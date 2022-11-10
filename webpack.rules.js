@@ -7,6 +7,13 @@ module.exports = [
     use: 'node-loader',
   },
   {
+    test: /\.(png|jpe?g|gif|svg)$/i,
+    loader: 'file-loader',
+    options: {
+      name: '[name]-[hash].[ext]',
+    },
+  },
+  {
     test: /\.(m?js|node)$/,
     parser: { amd: false },
     use: {

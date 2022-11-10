@@ -23,6 +23,8 @@ import { ScanPopin } from './ScanPopin';
 import { AppActionPopin } from './AppActionPopin';
 import { useTranslation } from "react-i18next";
 import App from '../Model/App';
+// @ts-ignore
+import cursor from "../Images/cursor.svg";
 
 init({
   debug: false,
@@ -41,23 +43,25 @@ window.ShadowApi.loadConfig((config: any) => {
     store.dispatch(setConfig(config));
 });
 
-const GlobalStyle = createGlobalStyle`
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-interface MainWrapperProps {
+interface GlobalStyleProps {
   mainInput?: string;
 }
 
-const MainWrapper = styled.div<MainWrapperProps>`
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  :root {
+    cursor: ${({mainInput}) => (mainInput === MAIN_INPUT_MOUSE? 'url("' + cursor + '"), pointer': 'none')};
+  }
+`;
+
+const MainWrapper = styled.div`
   background: linear-gradient(to bottom left, ${GRADIENT_TOP_RIGHT}, ${GRADIENT_BOTTOM_LEFT});
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  ${({mainInput}) => (mainInput === MAIN_INPUT_MOUSE? '': 'cursor: none;')}
 `
 
 const MainContainer = () => {
@@ -71,8 +75,8 @@ const MainContainer = () => {
   }, [config.lang.value, config.launchOption]);
 
   return (
-      <MainWrapper mainInput={ui.mainInput}>
-        <GlobalStyle/>
+      <MainWrapper>
+        <GlobalStyle mainInput={ui.mainInput}/>
         <Menu />
         <Content />
         {ui.popin.id === SHOW_POPIN_SETTINGS && <Settings />}
