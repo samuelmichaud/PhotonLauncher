@@ -15,6 +15,7 @@
 # Features
 - [P1] Help popin
 - [P2] Settings : Detect Shadow and launch only on mobile device
+- [ ] Set good locale at first launch based on windows > https://stackoverflow.com/questions/46072248/node-js-how-to-detect-user-language
 - [ ] Open source infos in a popin
 - [ ] Shutdown computer
 - [ ] Launch a refresh scan at startup

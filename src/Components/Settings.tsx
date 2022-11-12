@@ -6,15 +6,14 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { findIndex } from 'underscore';
-import { togglePopin, setLanguage, setLaunchOption, addApp } from './../Store/Reducer';
+import { togglePopin, setLanguage, setLaunchOption } from './../Store/Reducer';
 import { Popin } from './Generics/Popin';
 import { Button } from './Generics/Button';
 import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS, LAUNCH_OPTION_STARTUP, LAUNCH_OPTION_NONE, MAIN_INPUT_MOUSE } from './../Constants';
 import { useTranslation } from "react-i18next";
 import { OptionSelector } from './Generics/OptionSelector';
-import { FileSelector } from './Generics/FileSelector';
-import App from '../Model/App';
 import { HorizontalSeparator } from './Generics/HorizontalSeparator';
+import { AddCustomAppButton } from './AddCustomAppButton';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -43,13 +42,6 @@ export const Settings = () => {
         { displayName: t('SettingsLaunchNone'), value: LAUNCH_OPTION_NONE},
     ]
 
-    const onFileSelectorChange = (event: any) => {
-        const file: File = event.target.files[0];
-        const appName:string = (file.name.substring(0, file.name.lastIndexOf(".")));
-        dispatch(addApp({... new App({id: file.path, title: appName, launch: file.path})} )); // the spread is here to serialize the object to send it to redux (error if not)
-        onSettingsClose();
-    }
-
     return (
         <FocusContext.Provider value={focusKey}>
             <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM} closeAction={() => onSettingsClose()}>
@@ -60,7 +52,7 @@ export const Settings = () => {
                         </svg>
                         <span>{t('SettingsPopinRefreshButton')}</span>
                     </Button>
-                    <FileSelector label={t('SettingsAddCustomAppLabel')} onChangeAction={(event) => onFileSelectorChange(event)}></FileSelector>
+                    <AddCustomAppButton />
 
                     <HorizontalSeparator />
                     <OptionSelector 

@@ -10,8 +10,12 @@ i18n
     resources: {
       en: {
         translation: {
-            EmptyLibraryTitle: "Launch a scan to see your apps...",
-            EmptyLibraryLabelButton: "Launch a scan",
+            EmptyLibraryTitle: "Welcome home!",
+            EmptyLibraryIntro: "This app can launch any apps or games installed on your system whether you use a mouse, a gamepad or a keyboard.",
+            EmptyLibrarySecurity: "<strong>Important!</strong><br/> Your apps, your eyes only. We can automatically scan your system but NO data is ever transfered doing so except its very own name for image fetching. The scan process is open source so every one can review how it works. More info in help section.",
+            EmptyLibraryNextStep: "Your library is empty, first things to do is...",
+            EmptyLibraryLabelButton: "Scan your system for games",
+            EmptyLibraryOr: "or",
             ButtonShowHiddenApps: "Show hidden apps",
             ButtonHideHiddenApps: "Hide apps",
             TitleContentGridHiddenApps: "Hidden apps",
@@ -47,8 +51,12 @@ i18n
       },
       fr: {
         translation: {
-            EmptyLibraryTitle: "Lancer un scan pour voir vos applications...",
-            EmptyLibraryLabelButton: "Lancer un scan",
+            EmptyLibraryTitle: "Bienvenue chez vous !",
+            EmptyLibraryIntro: "Lancez d'ici facilement n'importe quelle application ou jeu installé, que vous utilisiez une souris, une manette ou un clavier.",
+            EmptyLibrarySecurity: "<strong>Important!</strong><br/> Nous pouvons scanner votre système à la recherche d'application mais AUCUNE donnée n'est transférée à l'exception de son simple nom pour récupération automatique d'une éventuelle image. Le processus de scan est open source et chacun est libre de regarder son fonctionnement. Plus d'information dans la section d'aide.",
+            EmptyLibraryNextStep: "Votre librairie est vide, la première chose à faire est donc de...",
+            EmptyLibraryLabelButton: "Scanner le système pour trouver des jeux",
+            EmptyLibraryOr: "ou",
             ButtonShowHiddenApps: "Afficher les applications masquées",
             ButtonHideHiddenApps: "Cacher les applications masquées",
             TitleContentGridHiddenApps: "Applications masquées",
