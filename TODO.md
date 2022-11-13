@@ -1,28 +1,23 @@
 
 
 # Library management
+- [ ] Launch a refresh scan at startup (in background)
 
-
-# Design
-
-
-# UX
-- [P1] Add a detail page for apps with actions
+# Design / UX
+- [P2] Improve toggle in action popin
 - [P2] Animation on fav
 - [P2] Disapear animation on hide
 - [ ] Remove Add custom app & refresh from menu ?
 
 # Features
-- [P1] Help popin
+- [P1] Help popin + Open source infos 
 - [P2] Add custom image for apps
 - [P2] Settings : Detect Shadow and launch only on mobile device
-- [ ] Open source infos in a popin
 - [ ] Shutdown computer
 - [ ] Button to change image based on RAWG images list
-- [ ] Launch a refresh scan at startup
 
 # Bugs
-- [ ] Crash if we add multiple time the same custom app. Should verify unicity
+
 
 # Refacto & code improvment
 - [P1] Big refacto & cleanup on the scanning process
@@ -32,3 +27,9 @@
 - [ ] Handle errors in scan & fetch (in popin)
 - [ ] Throttle mousemove
 - [ ] Units Tests
+
+# For Shadow
+- [ ] Crowdin integration
+- [ ] CI/CD
+- [ ] QA
+- [ ] Design improvment
