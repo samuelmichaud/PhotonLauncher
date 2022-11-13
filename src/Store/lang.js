@@ -1,5 +1,20 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { LANG_OPTION_ENGLISH, LANG_LIST_OPTIONS } from '../Constants';
+
+// compute initial language based on the "browser" (embed Chome in electron)
+let initialLanguageFromSystem = LANG_OPTION_ENGLISH; // English by default
+navigator.languages.every(lang => {
+    let foundLanguage = LANG_LIST_OPTIONS.find(langOption => langOption.value === lang);
+
+    if (foundLanguage) {
+        initialLanguageFromSystem = foundLanguage;
+        return false; // We have found a first language, we can stop here
+    }
+    return true;
+});
+
+export const defaultLanguage = initialLanguageFromSystem;
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next

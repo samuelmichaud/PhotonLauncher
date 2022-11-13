@@ -1,8 +1,7 @@
 
 
 # Library management
-- [P1] Onboarding
-- [P1] Onboarding: Custom app from starting screen
+
 
 # Design
 
@@ -11,13 +10,16 @@
 - [P1] Add a detail page for apps with actions
 - [P2] Animation on fav
 - [P2] Disapear animation on hide
+- [ ] Remove Add custom app & refresh from menu ?
 
 # Features
+- [P1] Look for online image for custom app
 - [P1] Help popin
+- [P2] Add custom image for apps
 - [P2] Settings : Detect Shadow and launch only on mobile device
-- [ ] Set good locale at first launch based on windows > https://stackoverflow.com/questions/46072248/node-js-how-to-detect-user-language
 - [ ] Open source infos in a popin
 - [ ] Shutdown computer
+- [ ] Button to change image based on RAWG images list
 - [ ] Launch a refresh scan at startup
 
 # Bugs

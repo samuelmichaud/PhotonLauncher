@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import App from '../Model/App';
-import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED, LANG_OPTION_ENGLISH, LAUNCH_OPTION_STARTUP, APP_PLATFORM_MANUAL } from '../Constants';
+import { MAIN_INPUT_MOUSE, SHOW_POPIN_NONE, SCAN_JOB_STATUS_NOT_STARTED, LANG_OPTION_ENGLISH, LAUNCH_OPTION_STARTUP, APP_PLATFORM_MANUAL, LANG_LIST_OPTIONS } from '../Constants';
+import { defaultLanguage } from './lang';
 
 export const GlobalState = createSlice({
     name: 'globalState',
@@ -8,7 +9,7 @@ export const GlobalState = createSlice({
         apps: [],
         currentFocusedApp: null,
         config: {
-            lang: LANG_OPTION_ENGLISH,
+            lang: defaultLanguage,
             launchOption: LAUNCH_OPTION_STARTUP
         },
         windowHasFocus: true,
