@@ -36,7 +36,7 @@ export const FileSelector = ({label, onChangeAction, disableState}: FileSelector
         <FileSelectorBox label={label} disableState={disableState} >
             <Button label={label} disableState={disableState}>
                 <Label>{label}</Label>
-                <input type={'file'} name="add-custom-app" id="add-custom-app" accept=".lnk, .exe" style={{'display': 'none'}} onChange={(event) => onChangeAction(event)} />
+                <input type={'file'} name="add-custom-app" id="add-custom-app" accept=".lnk, .exe, .url" style={{'display': 'none'}} onChange={(event) => onChangeAction(event)} />
             </Button>
         </FileSelectorBox>
         );
