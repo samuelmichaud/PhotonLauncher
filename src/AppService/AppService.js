@@ -38,7 +38,7 @@ const loadMetadaFromJSONfile = async () => {
     return installedApps;
 }
 
-const fetchOnlineMetada = async (installedApp) => {
+const fetchOnlineMetada = async (apps) => {
 
     const slugifyConf = {
         replacement: '-',  // replace spaces with replacement character, defaults to `-`
@@ -50,7 +50,7 @@ const fetchOnlineMetada = async (installedApp) => {
       };
 
     try {
-        installedApp = await Promise.all(installedApp.map(async (app) => {
+        apps = await Promise.all(apps.map(async (app) => {
 
             await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}`, {timeout: 2000}).then((resp) => {
                 let data = resp.data;
@@ -74,7 +74,7 @@ const fetchOnlineMetada = async (installedApp) => {
         log.info('Error fetching remote metadata');
     }
 
-    return installedApp;
+    return apps;
 }
 
 const loadAppFromFile = () => {
@@ -190,4 +190,8 @@ fromRendererProcess.on("getApps", (event, args) => {
 
 fromRendererProcess.on("scanForGames", (event, args) => {
     scanForGames();
+});
+
+fromRendererProcess.on("fetchOnlineMetada", async (event, apps) => {
+    mainWindow.webContents.send('fetchOnlineMetada', await fetchOnlineMetada(apps));
 });

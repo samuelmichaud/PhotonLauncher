@@ -29,6 +29,7 @@
 import './index.css';
 import './Store/lang';
 import './Components/Main';
+import App from './Model/App';
 
 
 export interface ShadowApi {
@@ -38,6 +39,7 @@ export interface ShadowApi {
     storeDatabase: (data: any) => void,
     loadConfig: (func: any) => void,
     storeConfig: (config: any) => void,
+    fetchOnlineMetada: (apps: Array<App>, func: (apps: Array<App>) => void) => void,
     loadApps: (func: any) => void,
     listenForWindowFocusChange: (func: any) => void,
     quitApp: () => void,

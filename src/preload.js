@@ -11,6 +11,10 @@ window.ShadowApi = {
     scanForGames: () => {
         backgroundProcess.send('scanForGames'); // will send a getApps at the end of the job
     },
+    fetchOnlineMetada: (apps, func) => {
+        backgroundProcess.on('fetchOnlineMetada', (event, ...args) => func(...args));
+        backgroundProcess.send('fetchOnlineMetada', apps);
+    },
     loadApps: (func) => {
         backgroundProcess.on('getApps', (event, ...args) => func(...args));
         backgroundProcess.send('getApps');

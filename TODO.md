@@ -13,7 +13,6 @@
 - [ ] Remove Add custom app & refresh from menu ?
 
 # Features
-- [P1] Look for online image for custom app
 - [P1] Help popin
 - [P2] Add custom image for apps
 - [P2] Settings : Detect Shadow and launch only on mobile device

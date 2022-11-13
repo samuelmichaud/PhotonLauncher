@@ -30,6 +30,13 @@ export const GlobalState = createSlice({
         setFocusApp: (state, action) => {
             state.currentFocusedApp = action.payload.currentFocusedApp
         },
+        setApp: (state, action) => {
+            // try to find the app, if found we merge payload & found app with it
+            let appIndex = state.apps.findIndex((app) => app.id === action.payload.id);
+            if (appIndex >= 0) {
+                state.apps[appIndex] = {...state.apps[appIndex], ...action.payload};
+            }
+        },
         setApps: (state, action) => {
             state.apps = [...action.payload.filter((app) => app.favourite), ...action.payload.filter((app) => !app.favourite)] // we want all favourites firsts
         },
@@ -91,6 +98,7 @@ export const GlobalState = createSlice({
 // Action creators are generated for each case reducer function
 export const {
     addApp, 
+    setApp,
     setFocusApp, 
     setApps, 
     setAppFavourite, 
