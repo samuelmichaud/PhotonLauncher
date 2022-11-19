@@ -1,6 +1,7 @@
 import 'joypad.js';
 
 import store from './Store/Store';
+import { throttle } from 'underscore';
 import { setMainInputSupport } from './Store/Reducer'
 import { MAIN_INPUT_GAMEPAD, MAIN_INPUT_KEYBOARD, MAIN_INPUT_MOUSE } from './Constants';
 
@@ -9,14 +10,6 @@ let state = null;
 store.subscribe(() => {
     state = store.getState().globalState;
 });
-
-const removeMouseSupport = () => {
-    document.body.requestPointerLock();
-}
-
-const enableMouseSupport = () => {
-    document.exitPointerLock();
-}
 
 // Util function to trigger keyboard events that will do a navigation on NoriginSpacialNavigation library
 const triggerKey = (key) => {
@@ -54,16 +47,18 @@ const triggerKey = (key) => {
 // Arrows & Enter keys are tracked by the NoriginNavigation Library
 document.addEventListener('keyup', (event) => {
     triggerKey(event.key);
-
+    
     // if a key is triggered, we want to remove mouse support
     store.dispatch(setMainInputSupport(MAIN_INPUT_KEYBOARD));
-    removeMouseSupport();
 });
 
-// When the user move a mouse we want to re-enable mouse support
-document.addEventListener('mousemove', () => {
+const throttledMouseMoveEvent = throttle(() => {
     store.dispatch(setMainInputSupport(MAIN_INPUT_MOUSE));
-    enableMouseSupport();
+}, 500);
+
+// When the user move a mouse we want to re-enable mouse support
+document.addEventListener('mousemove', () => {    
+    throttledMouseMoveEvent();
 }, {passive: true});
 
 document.addEventListener('mouseup', (event) => {
@@ -95,7 +90,6 @@ window.joypad.on('button_press', e => {
 
     // if a key is triggered, we want to remove mouse support
     store.dispatch(setMainInputSupport(MAIN_INPUT_GAMEPAD));
-    removeMouseSupport();
 });
 
 // Shortcut to do a alt-tab
@@ -116,6 +110,5 @@ window.joypad.on('axis_move', e => {
     if (directionOfMovement == 'right') triggerKey('ArrowRight');
 
     store.dispatch(setMainInputSupport(MAIN_INPUT_GAMEPAD));
-    removeMouseSupport();
 });
 
