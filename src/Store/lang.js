@@ -61,7 +61,18 @@ i18n
             AppActionHideButton: "Hide the app",
             AppActionShowButton: "Show the app",
             AppActionPopinCloseButton: "Close",
-            AppActionPopinCredit: "Image from"
+            AppActionPopinCredit: "Image from",
+            HelpPopinTitle: "Help",
+            HelpPopinCloseButton: "Close",
+            FAQ1Title: "How to switch between windows (or apps) with a gamepad (alt + tab equivalent)?",
+            FAQ1Text: "Switch windows (alt + tab keyboard equivalent) even after another app has been launched",
+            FAQ2Title: "How to display hidden apps? Where are they?",
+            FAQ2Text: "At the end of the app list, you can toggle the display of hidden apps.",
+            FAQ3Title: "Some of my games/apps are not found by the scan?",
+            FAQ3Text: "You can add them manually in the global menu. A mouse is required to select the app. Accepted extensions are .exe, .lnk and .url.",
+            FAQ4Title: "Credits / Which open source libraries do you use?",
+            FAQ4Line1: "for the local scan system",
+            FAQ4Line2: "to get images for games. We do not claim ownership of any of the images or data provided by the RAWG © API. ",
         }
       },
       fr: {
@@ -102,7 +113,18 @@ i18n
             AppActionHideButton: "Masquer l'application",
             AppActionShowButton: "Rendre visible l'application",
             AppActionPopinCloseButton: "Fermer",
-            AppActionPopinCredit: "Image de"
+            AppActionPopinCredit: "Image de",
+            HelpPopinTitle: "Aide / FAQ",
+            HelpPopinCloseButton: "Fermer",
+            FAQ1Title: "Comment passer d'une fenêtre à une autre avec le gamepad (équivalent du alt + tab)?",
+            FAQ1Text: "Permet de sélectionner la fenêtre à mettre en avant (équivalent du alt + tab au clavier). Le raccourcis fonctionne même si l'application n'est plus au premier plan.",
+            FAQ2Title: "Comment réafficher les applications cachées ? Où sont-elles ?",
+            FAQ2Text: "Sur l'écran d'accueil, à la fin de la liste, un bouton permet d'afficher ou cacher les applications.",
+            FAQ3Title: "Que faire si certains jeux ou applications ne sont pas détectées par le scan automatique ?",
+            FAQ3Text: "Il est tout à fait possible d'ajouter manuellement des applications via le menu. Une souris est requise en revanche. Est accepté les .exe, .lnk et .url.",
+            FAQ4Title: "Credits / Quelles sont les librairies open source utilisée et les sources d'images ?",
+            FAQ4Line1: "Pour le système de scan local et automatique.",
+            FAQ4Line2: "Pour récupérer les images automatiquement. Ces images ne nous appartienent pas et sont fournies par l'API RAWG ©.",
         }
       }
     },

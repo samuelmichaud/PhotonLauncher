@@ -6,7 +6,7 @@ import {
     useFocusable,
     FocusContext
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FRAME_PADDING, MENU_FOCUS, SHOW_POPIN_SETTINGS, THEME_TRANSPARENT } from '../Constants';
+import { FRAME_PADDING, MENU_FOCUS, SHOW_POPIN_HELP, SHOW_POPIN_SETTINGS, THEME_TRANSPARENT } from '../Constants';
 import { useDispatch } from 'react-redux';
 import { togglePopin } from './../Store/Reducer';
 import { Button } from './Generics/Button';
@@ -14,6 +14,7 @@ import { MenuIcon } from '../Images/MenuIcon';
 import { QuitIcon } from '../Images/QuitIcon';
 import { ShadowLogo } from '../Images/ShadowLogo';
 import { useTranslation } from "react-i18next";
+import { HelpIcon } from '../Images/HelpIcon';
 
 interface MenuWrapperProps {
     hasFocusedChild: boolean;
@@ -73,6 +74,9 @@ export const Menu = () => {
             <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
                 <ShadowLogo />
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
+                    <Button label={t('MenuHelp')} action={() => dispatch(togglePopin({id: SHOW_POPIN_HELP}))} theme={THEME_TRANSPARENT}>
+                        <HelpIcon />
+                    </Button>
                     <Button label={t('MenuSettings')} action={() => dispatch(togglePopin({id: SHOW_POPIN_SETTINGS}))} theme={THEME_TRANSPARENT}>
                         <MenuIcon />
                     </Button>

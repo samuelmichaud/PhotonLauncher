@@ -1,10 +1,16 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { POPIN_BG_COLOR, FRAME_PADDING, POPIN_SIZE_SMALL, POPIN_SIZE_MEDIUM, POPIN_SIZE_LARGE, BORDER_RADIUS, ZINDEX_POPIN, NAVHELPER_HEIGHT } from '../../Constants'
-
+import { POPIN_BG_COLOR, FRAME_PADDING, POPIN_SIZE_SMALL, POPIN_SIZE_MEDIUM, POPIN_SIZE_LARGE, POPIN_SIZE_FULL, BORDER_RADIUS, ZINDEX_POPIN, NAVHELPER_HEIGHT, SHOW_POPIN_NONE, MENU_FOCUS } from '../../Constants'
+import { useDispatch } from 'react-redux';
+import { togglePopin } from '../../Store/Reducer';
+import {
+    useFocusable
+} from '@noriginmedia/norigin-spatial-navigation';
+import { HorizontalSeparator } from './HorizontalSeparator';
 
 interface PopinProps {
     children?: any;
+    footer?: any;
     title?: string;
     size?: string;
     closeAction?: () => void;
@@ -40,23 +46,31 @@ interface PopinBoxProps {
 
 const PopinBox = styled.div<PopinBoxProps>`
     position: relative;
-    ${props => {
-        switch(props.size) {
-            case POPIN_SIZE_SMALL:
-                return `
-                    width: 30vw;
-                `
-            case POPIN_SIZE_MEDIUM:
-                return `
-                    width: 50vw;
-                `
-            case POPIN_SIZE_LARGE:
-            default:
-                return `
-                    width: 70vw;
-                `
-        }
-    }}
+    width: 95vw;
+    @media (min-width: 1200px) {
+        ${props => {
+            switch(props.size) {
+                case POPIN_SIZE_SMALL:
+                    return `
+                        width: 30vw;
+                    `
+                case POPIN_SIZE_MEDIUM:
+                    return `
+                        width: 50vw;
+                    `
+                case POPIN_SIZE_FULL:
+                    return `
+                        height: calc(95vh - ${NAVHELPER_HEIGHT}rem);
+                        width: 95vw;
+                    `
+                case POPIN_SIZE_LARGE:
+                default:
+                    return `
+                        width: 70vw;
+                    `
+            }
+        }}
+    }
     background: ${POPIN_BG_COLOR};
     padding: 0rem ${FRAME_PADDING}rem 2rem ${FRAME_PADDING}rem;
     border-radius: ${BORDER_RADIUS}rem;
@@ -64,6 +78,9 @@ const PopinBox = styled.div<PopinBoxProps>`
     animation-name: fadein;
     animation-duration: 0.3s;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 `;
 
 const Title = styled.h1`
@@ -72,7 +89,20 @@ const Title = styled.h1`
     font-size: 2.5rem;
 `
 
-export const Popin = ({children, title, size, closeAction}: PopinProps) => {
+const Footer = styled.div`
+
+`
+
+export const Popin = ({children, title, size, footer, closeAction}: PopinProps) => {
+    const dispatch = useDispatch();
+    const { setFocus } = useFocusable({focusable: false});
+
+    if (!closeAction) {
+        closeAction = () => {
+            setFocus(MENU_FOCUS);
+            dispatch(togglePopin({id: SHOW_POPIN_NONE}));
+        }
+    }
 
     useEffect(() => {
         
@@ -84,7 +114,7 @@ export const Popin = ({children, title, size, closeAction}: PopinProps) => {
         return () => {
             closePopinListeners.forEach(eventListener => document.removeEventListener(eventListener, closeAction));
         }
-    }, []);
+    }, [closeAction]);
 
     
     return (
@@ -93,6 +123,11 @@ export const Popin = ({children, title, size, closeAction}: PopinProps) => {
             <PopinBox size={size}>
                 {title && <Title>{title}</Title>}
                 {children}
+                {footer && 
+                    <Footer>
+                        <HorizontalSeparator />
+                        {footer}
+                    </Footer>}
             </PopinBox>
         </PopinWrapper>
     )

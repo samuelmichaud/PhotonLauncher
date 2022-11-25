@@ -44,32 +44,34 @@ export const Settings = () => {
 
     return (
         <FocusContext.Provider value={focusKey}>
-            <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM} closeAction={() => onSettingsClose()}>
-                <InnerSettings ref={ref} >
-                    <Button label={t('SettingsPopinRefreshButton')} action={() => { onSettingsClose(); window.ShadowApi.scanForGames()}} theme={THEME_DARK}>
-                        <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" >
-                            <path opacity="0.54" fillRule="evenodd" clipRule="evenodd" d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C11.7 16 14.8 13.4 16 10H14C12.8 12.3 10.6 14 8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C9.7 2 11.1 2.7 12 4L9 7H16V0L14 2C12.2 1 10.2 0 8 0Z" fill="white"/>
-                        </svg>
-                        <span>{t('SettingsPopinRefreshButton')}</span>
-                    </Button>
-                    <AddCustomAppButton />
+            <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM} closeAction={() => onSettingsClose()}
+                children={
+                    <InnerSettings ref={ref} >
+                        <Button label={t('SettingsPopinRefreshButton')} action={() => { onSettingsClose(); window.ShadowApi.scanForGames()}} theme={THEME_DARK}>
+                            <svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                                <path opacity="0.54" fillRule="evenodd" clipRule="evenodd" d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C11.7 16 14.8 13.4 16 10H14C12.8 12.3 10.6 14 8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C9.7 2 11.1 2.7 12 4L9 7H16V0L14 2C12.2 1 10.2 0 8 0Z" fill="white"/>
+                            </svg>
+                            <span>{t('SettingsPopinRefreshButton')}</span>
+                        </Button>
+                        <AddCustomAppButton />
 
-                    <HorizontalSeparator />
-                    <OptionSelector 
-                        label={t('SettingsLanguageLabel')} 
-                        options={LANG_LIST_OPTIONS}
-                        initialOption={findIndex(LANG_LIST_OPTIONS, (item: any) => item.value === config.lang.value)}
-                        getCurrentOption={(lang) => dispatch(setLanguage(lang))} />
-                    <OptionSelector 
-                        label={t('SettingsLaunchLabel')} 
-                        options={launchSettings}
-                        initialOption={findIndex(launchSettings, (item: any) => item.value === config.launchOption.value)}
-                        getCurrentOption={(option) => {window.ShadowApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} />
-                    <HorizontalSeparator />
-
+                        <HorizontalSeparator />
+                        <OptionSelector 
+                            label={t('SettingsLanguageLabel')} 
+                            options={LANG_LIST_OPTIONS}
+                            initialOption={findIndex(LANG_LIST_OPTIONS, (item: any) => item.value === config.lang.value)}
+                            getCurrentOption={(lang) => dispatch(setLanguage(lang))} />
+                        <OptionSelector 
+                            label={t('SettingsLaunchLabel')} 
+                            options={launchSettings}
+                            initialOption={findIndex(launchSettings, (item: any) => item.value === config.launchOption.value)}
+                            getCurrentOption={(option) => {window.ShadowApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} />
+                    </InnerSettings>
+                }
+                footer={
                     <Button label={t('SettingsPopinCloseButton')} action={() => { onSettingsClose(); }} theme={THEME_PRIMARY_DARK}></Button>
-                </InnerSettings>
-            </Popin>
+                }
+            />
         </FocusContext.Provider>
     )
 }

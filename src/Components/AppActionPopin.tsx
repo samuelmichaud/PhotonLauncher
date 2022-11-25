@@ -100,36 +100,38 @@ export const AppActionPopin = ({app}: AppPopinProps) => {
 
     return (
         <FocusContext.Provider value={focusKey}>
-            <Popin title={!app.background_image? app.title : ''} size={POPIN_SIZE_LARGE} closeAction={() => onPopinClose()}>
-                <InnerAppPopin ref={ref}>
-                    { app.background_image &&
-                        <AppPopinHeaderWrapper>
-                            <AppPopinBackgroundImage background_image={app.background_image}/>
-                            <AppPopinTitle>{app.title}</AppPopinTitle>
-                            {app.rawgSlug && <AppPopinCredit>{t('AppActionPopinCredit')} <a href={'https://rawg.io/games/' + app.rawgSlug} target="_blank">RAWG.io</a></AppPopinCredit>}
-                        </AppPopinHeaderWrapper>
-                    }
-                    <AppPopinContent>
-                        <Button label={t('AppActionLaunchButton')} action={() => window.ShadowApi.launchExternalApp(app.launch)} />
-                        <Button label={t(app.favourite? 'AppActionAddToFavouriteButton': 'AppActionRemoveFromFavouriteButton')} 
-                                action={() => dispatch(setAppFavourite({id: app.id, favourite: !app.favourite}))}>
-                            <HeartIcon filled={app.favourite}/>
-                            {app.favourite? 
-                                t('AppActionRemoveFromFavouriteButton'): 
-                                t('AppActionAddToFavouriteButton')}
-                        </Button>
-                        <Button label={t(app.hidden? 'AppActionShowButton': 'AppActionHideButton')} theme={THEME_SECONDARY_DARK} 
-                                action={() => dispatch(setAppVisibility({id: app.id, hidden: !app.hidden }))}>
-                            <EyeIcon open={!app.hidden}/>
-                            {app.hidden? 
-                                t('AppActionShowButton'): 
-                                t('AppActionHideButton')}
-                        </Button>
-                    </AppPopinContent>
-                    <HorizontalSeparator />
+            <Popin title={!app.background_image? app.title : ''} size={POPIN_SIZE_LARGE} closeAction={() => onPopinClose()}
+                children={
+                    <InnerAppPopin ref={ref}>
+                        { app.background_image &&
+                            <AppPopinHeaderWrapper>
+                                <AppPopinBackgroundImage background_image={app.background_image}/>
+                                <AppPopinTitle>{app.title}</AppPopinTitle>
+                                {app.rawgSlug && <AppPopinCredit>{t('AppActionPopinCredit')} <a href={'https://rawg.io/games/' + app.rawgSlug} target="_blank">RAWG.io</a></AppPopinCredit>}
+                            </AppPopinHeaderWrapper>
+                        }
+                        <AppPopinContent>
+                            <Button label={t('AppActionLaunchButton')} action={() => window.ShadowApi.launchExternalApp(app.launch)} />
+                            <Button label={t(app.favourite? 'AppActionAddToFavouriteButton': 'AppActionRemoveFromFavouriteButton')} 
+                                    action={() => dispatch(setAppFavourite({id: app.id, favourite: !app.favourite}))}>
+                                <HeartIcon filled={app.favourite}/>
+                                {app.favourite? 
+                                    t('AppActionRemoveFromFavouriteButton'): 
+                                    t('AppActionAddToFavouriteButton')}
+                            </Button>
+                            <Button label={t(app.hidden? 'AppActionShowButton': 'AppActionHideButton')} theme={THEME_SECONDARY_DARK} 
+                                    action={() => dispatch(setAppVisibility({id: app.id, hidden: !app.hidden }))}>
+                                <EyeIcon open={!app.hidden}/>
+                                {app.hidden? 
+                                    t('AppActionShowButton'): 
+                                    t('AppActionHideButton')}
+                            </Button>
+                        </AppPopinContent>
+                    </InnerAppPopin>}
+                footer={
                     <Button label={t('AppActionPopinCloseButton')} action={() => { onPopinClose(); }} theme={THEME_DARK}></Button>
-                </InnerAppPopin>
-            </Popin>
+                }
+            />
         </FocusContext.Provider>
     )
 }

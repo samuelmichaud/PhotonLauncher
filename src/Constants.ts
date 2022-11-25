@@ -25,6 +25,7 @@ export const NAVHELPER_HEIGHT = 5;
 export const POPIN_SIZE_SMALL = 'popin-size-small';
 export const POPIN_SIZE_MEDIUM = 'popin-size-medium';
 export const POPIN_SIZE_LARGE = 'popin-size-large';
+export const POPIN_SIZE_FULL = 'popin-size-full';
 
 // FOCUS KEY CONSTANTS
 export const MENU_FOCUS = 'MENU';
@@ -40,10 +41,11 @@ export const SCAN_JOB_STATUS_ONGOING_SCAN = 'ongoing_scan';
 export const SCAN_JOB_STATUS_ONGOING_FETCH = 'ongoing_fetchmetadata';
 export const SCAN_JOB_STATUS_COMPLETED = 'completed';
 
-export const SHOW_POPIN_NONE        = "popin_none"
-export const SHOW_POPIN_SETTINGS    = "popin_settings"
-export const SHOW_POPIN_SCAN        = "popin_scan"
-export const SHOW_POPIN_APP_ACTION  = "popin_app_action"
+export const SHOW_POPIN_NONE        = "popin_none";
+export const SHOW_POPIN_SETTINGS    = "popin_settings";
+export const SHOW_POPIN_SCAN        = "popin_scan";
+export const SHOW_POPIN_APP_ACTION  = "popin_app_action";
+export const SHOW_POPIN_HELP        = "popin_help";
 
 // OPTIONS LANGUAGE SUPPORT
 export const LANG_OPTION_ENGLISH = { displayName: "English", value: 'en-US'}

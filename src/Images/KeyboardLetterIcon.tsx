@@ -16,7 +16,7 @@ export const KeyboardLetterIcon = styled(({className, letter}) => (
     font-size: 1.8rem;
     line-height: 1.8rem;
     padding: 0 0.5rem;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 `
