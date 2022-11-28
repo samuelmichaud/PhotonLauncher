@@ -10,7 +10,7 @@ module.exports = [
     test: /\.(png|jpe?g|gif|svg)$/i,
     loader: 'file-loader',
     options: {
-      name: '[name]-[hash].[ext]',
+      name: './[name]-[hash].[ext]',
     },
   },
   {
