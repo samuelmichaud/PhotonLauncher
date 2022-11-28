@@ -6,7 +6,7 @@ import {
     useFocusable,
     KeyPressDetails
 }  from '@noriginmedia/norigin-spatial-navigation';
-import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT, THEME_SECONDARY_DARK } from '../../Constants';
+import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT, THEME_SECONDARY_DARK, PRIMARY_COLOR, SECONDARY_COLOR } from '../../Constants';
 
 interface ButtonProps {
     label: string; 
@@ -26,7 +26,7 @@ const ButtonBox = styled.div<ButtonProps>`
         switch (props.theme) {
             case THEME_PRIMARY_DARK:
                 return `
-                    background-color: #3653CC;
+                    background-color: ${PRIMARY_COLOR};
                 `
             case THEME_TRANSPARENT:
                 return `
@@ -35,7 +35,7 @@ const ButtonBox = styled.div<ButtonProps>`
             case THEME_DARK:
             default:
                 return `
-                    background-color: #2E344B;
+                    background-color: ${SECONDARY_COLOR};
                 `
             case THEME_SECONDARY_DARK:
                 return `

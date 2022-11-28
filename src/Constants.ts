@@ -5,6 +5,8 @@ export const RAWG_APIKEY = "a8823281d9b7494397fdfb0bb4f17904";
 export const POPIN_BG_COLOR = "rgba(16, 19, 34, 100%)";
 export const GRADIENT_TOP_RIGHT = "#4224BF";
 export const GRADIENT_BOTTOM_LEFT = "#34B0EF";
+export const PRIMARY_COLOR = "#3653CC";
+export const SECONDARY_COLOR = "#2E344B";
 
 // THEME CONSTANTS
 export const THEME_PRIMARY_DARK = 'primary-dark';
