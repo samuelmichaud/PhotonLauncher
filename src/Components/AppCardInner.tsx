@@ -6,6 +6,9 @@ import { Loading } from './Generics/Loading';
 import { FOCUS_BORDER_SIZE } from './../Constants';
 import { HeartIcon } from '../Images/HeartIcon';
 
+// @ts-ignore
+import defaultBackgroundImage from '../Images/default_background.jpg';
+
 interface AppCardOverlayProps {
     launchingState: boolean;
 }
@@ -54,7 +57,7 @@ export const AppCardBackgroundImage = styled.div<AppCardBackgroundImageProps>`
     background-position: center;
     background-repeat: no-repeat;
     transform: scale(${({ focused }) => (focused ? '1.05' : '1.00')});
-    background-image: url('${ ({background_image}) => background_image}');
+    background-image: url('${ ({background_image}) => background_image? background_image : defaultBackgroundImage}');
     transition: all 0.5s;
 `
 

@@ -1,6 +1,4 @@
 import { APP_PLATFORM_MANUAL } from "../Constants";
-// @ts-ignore
-import default_background from '../Images/default_background.jpg';
 
 export default class App {
     readonly id: string;
@@ -14,8 +12,6 @@ export default class App {
     rawgSlug?: string;
 
     constructor({id, title, launch, icon = "", platform = APP_PLATFORM_MANUAL, favourite = false, hidden = false, background_image = "", rawgSlug = ""}: App) {
-        
-        background_image = (background_image === "")? default_background : background_image;
 
         this.id = id;
         this.title = title;
