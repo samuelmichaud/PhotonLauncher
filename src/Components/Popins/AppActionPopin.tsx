@@ -5,16 +5,16 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAppFavourite, setAppVisibility, togglePopin } from '../Store/Reducer';
-import { Popin } from './Generics/Popin';
-import { Button } from './Generics/Button';
-import { CONTENT_FOCUS, SHOW_POPIN_NONE, THEME_DARK, POPIN_SIZE_LARGE, THEME_SECONDARY_DARK, FRAME_PADDING, POPIN_BG_COLOR } from '../Constants';
+import { setAppFavourite, setAppVisibility, togglePopin } from '../../Store/Reducer';
+import { Popin } from '../Generics/Popin';
+import { Button } from '../Generics/Button';
+import { CONTENT_FOCUS, SHOW_POPIN_NONE, THEME_DARK, POPIN_SIZE_LARGE, THEME_SECONDARY_DARK, FRAME_PADDING, POPIN_BG_COLOR } from '../../Constants';
 import { useTranslation } from "react-i18next";
-import App from '../Model/App';
-import { HeartIcon } from '../Images/HeartIcon';
-import { EyeIcon } from '../Images/EyeIcon';
+import App from '../../Model/App';
+import { HeartIcon } from '../../Images/HeartIcon';
+import { EyeIcon } from '../../Images/EyeIcon';
 // @ts-ignore
-import defaultBackgroundImage from '../Images/default_background.jpg';
+import defaultBackgroundImage from '../../Images/default_background.jpg';
 
 const InnerAppPopin = styled.div`
     display: flex;

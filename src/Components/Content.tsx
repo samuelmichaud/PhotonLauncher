@@ -7,7 +7,7 @@ import {
     useFocusable,
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
-import { ContentGrid } from './ContentGrid';
+import { ContentGrid } from './Grid/ContentGrid';
 import { Loading } from './Generics/Loading';
 import { EmptyLibrary } from './EmptyLibrary';
 import { FRAME_PADDING, CONTENT_FOCUS, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD, THEME_TRANSPARENT, NAVHELPER_HEIGHT } from '../Constants';

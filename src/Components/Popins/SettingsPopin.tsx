@@ -6,14 +6,14 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { findIndex } from 'underscore';
-import { togglePopin, setLanguage, setLaunchOption } from './../Store/Reducer';
-import { Popin } from './Generics/Popin';
-import { Button } from './Generics/Button';
-import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS, LAUNCH_OPTION_STARTUP, LAUNCH_OPTION_NONE, MAIN_INPUT_MOUSE, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from './../Constants';
+import { togglePopin, setLanguage, setLaunchOption } from '../../Store/Reducer';
+import { Popin } from '../Generics/Popin';
+import { Button } from '../Generics/Button';
+import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMARY_DARK, LANG_LIST_OPTIONS, LAUNCH_OPTION_STARTUP, LAUNCH_OPTION_NONE, MAIN_INPUT_MOUSE, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../../Constants';
 import { useTranslation } from "react-i18next";
-import { OptionSelector } from './Generics/OptionSelector';
-import { HorizontalSeparator } from './Generics/HorizontalSeparator';
-import { AddCustomAppButton } from './AddCustomAppButton';
+import { OptionSelector } from '../Generics/OptionSelector';
+import { HorizontalSeparator } from '../Generics/HorizontalSeparator';
+import { AddCustomAppButton } from '../AddCustomAppButton';
 
 const InnerSettings = styled.div`
     display: flex;
@@ -24,7 +24,7 @@ const InnerSettings = styled.div`
     position: relative;
 `
 
-export const Settings = () => {
+export const SettingsPopin = () => {
     // @ts-ignore (because of globalState which is not recognized)
     const { ui } = useSelector((state) => state.globalState);
     const { ref, focusKey, focusSelf, setFocus } = useFocusable({isFocusBoundary: true});

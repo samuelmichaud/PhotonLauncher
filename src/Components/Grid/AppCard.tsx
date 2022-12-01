@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
@@ -9,7 +9,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AppCardOverlay, AppCardBox, AppCardTitle, AppCardBadge, AppCardBackgroundImage} from './AppCardInner'
-import { CONTENT_FOCUS, FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE, ZINDEX_FOCUSED_CARD } from '../Constants';
+import { FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE, ZINDEX_FOCUSED_CARD } from '../../Constants';
 
 import { useSelector } from 'react-redux'
 

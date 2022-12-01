@@ -2,12 +2,12 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
-import { Loading } from './Generics/Loading';
-import { FOCUS_BORDER_SIZE } from './../Constants';
-import { HeartIcon } from '../Images/HeartIcon';
+import { Loading } from '../Generics/Loading';
+import { FOCUS_BORDER_SIZE } from './../../Constants';
+import { HeartIcon } from '../../Images/HeartIcon';
 
 // @ts-ignore
-import defaultBackgroundImage from '../Images/default_background.jpg';
+import defaultBackgroundImage from '../../Images/default_background.jpg';
 
 interface AppCardOverlayProps {
     launchingState: boolean;

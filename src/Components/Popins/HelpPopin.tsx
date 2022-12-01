@@ -5,13 +5,13 @@ import {
     FocusContext
 } from '@noriginmedia/norigin-spatial-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { togglePopin } from '../Store/Reducer';
-import { Popin } from './Generics/Popin';
-import { Button } from './Generics/Button';
-import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_FULL, THEME_PRIMARY_DARK, THEME_DARK, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../Constants';
+import { togglePopin } from '../../Store/Reducer';
+import { Popin } from '../Generics/Popin';
+import { Button } from '../Generics/Button';
+import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_FULL, THEME_PRIMARY_DARK, THEME_DARK, MAIN_INPUT_KEYBOARD, MAIN_INPUT_GAMEPAD } from '../../Constants';
 import { useTranslation } from "react-i18next";
-import { KeyboardLetterIcon } from './../Images/KeyboardLetterIcon';
-import { CollapseItem } from './Generics/CollapseItem';
+import { KeyboardLetterIcon } from '../../Images/KeyboardLetterIcon';
+import { CollapseItem } from '../Generics/CollapseItem';
 
 const InnerHelpPopin = styled.div`
     display: flex;

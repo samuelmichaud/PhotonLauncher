@@ -11,7 +11,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { init } from '@noriginmedia/norigin-spatial-navigation';
 import { Menu } from './Menu';
 import { NavHelper } from './NavHelper';
-import { Settings } from './Settings';
+import { SettingsPopin } from './Popins/SettingsPopin';
 import { Content } from './Content';
 import store from '../Store/Store';
 import { setWindowFocusState, togglePopin, setConfig } from '../Store/Reducer'
@@ -19,9 +19,9 @@ import { Provider, useSelector } from 'react-redux'
 
 import '../InputManagement.js';
 import { GRADIENT_BOTTOM_LEFT, GRADIENT_TOP_RIGHT, MAIN_INPUT_MOUSE, SHOW_POPIN_APP_ACTION, SHOW_POPIN_HELP, SHOW_POPIN_SCAN, SHOW_POPIN_SETTINGS } from '../Constants';
-import { ScanPopin } from './ScanPopin';
-import { HelpPopin } from './HelpPopin';
-import { AppActionPopin } from './AppActionPopin';
+import { ScanPopin } from './Popins/ScanPopin';
+import { HelpPopin } from './Popins/HelpPopin';
+import { AppActionPopin } from './Popins/AppActionPopin';
 import { useTranslation } from "react-i18next";
 import App from '../Model/App';
 // @ts-ignore
@@ -80,7 +80,7 @@ const MainContainer = () => {
         <GlobalStyle mainInput={ui.mainInput}/>
         <Menu />
         <Content />
-        {ui.popin.id === SHOW_POPIN_SETTINGS && <Settings />}
+        {ui.popin.id === SHOW_POPIN_SETTINGS && <SettingsPopin />}
         {ui.popin.id === SHOW_POPIN_SCAN && <ScanPopin />}
         {ui.popin.id === SHOW_POPIN_HELP && <HelpPopin />}
         {ui.popin.id === SHOW_POPIN_APP_ACTION && <AppActionPopin app={apps.filter((item: App) => item.id === ui.popin.context)[0]}/>}
