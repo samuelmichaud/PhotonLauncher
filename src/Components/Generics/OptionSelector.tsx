@@ -19,6 +19,7 @@ interface OptionSelectorProps {
     options: Array<OptionProps>;
     initialOption?: number;
     focused?: boolean;
+    onFocus?: ({ x, y, height, width, top, left } : any, focusItem: any) => void;
     getCurrentOption?: (option: any) => void;
     onEnterPress?: (props: object, details: KeyPressDetails) => void;
 }
@@ -49,7 +50,7 @@ const Selector = styled.div`
     justify-content: center;
 `
 
-export const OptionSelector = ({label, getCurrentOption, options, initialOption = 0}: OptionSelectorProps) => {
+export const OptionSelector = ({label, getCurrentOption, options, onFocus, initialOption = 0}: OptionSelectorProps) => {
     // check if initialOption is ok to avoid crash
     initialOption = (initialOption > 0 && initialOption < options.length)? initialOption : 0;
 
@@ -62,6 +63,7 @@ export const OptionSelector = ({label, getCurrentOption, options, initialOption 
     }
 
     const { ref, focused, focusSelf } = useFocusable({
+        onFocus,
         onEnterPress: () => { focusSelf(); action(); }
     });
 

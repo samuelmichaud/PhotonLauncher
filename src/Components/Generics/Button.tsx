@@ -11,6 +11,7 @@ import { FOCUS_BORDER_SIZE, THEME_PRIMARY_DARK, THEME_DARK, THEME_TRANSPARENT, T
 interface ButtonProps {
     label: string; 
     focused?: boolean;
+    onFocus?: ({ x, y, height, width, top, left } : any, focusItem: any) => void;
     action?: () => void;
     onEnterPress?: (props: object, details: KeyPressDetails) => void;
     theme?: string;
@@ -58,10 +59,12 @@ const ButtonBox = styled.div<ButtonProps>`
     justify-content: center;
     transition: all 0.2s ease-in-out;
     gap: 1rem;
+    flex: 1 0 auto;
   `;
 
-export const Button = ({label, action = () => {}, onEnterPress, children, theme, disableState}: ButtonProps) => {
+export const Button = ({label, action = () => {}, onEnterPress, children, theme, disableState, onFocus}: ButtonProps) => {
     const { ref, focused, focusSelf } = useFocusable({
+        onFocus,
         onEnterPress: () => { focusSelf(); action(); },
         focusable: !disableState
     });
