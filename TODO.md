@@ -12,9 +12,9 @@
 - [ ] Handle portrait mode
 
 # Features
-- [P2] Add custom image for apps
+- [P1] Add custom image for apps
 - [P2] Settings : Detect Shadow and launch only on mobile device
-- [ ] Shutdown computer
+- [ ] Shutdown computer ?
 - [ ] Button to change image based on RAWG images list
 
 # Bugs
@@ -33,3 +33,5 @@
 - [ ] CI/CD
 - [ ] QA
 - [ ] Design improvment
+- [ ] App signature
+- [ ] Update process

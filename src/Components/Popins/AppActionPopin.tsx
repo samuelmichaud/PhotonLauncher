@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
     useFocusable,
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAppFavourite, setAppVisibility, togglePopin } from '../../Store/Reducer';
 import { Popin } from '../Generics/Popin';
 import { Button } from '../Generics/Button';
-import { CONTENT_FOCUS, SHOW_POPIN_NONE, THEME_DARK, POPIN_SIZE_LARGE, THEME_SECONDARY_DARK, FRAME_PADDING, POPIN_BG_COLOR } from '../../Constants';
+import { CONTENT_FOCUS, SHOW_POPIN_NONE, THEME_DARK, POPIN_SIZE_LARGE, THEME_SECONDARY_DARK, FRAME_PADDING, POPIN_BG_COLOR, DISABLE_STATE_AFTER_APP_LAUNCH } from '../../Constants';
 import { useTranslation } from "react-i18next";
 import App from '../../Model/App';
 import { HeartIcon } from '../../Images/HeartIcon';
@@ -89,6 +89,20 @@ export const AppActionPopin = ({app}: AppPopinProps) => {
     const { ref, focusKey, focusSelf, setFocus } = useFocusable({isFocusBoundary: true});
     const dispatch = useDispatch();
     const { t } = useTranslation();
+    
+    const [launchingState, setLaunchingState] = useState(false);
+
+    const launchExternalApp = () => {
+        // we don't want user be able to clic multiple times because she thinks that the app isn't launching
+        if (!launchingState) {
+            window.ShadowApi.launchExternalApp(app.launch);
+        }
+        setLaunchingState(true);
+        focusSelf();
+        setTimeout(() => {
+            setLaunchingState(false);
+        }, DISABLE_STATE_AFTER_APP_LAUNCH); // 10s throttle between user clics
+    }
 
     useEffect(() => {
         focusSelf();
@@ -110,7 +124,7 @@ export const AppActionPopin = ({app}: AppPopinProps) => {
                             {app.rawgSlug && <AppPopinCredit>{t('AppActionPopinCredit')} <a href={'https://rawg.io/games/' + app.rawgSlug} target="_blank">RAWG.io</a></AppPopinCredit>}
                         </AppPopinHeaderWrapper>
                         <AppPopinContent>
-                            <Button label={t('AppActionLaunchButton')} action={() => window.ShadowApi.launchExternalApp(app.launch)} />
+                            <Button label={t('AppActionLaunchButton')} action={() => launchExternalApp()} disableState={launchingState}/>
                             <Button label={t(app.favourite? 'AppActionAddToFavouriteButton': 'AppActionRemoveFromFavouriteButton')} 
                                     action={() => dispatch(setAppFavourite({id: app.id, favourite: !app.favourite}))}>
                                 <HeartIcon filled={app.favourite}/>

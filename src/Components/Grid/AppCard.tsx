@@ -9,7 +9,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 
 import {AppCardOverlay, AppCardBox, AppCardTitle, AppCardBadge, AppCardBackgroundImage} from './AppCardInner'
-import { FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE, ZINDEX_FOCUSED_CARD } from '../../Constants';
+import { DISABLE_STATE_AFTER_APP_LAUNCH, FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE, ZINDEX_FOCUSED_CARD } from '../../Constants';
 
 import { useSelector } from 'react-redux'
 
@@ -71,7 +71,7 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
       focusSelf();
       setTimeout(() => {
         setLaunchingState(false);
-      }, 10000); // 10s throttle between user clics
+      }, DISABLE_STATE_AFTER_APP_LAUNCH); // 10s throttle between user clics
   }
 
   const onMouseOver = () => {
