@@ -32,6 +32,6 @@
 - [ ] Crowdin integration
 - [ ] CI/CD
 - [ ] QA
-- [ ] Design improvment
+- [ ] Design & UX improvment
 - [ ] App signature
 - [ ] Update process

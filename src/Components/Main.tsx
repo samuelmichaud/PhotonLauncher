@@ -1,8 +1,3 @@
-/**
- * Since this file is for development purposes only, some of the dependencies are in devDependencies
- * Disabling ESLint rules for these dependencies since we know it is only for development purposes
- */
-
 import React, { useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ReactDOM from 'react-dom';
@@ -38,7 +33,7 @@ window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
   store.dispatch(setWindowFocusState(payload));
 });
 window.ShadowApi.listenForTogglePopin((payload: any) => {
-    store.dispatch(togglePopin(payload));
+  store.dispatch(togglePopin(payload));
 });
 window.ShadowApi.loadConfig((config: any) => {
     store.dispatch(setConfig(config));
