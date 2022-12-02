@@ -50,28 +50,31 @@ const fetchOnlineMetada = async (apps) => {
       };
 
     try {
-        apps = await Promise.all(apps.map(async (app) => {
+        apps = await Promise.all(apps.map(async (app, index) => {
 
-            await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}`, {timeout: 2000}).then((resp) => {
+            await new Promise(r => setTimeout(r, index * 500)); // 1 request every 500ms to avoid API timeout
+
+            await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}&page_size=5`, {timeout: 5000}).then((resp) => {
                 let data = resp.data;
                 let titleSlugified = slugify(app.title, slugifyConf);
                 
                 if (data.results && data.results.length > 0) {
-                    // we want to iterate on first 5 items because the search engine is not always perfect...
-                    for (let i=0; i < data.results.length && i < 5; i++) {
+                    // we want to iterate on first items because the search engine is not always perfect...
+                    for (let i=0; i < data.results.length - 1; i++) {
                         if (data.results[i].slug == titleSlugified || slugify(data.results[i].name, slugifyConf) == titleSlugified || data.results[i].name == app.title) {
                             app = {...app, 'background_image': data.results[i].background_image, 'rawgSlug': data.results[i].slug };
                             break;
                         }
                     }
-                    
                 }
+            }).catch((error) => {
+                log.info(error);
             });
     
             return app;
         }));
     } catch (e) {
-        log.info('Error fetching remote metadata');
+        log.info('Error fetching remote metadata : ' + e);
     }
 
     return apps;
