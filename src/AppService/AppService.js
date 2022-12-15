@@ -98,7 +98,7 @@ const scanForGames = async () => {
     const rootName = path.parse(glcPath).root; // "C:/"
     glcPath = `${rootName}"${glcPath.replace(rootName, '')}"`
     log.info(glcPath);
-    var child = child_process.spawn(glcPath, ['/c /q'], {
+    var child = child_process.spawn(glcPath, ['/c /s /q'], {
         encoding: 'utf8',
         shell: true
     });

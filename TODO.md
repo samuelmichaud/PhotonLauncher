@@ -33,5 +33,7 @@
 - [ ] CI/CD
 - [ ] QA
 - [ ] Design & UX improvment
+- [ ] Brand & renaming ?
+- [ ] Open source ?
 - [ ] App signature
 - [ ] Update process
