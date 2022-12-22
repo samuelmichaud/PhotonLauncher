@@ -13,6 +13,9 @@ import { useTranslation } from "react-i18next";
 import { KeyboardLetterIcon } from '../../Images/KeyboardLetterIcon';
 import { CollapseItem } from '../Generics/CollapseItem';
 
+declare const VERSION: string;
+declare const __BUILD_VERSION__: string;
+
 const InnerHelpPopin = styled.div`
     display: flex;
     flex-direction: column;
@@ -98,12 +101,19 @@ export const HelpPopin = () => {
 
                             <CollapseItem label={t('FAQ4Title')} onFocus={onFocusCallback}>
                                 <FAQcontent>
+                                    {t('FAQ4Text')}
+                                </FAQcontent>
+                            </CollapseItem>
+
+                            <CollapseItem label={t('FAQ5Title')} onFocus={onFocusCallback}>
+                                <FAQcontent>
                                     <ul>
-                                        <li><a href="https://github.com/Solaire/GLC" target="_blank">GLC (GPL-3.0)</a>: {t('FAQ4Line1')}</li>
-                                        <li><a href="https://rawg.io/apidocs" target="_blank">RAWG.io ©</a>: {t('FAQ4Line2')}</li>
+                                        <li><a href="https://github.com/Solaire/GLC" target="_blank">GLC (GPL-3.0)</a>: {t('FAQ5Line1')}</li>
+                                        <li><a href="https://rawg.io/apidocs" target="_blank">RAWG.io ©</a>: {t('FAQ5Line2')}</li>
                                     </ul>
                                 </FAQcontent>
                             </CollapseItem>
+                            <p>{t('FAQBuild')}{VERSION + '-' + __BUILD_VERSION__}</p>
                         </HelpPopinContent>
                     </InnerHelpPopin>}
                 footer={

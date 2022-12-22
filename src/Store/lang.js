@@ -70,9 +70,12 @@ i18n
             FAQ2Text: "At the end of the app list, you can toggle the display of hidden apps.",
             FAQ3Title: "Some of my games/apps are not found by the scan?",
             FAQ3Text: "You can add them manually in the global menu. A mouse is required to select the app. Accepted extensions are .exe, .lnk and .url.",
-            FAQ4Title: "Credits / Which open source libraries do you use?",
-            FAQ4Line1: "for the local scan system",
-            FAQ4Line2: "to get images for games. We do not claim ownership of any of the images or data provided by the RAWG © API. ",
+            FAQ4Title: "What to do if desktop don't show all icons when adding manually an app?",
+            FAQ4Text: "In the explorer adress bar, type \"shell:deskop\" to display all icons. By default, Windows doesn't show icons from all desktops but only the current user.",
+            FAQ5Title: "Credits / Which open source libraries do you use?",
+            FAQ5Line1: "for the local scan system",
+            FAQ5Line2: "to get images for games. We do not claim ownership of any of the images or data provided by the RAWG © API. ",
+            FAQBuild: "Build version: "
         }
       },
       fr: {
@@ -122,9 +125,12 @@ i18n
             FAQ2Text: "Sur l'écran d'accueil, à la fin de la liste, un bouton permet d'afficher ou cacher les applications.",
             FAQ3Title: "Que faire si certains jeux ou applications ne sont pas détectées par le scan automatique ?",
             FAQ3Text: "Il est tout à fait possible d'ajouter manuellement des applications via le menu. Une souris est requise en revanche. Est accepté les .exe, .lnk et .url.",
-            FAQ4Title: "Credits / Quelles sont les librairies open source utilisée et les sources d'images ?",
-            FAQ4Line1: "Pour le système de scan local et automatique.",
-            FAQ4Line2: "Pour récupérer les images automatiquement. Ces images ne nous appartienent pas et sont fournies par l'API RAWG ©.",
+            FAQ4Title: "Que faire si lors de l'ajout manuel, le bureau ne montre pas tous les icônes ?",
+            FAQ4Text: "Dans la barre d'adresse de l'explorateur de fichier tapez : \"shell:deskop\". Windows ne montre par défaut pas tous les icônes du bureau mais seulement ceux de l'utilisateur courant.",
+            FAQ5Title: "Credits / Quelles sont les librairies open source utilisée et les sources d'images ?",
+            FAQ5Line1: "Pour le système de scan local et automatique.",
+            FAQ5Line2: "Pour récupérer les images automatiquement. Ces images ne nous appartienent pas et sont fournies par l'API RAWG ©.",
+            FAQBuild: "Version de build : "
         }
       }
     },
