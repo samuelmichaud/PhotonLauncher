@@ -17,7 +17,6 @@ interface EmptyLibraryWrapperProps {
 
 const EmptyLibraryWrapper = styled.div<EmptyLibraryWrapperProps>`
     position: relative;
-    height: 100%;
     color: white;
     display: flex;
     align-items: center;
@@ -68,11 +67,13 @@ export const EmptyLibrary = () => {
                     <p><Trans i18nKey={'EmptyLibrarySecurity'}></Trans></p>
                 </SecurityMessageWrapper>
                 <h2>{t('EmptyLibraryNextStep')}</h2>
-                <Button 
-                    focused={focused}
-                    label={t('EmptyLibraryLabelButton')}
-                    action={() => window.ShadowApi.scanForGames()}>
-                </Button>
+                <div>
+                    <Button 
+                        focused={focused}
+                        label={t('EmptyLibraryLabelButton')}
+                        action={() => window.ShadowApi.scanForGames()}>
+                    </Button>
+                </div>
                 <h2>{t('EmptyLibraryOr')}</h2>
                 <AddCustomAppButton />
             </EmptyLibraryWrapper>
