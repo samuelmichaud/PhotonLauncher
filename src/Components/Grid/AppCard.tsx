@@ -31,11 +31,15 @@ const AppCardWrapper = styled.div<AppCardWrapperProps>`
     transform: scale(${({ focused }) => (focused ? '1.05' : '1')});
     z-index: ${({ focused }) => (focused ? ZINDEX_FOCUSED_CARD : '1')};
     overflow: hidden;
-    width: calc((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn});
-    height: calc(((100vw - 2 * ${FRAME_PADDING}rem - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn})*9/16);
+    width: calc((100% - (${({nbColumn}) => nbColumn} - 1) * ${GRID_GAP}rem )/${({nbColumn}) => nbColumn});
+    aspect-ratio: 16/9;
     box-sizing: border-box;
     transition: all 0.2s ease-in-out;
     ${({launchingState}) => launchingState? 'background-blend-mode: luminosity;': ''}
+
+    @media (max-aspect-ratio: 1/1) {
+      width: calc((100% - ${GRID_GAP}rem )/2); // 2 rows only for portrait mode
+    }
 `;
 
 

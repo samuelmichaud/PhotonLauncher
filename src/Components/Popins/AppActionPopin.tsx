@@ -36,7 +36,6 @@ const AppPopinContent = styled.div`
 
 const AppPopinHeaderWrapper = styled.div`
     position: relative;
-    min-height: 30rem;
     height: 40vh;
     margin: 0 -${FRAME_PADDING}rem;
 `

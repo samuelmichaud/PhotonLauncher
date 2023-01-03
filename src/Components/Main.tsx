@@ -58,6 +58,11 @@ const MainWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  
+  @media (min-aspect-ratio: 21/9) {
+    padding: 0 10vw;
+  }
 `
 
 const MainContainer = () => {

@@ -15,6 +15,7 @@ import { QuitIcon } from '../Images/QuitIcon';
 import { ShadowLogo } from '../Images/ShadowLogo';
 import { useTranslation } from "react-i18next";
 import { HelpIcon } from '../Images/HelpIcon';
+import { HorizontalSeparator } from './Generics/HorizontalSeparator';
 
 interface MenuWrapperProps {
     hasFocusedChild: boolean;
@@ -85,7 +86,7 @@ export const Menu = () => {
                     </Button>
                 </MenuWrapper>
             </div>
-            <hr style={{border: 'none', background: '#9ab0ff', width: `calc(100vw - 2 * ${FRAME_PADDING}rem)`, height: '0.1rem'}}/>
+            <HorizontalSeparator />
         </FocusContext.Provider>
     );
 }

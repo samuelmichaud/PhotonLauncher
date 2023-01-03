@@ -44,7 +44,8 @@ export const SettingsPopin = () => {
 
     const onFocusCallback = ({ x, y, height, width, top, left } : any, focusItem: any) => {
         if (ui.mainInput === MAIN_INPUT_KEYBOARD || ui.mainInput === MAIN_INPUT_GAMEPAD) {
-            let scroll = (y - height < 0)? 0 : y - height;
+            let scroll = (y < 0)? 0 : y;
+            scroll = (y + height > ref.current.scrollHeight)? ref.current.scrollHeight : y;
             ref.current.scrollTo({
                 top: scroll,
                 behavior: "smooth"

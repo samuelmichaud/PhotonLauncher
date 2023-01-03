@@ -62,6 +62,10 @@ const PopinBox = styled.div<PopinBoxProps>`
                     return `
                         height: calc(95vh - ${NAVHELPER_HEIGHT}rem);
                         width: 95vw;
+
+                        @media (min-aspect-ratio: 21/9) {
+                            width: 80vw;
+                        }
                     `
                 case POPIN_SIZE_LARGE:
                 default:
@@ -85,7 +89,7 @@ const PopinBox = styled.div<PopinBoxProps>`
 
 const Title = styled.h1`
     text-align: center;
-    margin: 3rem 0 3rem 0;
+    margin: 2rem 0 2rem 0;
     font-size: 2.5rem;
 `
 
