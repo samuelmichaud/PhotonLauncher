@@ -1,7 +1,7 @@
 {
   "name": "shadow-launcher",
   "productName": "ShadowLauncher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Launch all your installed games without mouse & keyboard",
   "main": ".webpack/main",
   "scripts": {
