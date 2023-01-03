@@ -4,11 +4,37 @@
   font-size: 10px;
 }
 
-@media (min-width: 2560px) {
+
+@media (max-resolution: 72dpi) {
+  :root {
+    font-size: 30px;
+  }
+}
+
+@media (max-resolution: 96dpi) {
   :root {
     font-size: 25px;
   }
 }
+
+@media (max-resolution: 192dpi) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+@media (max-resolution: 320dpi) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+@media (min-resolution: 640dpi) {
+  :root {
+    font-size: 10px;
+  }
+}
+
 
 
 @keyframes fadein {

@@ -37,9 +37,14 @@ const AppCardWrapper = styled.div<AppCardWrapperProps>`
     transition: all 0.2s ease-in-out;
     ${({launchingState}) => launchingState? 'background-blend-mode: luminosity;': ''}
 
-    @media (max-aspect-ratio: 1/1) {
-      width: calc((100% - ${GRID_GAP}rem )/2); // 2 rows only for portrait mode
+    @media (max-aspect-ratio: 3/2) {
+      width: calc((100% - ${GRID_GAP}rem)/2); // 2 rows only for portrait mode
     }
+
+    @media (max-aspect-ratio: 1/1) {
+      width: calc((100%)); // 1 rows only for portrait mode
+    }
+
 `;
 
 
