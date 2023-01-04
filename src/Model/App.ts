@@ -8,10 +8,11 @@ export default class App {
     platform?: string; // steam, manual, ...
     favourite?: boolean;
     hidden?: boolean;
+    installed?: boolean;
     background_image?: string;
     rawgSlug?: string;
 
-    constructor({id, title, launch, icon = "", platform = APP_PLATFORM_MANUAL, favourite = false, hidden = false, background_image = "", rawgSlug = ""}: App) {
+    constructor({id, title, launch, icon = "", platform = APP_PLATFORM_MANUAL, favourite = false, hidden = false, background_image = "", rawgSlug = "", installed = false}: App) {
 
         this.id = id;
         this.title = title;
@@ -19,6 +20,7 @@ export default class App {
         this.icon = icon;
         this.platform = platform;
         this.favourite = favourite;
+        this.installed = installed;
         this.hidden = hidden;
         this.background_image = background_image;
         this.rawgSlug = rawgSlug;

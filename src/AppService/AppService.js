@@ -25,13 +25,17 @@ const loadMetadaFromJSONfile = async () => {
     // we want to translate GLC app format into our format (even if they are almost similar from each other)
     if (typeof installedAppsFromFile.games != undefined) {
         each(installedAppsFromFile.games, item => {
-            let app = new App({
-                id: item.id,
-                title: item.title,
-                launch: item.launch,
-                platform: item.platform
-            });
-            installedApps.push(app);
+            // (for now) we want ONLY installed apps
+            if (item.installed) {
+                let app = new App({
+                    id: item.id,
+                    title: item.title,
+                    launch: item.launch,
+                    platform: item.platform,
+                    installed: item.installed // true for now
+                });
+                installedApps.push(app);
+            }
         });
     }
 
