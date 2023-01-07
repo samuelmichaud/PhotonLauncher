@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain as fromRendererProcess, session, screen, shell } from 'electron';
+import { app, BrowserWindow, ipcMain as fromRendererProcess, session, screen, shell, protocol } from 'electron';
 import { isProductionEnv } from './Utils';
 import log from 'electron-log';
 import { keyboard, Key } from "@nut-tree/nut-js";
@@ -84,9 +84,15 @@ const createWindow = (): void => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
-        'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' data:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data:; img-src \'self\' \'unsafe-eval\' \'unsafe-inline\' https://cdn.thegamesdb.net https://media.rawg.io']
+        'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' data: shadowapp:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data: shadowapp:; img-src \'self\' \'unsafe-eval\' \'unsafe-inline\' https://cdn.thegamesdb.net https://media.rawg.io shadowapp: data:;']
       }
     })
+  })
+
+  protocol.registerFileProtocol(CUSTOM_PROTOCOL_LOADFILE, (request, callback) => {
+    const url = request.url.substr(CUSTOM_PROTOCOL_LOADFILE.length + 3) // we remove : "shadowapp://" from the path
+    console.log(url);
+    callback({ path: url })
   })
 };
 
@@ -152,4 +158,4 @@ fromRendererProcess.on("releaseAltTab", (event, args) => {
 export { mainWindow };
 
 import './AppService/AppService'
-import { LAUNCH_OPTION_STARTUP } from './Constants';
+import { CUSTOM_PROTOCOL_LOADFILE, LAUNCH_OPTION_STARTUP } from './Constants';

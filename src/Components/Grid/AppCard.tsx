@@ -8,7 +8,7 @@ import {
     KeyPressDetails
 } from '@noriginmedia/norigin-spatial-navigation';
 
-import {AppCardOverlay, AppCardBox, AppCardTitle, AppCardBadge, AppCardBackgroundImage} from './AppCardInner'
+import {AppCardOverlay, AppCardBox, AppCardTitle, AppCardBadge, AppCardBackgroundImage, AppCardFaviconImage} from './AppCardInner'
 import { DISABLE_STATE_AFTER_APP_LAUNCH, FRAME_PADDING, GRID_COLUMN, GRID_COLUMN_BIG, GRID_GAP, MAIN_INPUT_MOUSE, ZINDEX_FOCUSED_CARD } from '../../Constants';
 
 import { useSelector } from 'react-redux'
@@ -102,6 +102,7 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
         launchingState={launchingState}
         >
       <AppCardBackgroundImage focused={focused} background_image={app.background_image}/>
+      {!app.background_image && <AppCardFaviconImage icon={app.icon}/> }
       <AppCardOverlay launchingState={launchingState}/>
       <AppCardBox focused={focused} />
       <AppCardBadge favourite={app.favourite} />

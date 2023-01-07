@@ -55,6 +55,22 @@ export const AppPopinBackgroundImage = styled.div<AppPopinBackgroundImageProps>`
     transition: all 0.5s;
 `
 
+interface AppPopinFaviconImageProps {
+    icon: string;
+}
+
+export const AppPopinFaviconImage = styled.div<AppPopinFaviconImageProps>`
+    height: 100%;
+    width: 100%; 
+    position: absolute;
+    background-image: url('${({ icon }) => (icon)}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 10rem;
+    transition: all 0.5s;
+`
+
+
 export const AppPopinTitle = styled.div`
     color: white;
     font-family: 'Segoe UI';
@@ -119,6 +135,8 @@ export const AppActionPopin = ({app}: AppPopinProps) => {
                     <InnerAppPopin ref={ref}>
                         <AppPopinHeaderWrapper>
                             <AppPopinBackgroundImage background_image={app.background_image}/>
+                            
+                            {!app.background_image && <AppPopinFaviconImage icon={app.icon}/> }
                             <AppPopinTitle>{app.title}</AppPopinTitle>
                             {app.rawgSlug && <AppPopinCredit>{t('AppActionPopinCredit')} <a href={'https://rawg.io/games/' + app.rawgSlug} target="_blank">RAWG.io</a></AppPopinCredit>}
                         </AppPopinHeaderWrapper>

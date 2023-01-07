@@ -2,8 +2,8 @@
 import { ipcMain as fromRendererProcess, app as electronApp } from 'electron';
 import { each, find, reject, contains } from 'underscore';
 import { mainWindow } from '../index';
-import { loadFromJSONFile, storeToJSONFile, isProductionEnv } from '../Utils';
-import { APP_PLATFORM_MANUAL, RAWG_APIKEY, SHOW_POPIN_NONE, SHOW_POPIN_SCAN } from '../Constants';
+import { loadFromJSONFile, storeToJSONFile, isProductionEnv, encodePathForWindows } from '../Utils';
+import { APP_PLATFORM_MANUAL, CUSTOM_PROTOCOL_LOADFILE, RAWG_APIKEY, SHOW_POPIN_NONE, SHOW_POPIN_SCAN } from '../Constants';
 import axios from 'axios';
 import App from '../Model/App';
 import path from 'path';
@@ -25,11 +25,13 @@ const loadMetadaFromJSONfile = async () => {
     // we want to translate GLC app format into our format (even if they are almost similar from each other)
     if (typeof installedAppsFromFile.games != undefined) {
         each(installedAppsFromFile.games, item => {
+
             // (for now) we want ONLY installed apps
-            if (item.installed) {
+            if (item.installed) {               
                 let app = new App({
                     id: item.id,
                     title: item.title,
+                    icon: item.icon? (CUSTOM_PROTOCOL_LOADFILE + '://' + encodePathForWindows(item.icon)) : '',
                     launch: item.launch,
                     platform: item.platform,
                     installed: item.installed // true for now

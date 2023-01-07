@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FileSelector } from './Generics/FileSelector';
 import App from '../Model/App';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addApp, setApp, togglePopin } from './../Store/Reducer';
 import { useTranslation } from "react-i18next";
 import { SHOW_POPIN_APP_ACTION } from '../Constants';

@@ -29,3 +29,7 @@ export const storeToJSONFile = (path: string, data: any, callback?: Function) =>
         console.log("Write file to disk: " + path);
     }); 
 }
+
+export const encodePathForWindows = (path: string) => {
+    return path.replace(/\\/g, '\\\\');
+}

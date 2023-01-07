@@ -61,6 +61,21 @@ export const AppCardBackgroundImage = styled.div<AppCardBackgroundImageProps>`
     transition: all 0.5s;
 `
 
+interface AppCardFaviconImageProps {
+    icon: string;
+}
+
+export const AppCardFaviconImage = styled.div<AppCardFaviconImageProps>`
+    height: 100%;
+    width: 100%; 
+    position: absolute;
+    background-image: url('${({ icon }) => (icon)}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 10rem;
+    transition: all 0.5s;
+`
+
 export const AppCardTitle = styled.div`
     color: white;
     font-family: 'Segoe UI';
