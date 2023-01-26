@@ -57,7 +57,7 @@ export const AppCardBackgroundImage = styled.div<AppCardBackgroundImageProps>`
     background-position: center;
     background-repeat: no-repeat;
     transform: scale(${({ focused }) => (focused ? '1.05' : '1.00')});
-    background-image: url('${ ({background_image}) => background_image? background_image : defaultBackgroundImage}');
+    background-image: url("${ ({background_image}) => background_image? decodeURI(background_image.replace(/\\/g, '\\\\')) : defaultBackgroundImage}");
     transition: all 0.5s;
 `
 

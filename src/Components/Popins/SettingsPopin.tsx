@@ -13,7 +13,7 @@ import { MENU_FOCUS, SHOW_POPIN_NONE, POPIN_SIZE_MEDIUM, THEME_DARK, THEME_PRIMA
 import { useTranslation } from "react-i18next";
 import { OptionSelector } from '../Generics/OptionSelector';
 import { HorizontalSeparator } from '../Generics/HorizontalSeparator';
-import { AddCustomAppButton } from '../AddCustomAppButton';
+import { AddCustomAppButton } from '../Buttons/AddCustomAppButton';
 import { RefreshIcon } from '../../Images/RefreshIcon';
 
 const InnerSettings = styled.div`

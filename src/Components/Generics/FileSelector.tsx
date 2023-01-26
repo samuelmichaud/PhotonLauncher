@@ -10,6 +10,7 @@ interface FileSelectorProps {
     label: string; 
     onChangeAction?: (event: any) => void;
     focused?: boolean;
+    fileTypes?: Array<string>;
     disableState?: boolean;
 }
 
@@ -26,7 +27,7 @@ const Label = styled.label.attrs({htmlFor: "add-custom-app"})`
   cursor: inherit;
 `
 
-export const FileSelector = ({label, onChangeAction, disableState}: FileSelectorProps) => {
+export const FileSelector = ({label, onChangeAction, disableState, fileTypes = ["*"]}: FileSelectorProps) => {
     
     // @ts-ignore (because of globalState which is not recognized)
     const { ui } = useSelector((state) => state.globalState);
@@ -36,7 +37,7 @@ export const FileSelector = ({label, onChangeAction, disableState}: FileSelector
         <FileSelectorBox label={label} disableState={disableState} >
             <Button label={label} disableState={disableState}>
                 <Label>{label}</Label>
-                <input type={'file'} name="add-custom-app" id="add-custom-app" accept=".lnk, .exe, .url" style={{'display': 'none'}} onChange={(event) => onChangeAction(event)} />
+                <input type={'file'} name="add-custom-app" id="add-custom-app" accept={fileTypes.join(',')} style={{'display': 'none'}} onChange={(event) => onChangeAction(event)} />
             </Button>
         </FileSelectorBox>
         );

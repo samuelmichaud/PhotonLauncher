@@ -6,7 +6,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import { Button } from './Generics/Button';
 import { Trans, useTranslation } from "react-i18next";
-import { AddCustomAppButton } from './AddCustomAppButton';
+import { AddCustomAppButton } from './Buttons/AddCustomAppButton';
 // @ts-ignore
 import shield from '../Images/shield.svg';
 import { BORDER_RADIUS } from '../Constants';

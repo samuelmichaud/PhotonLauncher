@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain as fromRendererProcess, session, screen, shell, protocol } from 'electron';
 import { isProductionEnv } from './Utils';
 import log from 'electron-log';
-import { keyboard, Key } from "@nut-tree/nut-js";
+import { keyboard, Key, left } from "@nut-tree/nut-js";
 import path from 'path';
 
 log.transports.file.resolvePath = () => path.join(app.getPath('userData'), 'logs/main-' + new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '.log');
@@ -90,9 +90,9 @@ const createWindow = (): void => {
   })
 
   protocol.registerFileProtocol(CUSTOM_PROTOCOL_LOADFILE, (request, callback) => {
-    const url = request.url.substr(CUSTOM_PROTOCOL_LOADFILE.length + 3) // we remove : "shadowapp://" from the path
-    console.log(url);
-    callback({ path: url })
+    let url = request.url.substr(CUSTOM_PROTOCOL_LOADFILE.length + 3) // we remove : "shadowapp://" from the path
+    url = decodeURI(url.replace(/\\/g, '\\\\'));
+    callback({ path: url });
   })
 };
 

@@ -15,6 +15,7 @@ import { HeartIcon } from '../../Images/HeartIcon';
 import { EyeIcon } from '../../Images/EyeIcon';
 // @ts-ignore
 import defaultBackgroundImage from '../../Images/default_background.jpg';
+import { AddCustomBackgroundButton } from '../Buttons/AddCustomBackgroundButton';
 
 const InnerAppPopin = styled.div`
     display: flex;
@@ -49,9 +50,9 @@ export const AppPopinBackgroundImage = styled.div<AppPopinBackgroundImageProps>`
     width: 100%; 
     position: absolute;
     background-size: cover;
-    background-position: top;
+    background-position: center;
     background-repeat: no-repeat;
-    background-image: url('${ ({background_image}) => background_image? background_image : defaultBackgroundImage}');
+    background-image: url("${ ({background_image}) => background_image? decodeURI(background_image.replace(/\\/g, '\\\\')) : defaultBackgroundImage}");
     transition: all 0.5s;
 `
 
@@ -96,6 +97,12 @@ export const AppPopinCredit = styled.div`
     }
 `
 
+export const AppPopinToolbarOnImage = styled.div`
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+`
+
 interface AppPopinProps {
     app: App;
 }
@@ -128,15 +135,18 @@ export const AppActionPopin = ({app}: AppPopinProps) => {
         dispatch(togglePopin({id: SHOW_POPIN_NONE}));
     }
 
+    
     return (
         <FocusContext.Provider value={focusKey}>
             <Popin size={POPIN_SIZE_LARGE} closeAction={() => onPopinClose()}
                 children={
                     <InnerAppPopin ref={ref}>
                         <AppPopinHeaderWrapper>
-                            <AppPopinBackgroundImage background_image={app.background_image}/>
-                            
-                            {!app.background_image && <AppPopinFaviconImage icon={app.icon}/> }
+                            <AppPopinBackgroundImage background_image={App.getBackground(app)}/>
+                            <AppPopinToolbarOnImage>
+                                <AddCustomBackgroundButton app={app}/>
+                            </AppPopinToolbarOnImage>
+                            {!App.getBackground(app) && <AppPopinFaviconImage icon={app.icon}/> }
                             <AppPopinTitle>{app.title}</AppPopinTitle>
                             {app.rawgSlug && <AppPopinCredit>{t('AppActionPopinCredit')} <a href={'https://rawg.io/games/' + app.rawgSlug} target="_blank">RAWG.io</a></AppPopinCredit>}
                         </AppPopinHeaderWrapper>

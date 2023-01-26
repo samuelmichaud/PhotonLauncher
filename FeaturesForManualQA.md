@@ -5,6 +5,11 @@
 - Focus item should always have a "glowing border"
 - Navigating between apps in grid must autoscroll for keyboard & gamedpad but not for mouse
 
+# Responsive 
+- If screen ratio is less than 3/2, the GRID of apps MUST be 2 rows
+- If screen ratio is less than 1/1, the GRID of apps MUST be 1 rows (portrait mode)
+- The size of everything (font, buttons, ...) depends on the DPI of the screen. Higher DPI meens bigger. So it's not too small on a 4K TV, neither on a 4k phone.
+
 # Navigation
 - Keyboard nav with arrow & enter
 - Gamepad navigation
@@ -36,6 +41,13 @@
 - After a adding a custom app, an image should be retreived from internet (RAWG.io)
 - The custom app selection filter for .exe, .url & .lnk.
 - The name of the custom app is cleaned of the extension
+
+## Add custom background image
+- Add custom background image is possible only with a mouse, button must be disabled for keyboard navigation
+- The button to add custom image MUST not be focused by default when the popin open
+- The filer MUST filter image extensions to : ".jpg", ".jpeg", ".png", ".webp", ".svg", ".apng"
+- Custom image MUST not be removed & replaced by a new scan
+
 
 # App launch
 - The tile & launch button must be disable for 10s after a launch to avoid multiple app launch
