@@ -46,7 +46,7 @@
 - Add custom background image is possible only with a mouse, button must be disabled for keyboard navigation
 - The button to add custom image MUST not be focused by default when the popin open
 - The filer MUST filter image extensions to : ".jpg", ".jpeg", ".png", ".webp", ".svg", ".apng"
-- Custom image MUST not be removed & replaced by a new scan
+- Custom image MUST NOT be removed & replaced by a new scan
 
 
 # App launch
