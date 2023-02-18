@@ -143,10 +143,10 @@ export const AppActionPopin = ({app}: AppPopinProps) => {
                     <InnerAppPopin ref={ref}>
                         <AppPopinHeaderWrapper>
                             <AppPopinBackgroundImage background_image={App.getBackground(app)}/>
+                            {!App.getBackground(app) && <AppPopinFaviconImage icon={app.icon}/> }
                             <AppPopinToolbarOnImage>
                                 <AddCustomBackgroundButton app={app}/>
                             </AppPopinToolbarOnImage>
-                            {!App.getBackground(app) && <AppPopinFaviconImage icon={app.icon}/> }
                             <AppPopinTitle>{app.title}</AppPopinTitle>
                             {app.rawgSlug && <AppPopinCredit>{t('AppActionPopinCredit')} <a href={'https://rawg.io/games/' + app.rawgSlug} target="_blank">RAWG.io</a></AppPopinCredit>}
                         </AppPopinHeaderWrapper>
