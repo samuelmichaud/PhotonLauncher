@@ -4,11 +4,11 @@ export const DISABLE_STATE_AFTER_APP_LAUNCH = 10000;
 export const CUSTOM_PROTOCOL_LOADFILE = "shadowapp";
 
 // COLOR CONSTANTS
-export const POPIN_BG_COLOR = "rgba(16, 19, 34, 100%)";
+export const POPIN_BG_COLOR = "#011724";
 export const GRADIENT_TOP_RIGHT = "#4224BF";
 export const GRADIENT_BOTTOM_LEFT = "#34B0EF";
-export const PRIMARY_COLOR = "#3653CC";
-export const SECONDARY_COLOR = "#2E344B";
+export const PRIMARY_COLOR = "#05497a";
+export const SECONDARY_COLOR = "#22577d";
 
 // THEME CONSTANTS
 export const THEME_PRIMARY_DARK = 'primary-dark';

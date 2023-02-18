@@ -1,9 +1,11 @@
 
 
 # Library management
+- [P1] Handle no games found case
 - [ ] Launch a refresh scan at startup (in background)
 
 # Design / UX
+- [P1] Display notification after game launch so they know they can alt+tab ???
 - [P2] Improve toggle in action popin
 - [P2] Animation on fav
 - [P2] Disapear animation on hide
@@ -12,13 +14,14 @@
 - [ ] Handle portrait mode
 
 # Features
-- [P1] Add custom image for apps
 - [P2] Settings : Detect Shadow and launch only on mobile device
 - [ ] Shutdown computer ?
 - [ ] Button to change image based on RAWG images list
 
-# Bugs
+# Kown Bugs
+- [P1] Some games are launch in background instead of foreground
 - [ ] Cursor who not always disapear & update after file select in add custom app
+
 
 # Refacto & code improvment
 - [P1] Big refacto & cleanup on the scanning process

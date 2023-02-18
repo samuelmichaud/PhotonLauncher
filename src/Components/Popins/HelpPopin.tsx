@@ -111,6 +111,7 @@ export const HelpPopin = () => {
                                     <ul>
                                         <li><a href="https://github.com/Solaire/GLC" target="_blank">GLC (GPL-3.0)</a>: {t('FAQ5Line1')}</li>
                                         <li><a href="https://rawg.io/apidocs" target="_blank">RAWG.io ©</a>: {t('FAQ5Line2')}</li>
+                                        <li><a href="https://www.freepik.com/free-vector/abstract-bokeh-lights-background_14721003.htm#query=abstract_bokeh_lights_background&position=15&from_view=search&track=ais" target="_blank">Background</a>: Image by vector_corp on Freepik</li>
                                     </ul>
                                 </FAQcontent>
                             </CollapseItem>

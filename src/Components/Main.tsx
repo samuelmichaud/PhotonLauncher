@@ -21,6 +21,8 @@ import { useTranslation } from "react-i18next";
 import App from '../Model/App';
 // @ts-ignore
 import cursor from "../Images/cursor.svg";
+// @ts-ignore
+import main_background from "../Images/main_background.jpg";
 
 init({
   debug: false,
@@ -53,7 +55,11 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 `;
 
 const MainWrapper = styled.div`
-  background: linear-gradient(to bottom left, ${GRADIENT_TOP_RIGHT}, ${GRADIENT_BOTTOM_LEFT});
+  //background: linear-gradient(to bottom left, ${GRADIENT_TOP_RIGHT}, ${GRADIENT_BOTTOM_LEFT});
+  background: url('${main_background}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
   display: flex;

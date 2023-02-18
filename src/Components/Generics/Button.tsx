@@ -40,8 +40,9 @@ const ButtonBox = styled.div<ButtonProps>`
                 `
             case THEME_SECONDARY_DARK:
                 return `
-                    background-color: #1f2336;
+                    background-color: ${SECONDARY_COLOR};
                     color: #ddd;
+                    filter: brightness(0.8);
                 `
         }
     }}
