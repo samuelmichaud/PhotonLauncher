@@ -1,11 +1,11 @@
 # Shadow Launcher
-A beautifull and very user friendly app to launch all your installed games from any thirdparty launcher (Steam, GOG Galaxy, ...) with your gamepad, keyboard or mouse.
+**A beautifull and very user friendly app to launch all your installed games** from any thirdparty launcher (Steam, GOG Galaxy, ...) with your gamepad, keyboard or mouse.
 
 This app aimed to solve 2 mains issues :
 - Unified games into one interface instead of multiple launchers
 - Launch games without mouse or keyboard for cloud computing (like https://shadow.tech), media server connected to TV or Windows handled gaming console.
 
-Works only on MS Windows (no MAC OS, Linux or Android support).
+Works only on MS Windows (no MAC OS, Linux or Android support). It's a standalone app who run in fullscreen.
 
 # Features
 A simple app yes, but with powerfull features :
@@ -60,6 +60,8 @@ Build installer & executable :
 ```
 yarn make
 ```
+
+Some doc can be found in the `/docs` folder
 
 # Credits
 Some credits can be found within the app but, particular thanks to :
