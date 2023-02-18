@@ -62,7 +62,7 @@ const fetchOnlineMetada = async (apps) => {
 
             await axios.get(`https://api.rawg.io/api/games?key=${RAWG_APIKEY}&platforms=4&search_precise=true&search=${app.title}&page_size=5`, {timeout: 5000}).then((resp) => {
                 let data = resp.data;
-                let titleSlugified = slugify(app.title, slugifyConf);
+                let titleSlugified = slugify(app.title.replace(/[™©]/g, ""), slugifyConf); // for weird reason the remove option from slugify conf doesn't work... so we remove copyrights by hand
                 
                 if (data.results && data.results.length > 0) {
                     // we want to iterate on first items because the search engine is not always perfect...
