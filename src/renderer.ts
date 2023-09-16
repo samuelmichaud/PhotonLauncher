@@ -32,7 +32,7 @@ import './Components/Main';
 import App from './Model/App';
 
 
-export interface ShadowApi {
+export interface PhotonApi {
     launchExternalApp: (path: string) => void,
     scanForGames: () => void,
     loadLibraryFromSource: () => void,
@@ -51,7 +51,7 @@ export interface ShadowApi {
   
 declare global {
     interface Window {
-        ShadowApi: ShadowApi,
+        PhotonApi: PhotonApi,
         joypad: any
     }
 }

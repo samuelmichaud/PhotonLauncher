@@ -1,7 +1,7 @@
 {
-  "name": "shadow-launcher",
-  "productName": "ShadowLauncher",
-  "version": "1.0.6",
+  "name": "photon-launcher",
+  "productName": "PhotonLauncher",
+  "version": "1.1.0",
   "description": "Launch all your installed games without mouse & keyboard",
   "main": ".webpack/main",
   "scripts": {
@@ -20,13 +20,13 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "src/Images/shadow.ico"
+        "icon": "src/Images/photon.ico"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "shadow-launcher"
+            "name": "photon-launcher"
           }
         },
         {

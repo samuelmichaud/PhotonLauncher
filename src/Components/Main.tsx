@@ -31,13 +31,13 @@ init({
   throttleKeypresses: true
 });
 
-window.ShadowApi.listenForWindowFocusChange((payload: boolean) => {
+window.PhotonApi.listenForWindowFocusChange((payload: boolean) => {
   store.dispatch(setWindowFocusState(payload));
 });
-window.ShadowApi.listenForTogglePopin((payload: any) => {
+window.PhotonApi.listenForTogglePopin((payload: any) => {
   store.dispatch(togglePopin(payload));
 });
-window.ShadowApi.loadConfig((config: any) => {
+window.PhotonApi.loadConfig((config: any) => {
     store.dispatch(setConfig(config));
 });
 
@@ -78,7 +78,7 @@ const MainContainer = () => {
 
   useEffect(() => {
     i18n.changeLanguage(config.lang.value);
-    window.ShadowApi.updateStartupMode(config.launchOption);
+    window.PhotonApi.updateStartupMode(config.launchOption);
   }, [config.lang.value, config.launchOption]);
 
   return (

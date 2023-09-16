@@ -63,7 +63,7 @@ export const SettingsPopin = () => {
             <Popin title={t('SettingsPopinTitle')} size={POPIN_SIZE_MEDIUM} closeAction={() => onSettingsClose()}
                 children={
                     <InnerSettings ref={ref} >
-                        <Button label={t('SettingsPopinRefreshButton')} action={() => { onSettingsClose(); window.ShadowApi.scanForGames()}} theme={THEME_DARK} onFocus={onFocusCallback}>
+                        <Button label={t('SettingsPopinRefreshButton')} action={() => { onSettingsClose(); window.PhotonApi.scanForGames()}} theme={THEME_DARK} onFocus={onFocusCallback}>
                             <RefreshIcon />
                             <span>{t('SettingsPopinRefreshButton')}</span>
                         </Button>
@@ -81,7 +81,7 @@ export const SettingsPopin = () => {
                             label={t('SettingsLaunchLabel')} 
                             options={launchSettings}
                             initialOption={findIndex(launchSettings, (item: any) => item.value === config.launchOption.value)}
-                            getCurrentOption={(option) => {window.ShadowApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} 
+                            getCurrentOption={(option) => {window.PhotonApi.updateStartupMode(option); dispatch(setLaunchOption(option))}} 
                             onFocus={onFocusCallback}
                             />
                     </InnerSettings>

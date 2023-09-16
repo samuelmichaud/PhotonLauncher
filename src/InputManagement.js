@@ -75,7 +75,7 @@ window.joypad.on('button_press', e => {
 
     // We need a shortcut to bring the app to front
     if ((buttons[4].pressed || buttons[5].pressed ) && (buttons[8].pressed || buttons[9].pressed)) {
-        window.ShadowApi.triggerAltTab(buttons[4].pressed); // The left button trigger a reverse alt tab (ALT + SHIFT + TAB)
+        window.PhotonApi.triggerAltTab(buttons[4].pressed); // The left button trigger a reverse alt tab (ALT + SHIFT + TAB)
     };
 
     // For navigation purposes 
@@ -98,7 +98,7 @@ window.joypad.on('button_release', e => {
 
     // When the "menu" button is release, we need to unsubscribe (release) alt (+ shift if reverse) keys
     if (buttonName == 'button_8' || buttonName == 'button_9') {
-        window.ShadowApi.releaseAltTab();
+        window.PhotonApi.releaseAltTab();
     };
 });
 

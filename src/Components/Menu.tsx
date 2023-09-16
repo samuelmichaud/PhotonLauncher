@@ -12,7 +12,7 @@ import { togglePopin } from './../Store/Reducer';
 import { Button } from './Generics/Button';
 import { MenuIcon } from '../Images/MenuIcon';
 import { QuitIcon } from '../Images/QuitIcon';
-import { ShadowLogo } from '../Images/ShadowLogo';
+import { PhotonLogo } from '../Images/PhotonLogo';
 import { useTranslation } from "react-i18next";
 import { HelpIcon } from '../Images/HelpIcon';
 import { HorizontalSeparator } from './Generics/HorizontalSeparator';
@@ -73,7 +73,7 @@ export const Menu = () => {
     return (
         <FocusContext.Provider value={focusKey}>
             <div style={{position: 'relative', marginTop: '1rem', padding: '0 ' + FRAME_PADDING + 'rem' }}>
-                <ShadowLogo />
+                <PhotonLogo />
                 <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
                     <Button label={t('MenuHelp')} action={() => dispatch(togglePopin({id: SHOW_POPIN_HELP}))} theme={THEME_TRANSPARENT}>
                         <HelpIcon />
@@ -81,7 +81,7 @@ export const Menu = () => {
                     <Button label={t('MenuSettings')} action={() => dispatch(togglePopin({id: SHOW_POPIN_SETTINGS}))} theme={THEME_TRANSPARENT}>
                         <MenuIcon />
                     </Button>
-                    <Button label={t('Quit')} action={() => window.ShadowApi.quitApp()} theme={THEME_TRANSPARENT}>
+                    <Button label={t('Quit')} action={() => window.PhotonApi.quitApp()} theme={THEME_TRANSPARENT}>
                         <QuitIcon />
                     </Button>
                 </MenuWrapper>

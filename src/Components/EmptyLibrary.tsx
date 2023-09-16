@@ -71,7 +71,7 @@ export const EmptyLibrary = () => {
                     <Button 
                         focused={focused}
                         label={t('EmptyLibraryLabelButton')}
-                        action={() => window.ShadowApi.scanForGames()}>
+                        action={() => window.PhotonApi.scanForGames()}>
                     </Button>
                 </div>
                 <h2>{t('EmptyLibraryOr')}</h2>

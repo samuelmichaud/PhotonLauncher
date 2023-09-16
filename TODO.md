@@ -14,7 +14,6 @@
 - [ ] Handle portrait mode
 
 # Features
-- [P2] Settings : Detect Shadow and launch only on mobile device
 - [ ] Shutdown computer ?
 - [ ] Button to change image based on RAWG images list
 
@@ -30,13 +29,3 @@
 - [ ] Refacto listener and store updater between backgroundProcess & renderer
 - [ ] Handle errors in scan & fetch (in popin)
 - [ ] Units Tests
-
-# For Shadow
-- [ ] Crowdin integration
-- [ ] CI/CD
-- [ ] QA
-- [ ] Design & UX improvment
-- [ ] Brand & renaming ?
-- [ ] Open source ?
-- [ ] App signature
-- [ ] Update process

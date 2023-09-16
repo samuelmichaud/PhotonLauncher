@@ -1,4 +1,4 @@
-# Shadow Launcher
+# Photon Launcher
 **A beautifull and very user friendly app to launch all your installed games** from any thirdparty launcher (Steam, GOG Galaxy, ...) with your gamepad, keyboard or mouse.
 
 This app aimed to solve 2 mains issues :

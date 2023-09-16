@@ -26,7 +26,7 @@ export const AddCustomAppButton = ({}: AddCustomAppButtonProps) => {
         dispatch(togglePopin({id: SHOW_POPIN_APP_ACTION, context: app.id}));
 
         // fetch for background image mostly
-        window.ShadowApi.fetchOnlineMetada([app], (updatedApps: Array<App>) => {
+        window.PhotonApi.fetchOnlineMetada([app], (updatedApps: Array<App>) => {
             if (updatedApps.length > 0) {
                 dispatch(setApp(updatedApps[0]));
             }

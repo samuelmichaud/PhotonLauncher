@@ -1,7 +1,7 @@
 // CONF CONSTANTS
 export const RAWG_APIKEY = "a8823281d9b7494397fdfb0bb4f17904";
 export const DISABLE_STATE_AFTER_APP_LAUNCH = 10000;
-export const CUSTOM_PROTOCOL_LOADFILE = "shadowapp";
+export const CUSTOM_PROTOCOL_LOADFILE = "photonapp";
 
 // COLOR CONSTANTS
 export const POPIN_BG_COLOR = "#011724";

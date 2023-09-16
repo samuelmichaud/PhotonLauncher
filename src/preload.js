@@ -3,7 +3,7 @@
 
 import { shell, ipcRenderer as backgroundProcess } from 'electron';
 
-window.ShadowApi = {
+window.PhotonApi = {
 
     launchExternalApp: (path) => {
         shell.openPath(path);

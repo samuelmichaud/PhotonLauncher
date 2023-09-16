@@ -74,7 +74,7 @@ export const AppCard = ({ app, onFocus, layoutType }: AppCardProps) => {
 
     // we don't want user be able to clic multiple times because she thinks that the app isn't launching
     if (!launchingState) {
-      window.ShadowApi.launchExternalApp(app.launch);
+      window.PhotonApi.launchExternalApp(app.launch);
     }
     setLaunchingState(true);
       focusSelf();

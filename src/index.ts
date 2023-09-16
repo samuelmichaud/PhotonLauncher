@@ -34,7 +34,7 @@ const createWindow = (): void => {
     width: dimensions.width,
     fullscreen: isProductionEnv(), // true for Prod, false for dev
     skipTaskbar: false,
-    icon: 'src/Images/shadow_icon.png',
+    icon: 'src/Images/photon_icon.png',
     // @ts-ignore
     titleBarStyle: (isProductionEnv()? "hidden" : "defaut"),
     webPreferences: {
@@ -84,13 +84,13 @@ const createWindow = (): void => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
-        'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' data: shadowapp:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data: shadowapp:; img-src \'self\' \'unsafe-eval\' \'unsafe-inline\' https://cdn.thegamesdb.net https://media.rawg.io shadowapp: data:;']
+        'Content-Security-Policy': ['default-src \'self\' \'unsafe-inline\' data: photonapp:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data: photonapp:; img-src \'self\' \'unsafe-eval\' \'unsafe-inline\' https://cdn.thegamesdb.net https://media.rawg.io photonapp: data:;']
       }
     })
   })
 
   protocol.registerFileProtocol(CUSTOM_PROTOCOL_LOADFILE, (request, callback) => {
-    let url = request.url.substr(CUSTOM_PROTOCOL_LOADFILE.length + 3) // we remove : "shadowapp://" from the path
+    let url = request.url.substr(CUSTOM_PROTOCOL_LOADFILE.length + 3) // we remove : "photonapp://" from the path
     url = decodeURI(url.replace(/\\/g, '\\\\'));
     callback({ path: url });
   })
